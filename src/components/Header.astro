@@ -1,0 +1,16 @@
+---
+import logo from '../assets/logo-claro.png'
+import {Picture} from '@astrojs/image/components'
+---
+
+<header class="flex min-w-full min-h-[10vh] justify-between items-center px-10">
+    <div class="flex justify-center items-center">
+        <Picture src={logo} alt="Ethereum Chile logo" widths={[54]} aspectRatio="1:1" sizes="(min-width: 1024px) 54px"/>
+        <h1 class="font-raleway font-light text-3xl ml-4">ethereum <span class="font-semibold">Chile</span></h1>
+    </div>
+    <nav class="flex space-x-10 mr-5">
+        <a href="" class="text-lg">ETHSantiago</a>
+        <a href="" class="text-lg">Redes</a>
+        <a href="" class="text-lg">Equipo</a>
+    </nav>
+</header>
