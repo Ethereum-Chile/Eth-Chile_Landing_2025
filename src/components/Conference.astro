@@ -1,0 +1,17 @@
+---
+import { Picture } from "@astrojs/image/components";
+import catedral from 'assets/catedral.png'
+---
+
+<section class="flex min-h-[100vh] bg-custom-black items-center justify-center text-white pt-10" id="conference">
+    <Picture src={catedral} alt="Catedral 3D" widths={[540]} aspectRatio="1:1" sizes="(min-width: 1024px) 540px" class="mr-5"/>
+    <div class="flex flex-col max-w-[30%] space-y-5 mx-20">
+        <h2 class="font-raleway font-light text-5xl mb-3">ETHSantiago <span class="font-semibold">2023</span></h2>
+        <p class="text-lg">
+            Evento construído por pioneros locales de la tecnología, quienes han buscado educar e impactar en Chile desde sus inicios.
+        </p>
+        <p class="text-lg">
+            ETHSantiago busca conectar a todos los individuos y comunidades nacionales en un evento que les entregue las herramientas y conocimiento para adentrarse en esta fascinante tecnología.
+        </p>
+    </div>
+</section>

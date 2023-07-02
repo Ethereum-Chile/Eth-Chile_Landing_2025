@@ -13,6 +13,10 @@ module.exports = {
 				sans: ['Open Sans Variable', ...defaultTheme.fontFamily.sans],
 				raleway: ['Raleway Variable'],
 			},
+			colors: {
+				'custom-black': '#333333',
+				'custom-blue': '#0500CF',
+			},
 		},
 	},
 	plugins: [require('flowbite/plugin')],
