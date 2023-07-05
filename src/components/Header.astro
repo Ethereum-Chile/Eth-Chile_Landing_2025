@@ -8,10 +8,44 @@ import logo from '../assets/logo-claro.png'
         <Picture src={logo} alt="Logo Ethereum Chile" widths={[40,54]} aspectRatio="1:1" sizes="(min-width: 1024px) 54px, (max-width: 768px) 40px"/>
         <h2 class="font-raleway font-light text-3xl ml-4 hidden md:block">ethereum <span class="font-semibold">Chile</span></h2>
     </a>
-    <button class="md:hidden"></button>
-    <nav class="hidden space-x-10 mr-5 md:flex">
+    <button class="md:hidden" aria-expanded="false" id="menuButton" class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-custom-black w-8 h-8 block" id="barsSvg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-custom-blue w-8 h-8 hidden" id="crossSvg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+    <nav class="hidden md:space-x-10 mr-5 md:flex" id="menu">
         <a href="#conference" class="text-lg hover:text-custom-blue">ETHSantiago</a>
         <a href="#socials" class="text-lg hover:text-custom-blue">Redes</a>
         <a href="#team" class="text-lg hover:text-custom-blue">Equipo</a>
-    </nav>
+    </nav> 
 </header>
+
+<script is:inline>
+    document.querySelector('#menuButton').addEventListener('click', (event) => {
+        let button = event.currentTarget
+        let barsSvg = document.querySelector('#barsSvg')
+        let crossSvg = document.querySelector('#crossSvg')
+        let menu = document.querySelector('#menu')
+        let isExpanded = button.getAttribute('aria-expanded') === 'true'
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+
+        if (isExpanded) {
+            barsSvg.classList.remove("hidden")
+            barsSvg.classList.add("block")
+            crossSvg.classList.remove("block")
+            crossSvg.classList.add("hidden")
+            menu.classList.remove("block")
+            menu.classList.add("hidden")
+        } else {
+            barsSvg.classList.remove("block")
+            barsSvg.classList.add("hidden")
+            crossSvg.classList.remove("hidden")
+            crossSvg.classList.add("block")
+            menu.classList.remove("hidden", "mr-5")
+            menu.classList.add("flex","flex-col", "absolute", "-bottom-[8rem]", "right-0", "bg-white", "space-y-3", "text-right", "py-4", "px-6", "rounded-bl-md")
+        }
+    });
+</script>

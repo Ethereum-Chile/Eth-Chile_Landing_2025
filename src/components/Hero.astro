@@ -8,18 +8,18 @@ import publico from '../assets/publico.jpg'
 
 <main class="flex flex-col min-h-[90vh]">
     <div class="relative w-full">
-        <div class="relative overflow-hidden h-[60vh]">
+        <div class="relative overflow-hidden h-[40vh] md:h-[60vh]">
             <div id="carousel-item-1" class="hidden duration-700 ease-in-out">
-                <Picture src={cierre} alt="Fotografía cierre evento" widths={[1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw' class='object-none max-h-[60vh] w-full'/>
+                <Picture src={cierre} alt="Fotografía cierre evento" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
             </div>
             <div id="carousel-item-2" class="hidden duration-700 ease-in-out">
-                <Picture src={apertura} alt="Fotografía cierre evento" widths={[1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw' class='object-none max-h-[60vh] w-full'/>
+                <Picture src={apertura} alt="Fotografía apertura evento" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px', class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
             </div>
             <div id="carousel-item-3" class="hidden duration-700 ease-in-out">
-                <Picture src={publico} alt="Fotografía cierre evento" widths={[1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw' class='object-none max-h-[60vh] w-full'/>
+                <Picture src={publico} alt="Fotografía público" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
             </div>
             <div id="carousel-item-4" class="hidden duration-700 ease-in-out">
-                <Picture src={panel} alt="Fotografía cierre evento" widths={[1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw' class='object-none max-h-[60vh] w-full'/>
+                <Picture src={panel} alt="Fotografía panel" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
             </div>
         </div>
         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -29,13 +29,13 @@ import publico from '../assets/publico.jpg'
             <button id="carousel-indicator-4" type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"></button>
         </div>
     </div>
-    <div class="flex grow justify-evenly items-center">
-        <h1 class="font-raleway font-light text-6xl">ethereum <span class="font-semibold">Chile</span></h1>
-        <div class="flex max-w-[60%] space-x-5 justify-end">
-            <p class="max-w-[45%] text-lg">
+    <div class="flex flex-col grow md:justify-evenly items-center md:flex-row">
+        <h1 class="text-[2.8rem] font-raleway font-light md:text-6xl my-6 md:my-0">ethereum <span class="font-semibold">Chile</span></h1>
+        <div class="max-w-[80%] flex flex-col md:max-w-[60%] md:space-x-5 justify-end md:flex-row">
+            <p class="md:max-w-[45%] text-lg mb-4">
                 Impulsados por la pasión de la comunidad, nos dedicamos a fortalecer y expandir la presencia chilena y latinoamericana en el ecosistema Ethereum.
             </p>
-            <p class="max-w-[45%] text-lg">
+            <p class="md:max-w-[45%] text-lg">
                 Únete a nosotros en esta misión de construir juntos el futuro descentralizado.
             </p>
         </div>
