@@ -3,9 +3,7 @@
 	"compilerOptions": {
 		"baseUrl": "src",
 		"paths": {
-			"flowbite": ["./node_modules/flowbite/dist/flowbite.min.js"],
-			"@layouts/*": ["layouts/*"],
-			"@components/*": ["components/*"]
+			"flowbite": ["./node_modules/flowbite/dist/flowbite.min.js"]
 		}
 	}
 }
