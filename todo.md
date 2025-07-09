@@ -6,6 +6,18 @@
 - [ ] Fix import errors in ASCIIProcessor component
 - [ ] Ensure proper model loading and rendering
 
+## Wallet Connection & Profile Creation
+
+- [x] Implement MetaMask wallet connection
+- [x] Create profile creation page
+- [x] Add wallet connection button to header
+- [x] Handle wallet connection errors
+- [x] Redirect to profile page after wallet connection
+- [ ] Add form validation for profile creation
+- [ ] Implement profile data persistence
+- [ ] Add profile completion status
+- [ ] Connect profile data to backend API
+
 ## Completed Tasks
 
 - [x] Set up Astro project with dark theme

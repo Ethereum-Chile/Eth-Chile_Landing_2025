@@ -1,29 +1,32 @@
 ---
-import { Image } from 'astro:assets'
-import ethChileHero from '../assets/eth_chile2025.png'
+import { ScrollFloat } from "./ScrollFloat.tsx";
 ---
 
-<main class="flex flex-col min-h-[90vh]">
-    <div class="relative w-full">
-        <div class="relative overflow-hidden h-[40vh] md:h-[60vh]">
-            <Image 
-                src={ethChileHero} 
-                alt="ETHChile 2025 Hero Image" 
-                width={1920} 
-                height={1080} 
-                class='object-cover w-full h-full min-h-[40vh] md:min-h-[60vh]'
-            />
-        </div>
+<main class="flex flex-col min-h-screen">
+  <div
+    class="flex flex-col grow md:justify-evenly items-center md:flex-row min-h-screen"
+  >
+    <ScrollFloat
+      client:load
+      containerClassName="text-center"
+      textClassName="text-[2.8rem] font-raleway font-light md:text-6xl mt-6 mb-4 md:my-0"
+      animationDuration={1.5}
+      ease="back.inOut(2)"
+      scrollStart="center bottom+=50%"
+      scrollEnd="bottom bottom-=40%"
+      stagger={0.05}
+    >
+      ethereum Chile
+    </ScrollFloat>
+    <div
+      class="max-w-[80%] flex flex-col md:max-w-[60%] md:space-x-5 justify-end md:flex-row"
+    >
+      <p class="md:max-w-[45%] text-lg mb-4">
+        Chile: El hub financiero del futuro descentralizado.
+      </p>
+      <p class="md:max-w-[45%] text-lg">
+        Ethereum encuentra su hogar en Latinoamérica.
+      </p>
     </div>
-    <div class="flex flex-col grow md:justify-evenly items-center md:flex-row">
-        <h1 class="text-[2.8rem] font-raleway font-light md:text-6xl mt-6 mb-4 md:my-0">ethereum <span class="font-semibold">Chile</span></h1>
-        <div class="max-w-[80%] flex flex-col md:max-w-[60%] md:space-x-5 justify-end md:flex-row">
-            <p class="md:max-w-[45%] text-lg mb-4">
-                Impulsados por la pasión de la comunidad, nos dedicamos a fortalecer y expandir la presencia chilena y latinoamericana en el ecosistema Ethereum.
-            </p>
-            <p class="md:max-w-[45%] text-lg">
-                Únete a nosotros en esta misión de construir juntos el futuro descentralizado.
-            </p>
-        </div>
-    </div>
+  </div>
 </main>

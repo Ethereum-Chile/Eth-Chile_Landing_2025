@@ -1,0 +1,114 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { usePrivy } from "@privy-io/react-auth";
+---
+
+<Layout title="Profile - ETHChile 2025">
+  <Header />
+
+  <main class="min-h-screen flex flex-col items-center justify-center p-8">
+    <div class="max-w-2xl w-full">
+      <h1 class="text-4xl font-raleway font-semibold mb-8 text-center">
+        Welcome to ETHChile
+      </h1>
+
+      <div
+        class="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20"
+      >
+        <div class="text-center mb-8">
+          <div
+            class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center"
+          >
+            <span class="text-2xl font-bold text-white">👤</span>
+          </div>
+          <h2 class="text-2xl font-semibold mb-2">Create Your Profile</h2>
+          <p class="text-gray-300">
+            Complete your profile to join the ETHChile community
+          </p>
+        </div>
+
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">First Name</label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                placeholder="Enter your first name"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Last Name</label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                placeholder="Enter your last name"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Bio</label>
+            <textarea
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 h-24 resize-none"
+              placeholder="Tell us about yourself and your interest in Ethereum..."
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Organization</label>
+            <input
+              type="text"
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+              placeholder="Company, DAO, or project you're associated with"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Role</label>
+            <select
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-500"
+            >
+              <option value="">Select your role</option>
+              <option value="developer">Developer</option>
+              <option value="investor">Investor</option>
+              <option value="entrepreneur">Entrepreneur</option>
+              <option value="researcher">Researcher</option>
+              <option value="student">Student</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Twitter</label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                placeholder="@username"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">LinkedIn</label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                placeholder="LinkedIn profile URL"
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-center pt-6">
+            <button
+              type="submit"
+              class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              Create Profile
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</Layout>

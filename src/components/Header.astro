@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo-claro.png";
+import { ConnectWallet } from "./ConnectWallet.tsx";
 ---
 
 <header
@@ -24,87 +25,7 @@ import logo from "../assets/logo-claro.png";
       ethereum <span class="font-semibold">Chile</span>
     </h2>
   </a>
-  <button
-    class="md:hidden"
-    aria-expanded="false"
-    id="menuButton"
-    class="relative"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="text-white w-8 h-8 block"
-      id="barsSvg"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-    </svg>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="text-white w-8 h-8 hidden"
-      id="crossSvg"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
-  </button>
-  <nav class="hidden md:space-x-10 mr-5 md:flex" id="menu">
-    <a href="#conference" class="text-lg hover:text-custom-blue text-white"
-      >Evento</a
-    >
-    <a href="#socials" class="text-lg hover:text-custom-blue text-white"
-      >Redes</a
-    >
-    <a href="#team" class="text-lg hover:text-custom-blue text-white">Equipo</a>
-  </nav>
+  <div class="flex items-center">
+    <ConnectWallet client:load />
+  </div>
 </header>
-
-<script is:inline>
-  document.querySelector("#menuButton").addEventListener("click", (event) => {
-    let button = event.currentTarget;
-    let barsSvg = document.querySelector("#barsSvg");
-    let crossSvg = document.querySelector("#crossSvg");
-    let menu = document.querySelector("#menu");
-    let isExpanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", (!isExpanded).toString());
-
-    if (isExpanded) {
-      barsSvg.classList.remove("hidden");
-      barsSvg.classList.add("block");
-      crossSvg.classList.remove("block");
-      crossSvg.classList.add("hidden");
-      menu.classList.remove("block");
-      menu.classList.add("hidden");
-    } else {
-      barsSvg.classList.remove("block");
-      barsSvg.classList.add("hidden");
-      crossSvg.classList.remove("hidden");
-      crossSvg.classList.add("block");
-      menu.classList.remove("hidden", "mr-5");
-      menu.classList.add(
-        "flex",
-        "flex-col",
-        "absolute",
-        "-bottom-[8rem]",
-        "right-0",
-        "bg-black",
-        "space-y-3",
-        "text-right",
-        "py-4",
-        "px-6",
-        "rounded-bl-md"
-      );
-    }
-  });
-</script>

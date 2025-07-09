@@ -1,5 +1,5 @@
 ---
-
+import { AnimatedTestimonials } from "./AnimatedTestimonials.tsx";
 ---
 
 <section
@@ -21,7 +21,7 @@
         <p class="text-xl font-semibold">AI & Real-World Integration</p>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
       <div class="border border-white p-6 rounded-lg">
         <p class="text-xl mb-2">🔄 Devconnect warmup + strategic hub</p>
       </div>
@@ -32,5 +32,46 @@
       </div>
     </div>
   </div>
-</section>
 
+  <!-- Testimonials Section -->
+  <div class="mt-16">
+    <h3 class="text-3xl font-raleway font-semibold mb-12 text-center">
+      What Industry Leaders Say About Chile
+    </h3>
+    <AnimatedTestimonials
+      client:load
+      testimonials={[
+        {
+          quote:
+            "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
+          name: "María González",
+          designation: "CEO, Fintech Chile",
+          src: "/src/assets/nati.jpg",
+        },
+        {
+          quote:
+            "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
+          name: "Carlos Mendoza",
+          designation: "Head of Innovation, Banco de Chile",
+          src: "/src/assets/cristobal.jpg",
+        },
+        {
+          quote:
+            "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
+          name: "Ana Silva",
+          designation: "Regulatory Affairs, CMF Chile",
+          src: "/src/assets/andres.jpg",
+        },
+        {
+          quote:
+            "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
+          name: "Roberto Torres",
+          designation: "Managing Partner, LatAm Ventures",
+          src: "/src/assets/diego.jpg",
+        },
+      ]}
+      autoplay={true}
+      className="mt-8"
+    />
+  </div>
+</section>
