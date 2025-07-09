@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { WebGLRenderer, Scene, PerspectiveCamera, Mesh, DirectionalLight, MeshStandardMaterial} from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer, RenderPass, EffectPass } from "postprocessing";
 import { ASCII } from './ascii.js';
 

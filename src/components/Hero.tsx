@@ -32,7 +32,7 @@ const IMAGES_3 = [
   "https://images.unsplash.com/photo-1608875004752-2fdb6a39ba4c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
-export const PhotoGallery = () => {
+export const Hero = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const [isWhyEthVisible, setIsWhyEthVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -133,7 +133,7 @@ export const PhotoGallery = () => {
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-32 text-center">
         <ContainerAnimated>
           <h1 className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white mb-4">
-            ETHChile{" "}
+            ETH Chile{" "}
             <span className="font-raleway font-extralight text-blue-400">
               2025
             </span>
@@ -141,7 +141,7 @@ export const PhotoGallery = () => {
         </ContainerAnimated>
         <ContainerAnimated>
           <h2 className="font-raleway text-2xl font-light md:text-3xl lg:text-4xl text-white mb-6">
-            Where Innovation Meets Reality
+            Fintech meets Ethereum 
           </h2>
         </ContainerAnimated>
 
@@ -154,10 +154,10 @@ export const PhotoGallery = () => {
 
         <ContainerAnimated className="space-x-4">
           <button className="gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
-            Register Now
+            Get ticket
           </button>
           <button className="text-blue-400 hover:text-blue-300 font-semibold transition-colors text-lg border border-blue-400 hover:border-blue-300 px-8 py-4 rounded-lg">
-            Learn More
+            Volunteer
           </button>
         </ContainerAnimated>
       </ContainerStagger>
@@ -215,4 +215,4 @@ export const PhotoGallery = () => {
   );
 };
 
-export default PhotoGallery; 
+export default Hero; 
