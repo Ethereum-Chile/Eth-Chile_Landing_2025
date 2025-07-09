@@ -1,3 +1,122 @@
-<footer class="bg-custom-black flex justify-center items-center min-h-[10vh]">
-    <span class="text-white font-light">ethereumchile.org © {new Date().getFullYear()}</span>
+---
+import FlipLink from "./FlipLink";
+---
+
+<footer
+  class="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8"
+>
+  <div class="w-full max-w-6xl mx-auto">
+    <!-- Main Content Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- Let's Build Together Section -->
+      <div class="text-center lg:text-left">
+        <h2 class="text-4xl font-raleway font-semibold mb-8 text-white">
+          Let's Build Together
+        </h2>
+        <div class="max-w-2xl mx-auto lg:mx-0">
+          <form class="space-y-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+              />
+              <input
+                type="text"
+                placeholder="Organization"
+                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+              />
+            </div>
+            <select
+              class="border border-white bg-transparent p-3 rounded text-white w-full focus:outline-none focus:border-blue-400"
+            >
+              <option>Select Interest</option>
+              <option>Sponsorship</option>
+              <option>Partnership</option>
+              <option>Media</option>
+            </select>
+            <select
+              class="border border-white bg-transparent p-3 rounded text-white w-full focus:outline-none focus:border-blue-400"
+            >
+              <option>Budget Range</option>
+              <option>$500 - $4K</option>
+              <option>$4K - $8K</option>
+              <option>$8K - $10K</option>
+              <option>$10K+</option>
+            </select>
+            <button
+              type="submit"
+              class="bg-white text-black px-8 py-3 rounded-lg font-semibold w-full hover:bg-gray-100 transition-colors"
+              >Submit</button
+            >
+          </form>
+          <div class="space-y-4">
+            <p class="text-xl text-white">
+              📩 Email: comunidadethchile@gmail.com
+            </p>
+            <button
+              class="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
+              >Download Deck</button
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Links Section -->
+      <div class="text-center lg:text-left">
+        <h3 class="text-2xl font-raleway font-semibold mb-8 text-white">
+          Connect With Us
+        </h3>
+        <!-- Mobile: Horizontal Grid -->
+        <div class="lg:hidden grid grid-cols-2 gap-6 justify-items-center">
+          <FlipLink
+            href="https://github.com/ethereumchile"
+            text="Github"
+            client:load>Github</FlipLink
+          >
+          <FlipLink
+            href="https://x.com/ethereumchile"
+            text="Twitter"
+            client:load>Twitter</FlipLink
+          >
+          <FlipLink href="https://lu.ma/ethereumchile" text="Luma" client:load
+            >Luma</FlipLink
+          >
+          <FlipLink
+            href="https://t.me/ethereumchile"
+            text="Telegram"
+            client:load>Telegram</FlipLink
+          >
+        </div>
+        <!-- Desktop: Vertical List -->
+        <div class="hidden lg:flex flex-col space-y-8">
+          <FlipLink
+            href="https://github.com/ethereumchile"
+            text="Github"
+            client:load>Github</FlipLink
+          >
+          <FlipLink
+            href="https://x.com/ethereumchile"
+            text="Twitter"
+            client:load>Twitter</FlipLink
+          >
+          <FlipLink href="https://lu.ma/ethereumchile" text="Luma" client:load
+            >Luma</FlipLink
+          >
+          <FlipLink
+            href="https://t.me/ethereumchile"
+            text="Telegram"
+            client:load>Telegram</FlipLink
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="text-center">
+      <span class="text-white font-light text-lg"
+        >ethereumchile.org © {new Date().getFullYear()}</span
+      >
+    </div>
+  </div>
 </footer>

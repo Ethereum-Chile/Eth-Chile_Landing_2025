@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
 import WhyEthereum from "../components/WhyEthereum.astro";
 import WhyLatinAmerica from "../components/WhyLatinAmerica.astro";
 import WhatMakesUnique from "../components/WhatMakesUnique.astro";
@@ -14,12 +13,12 @@ import EventFormat from "../components/EventFormat.astro";
 import SponsorshipTiers from "../components/SponsorshipTiers.astro";
 import CustomActivations from "../components/CustomActivations.astro";
 import SocialProof from "../components/SocialProof.astro";
-import CallToAction from "../components/CallToAction.astro";
+import PhotoGallery from "../components/PhotoGallery";
 ---
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
   <Header />
-  <Hero />
+  <PhotoGallery client:load />
   <WhyEthereum />
   <WhyLatinAmerica />
   <WhatMakesUnique />
@@ -28,6 +27,5 @@ import CallToAction from "../components/CallToAction.astro";
   <SponsorshipTiers />
   <CustomActivations />
   <SocialProof />
-  <CallToAction />
   <Footer />
 </Layout>

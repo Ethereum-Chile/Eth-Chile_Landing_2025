@@ -18,6 +18,27 @@
 - [ ] Add profile completion status
 - [ ] Connect profile data to backend API
 
+## Interactive Components
+
+- [x] Create ScrollExpandMedia component
+- [x] Integrate ScrollExpandMedia into Why Latin America section
+- [x] Add scroll-based animations and interactions
+- [x] Implement touch and wheel event handling
+- [x] Create FlipLink component with letter flip animations
+- [x] Add FlipLink social section to footer
+- [x] Unify "Let's Build Together" and footer into single section
+- [x] Create FeatureSteps component with auto-rotating features
+- [x] Replace Chile section with interactive FeatureSteps component
+- [x] Create ContainerScroll component with 3D scroll effects
+- [x] Update Social Proof section with ContainerScroll gallery
+- [x] Create PhotoGallery component with 3D image gallery effects
+- [x] Move PhotoGallery to hero section position
+- [x] Update PhotoGallery styling for hero section (larger text, better spacing, full-screen height)
+- [x] Remove old Latin America content from WhyLatinAmerica section
+- [x] Update FeatureSteps component to work with Astro (remove Next.js dependencies)
+- [ ] Add more interactive sections using ScrollExpandMedia
+- [ ] Optimize mobile responsiveness for interactive components
+
 ## Completed Tasks
 
 - [x] Set up Astro project with dark theme
