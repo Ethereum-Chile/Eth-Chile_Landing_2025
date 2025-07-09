@@ -1,0 +1,13 @@
+{
+  "name": "beautiful-ascii-processor",
+  "version": "1.0.0",
+  "description": "Beautiful ASCII art processor with transparent background",
+  "main": "ASCIIProcessor-clean.jsx",
+  "dependencies": {
+    "three": "^0.158.0",
+    "postprocessing": "^6.33.4"
+  },
+  "keywords": ["ascii", "threejs", "3d", "art", "processor"],
+  "author": "Your Name",
+  "license": "MIT"
+}

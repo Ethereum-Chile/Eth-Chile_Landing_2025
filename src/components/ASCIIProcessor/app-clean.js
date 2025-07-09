@@ -28,37 +28,28 @@ export class App {
 
     this.renderer = new WebGLRenderer({
       powerPreference: "high-performance",
-      alpha: false,
+      alpha: true,
       antialias: AA,
       stencil: false,
       clearColor: 0x000000,
-      clearAlpha: 1
+      clearAlpha: 0
     });
     this.renderer.setSize(this.canvas.width, this.canvas.height);
-    this.renderer.setClearColor(0x000000, 1);
+    this.renderer.setClearColor(0x000000, 0); // Transparent background
     this.container.appendChild(this.renderer.domElement);
 
     this.scene = new Scene();
-    this.camera = new PerspectiveCamera(60, this.canvas.width / this.canvas.height, 0.1, 1000);
-    this.camera.position.z = 5; // Moved camera back for better view
+    this.camera = new PerspectiveCamera(70, this.canvas.width / this.canvas.height, 0.1, 1000);
+    this.camera.position.z = 3;
 
     // Add ambient light for better visibility
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
     this.scene.add(ambientLight);
 
-    this.directLight = new DirectionalLight("#fff", 1.5);
-    this.directLight.position.set(5, 5, 5);
+    this.directLight = new DirectionalLight("#fff", 8.0);
+    this.directLight.position.set(0, 0, 7);
     this.directLight.castShadow = false;
     this.scene.add(this.directLight);
-
-    // Add some colored lights for dramatic effect
-    const blueLight = new THREE.PointLight(0x0066ff, 0.5, 10);
-    blueLight.position.set(-3, 2, 2);
-    this.scene.add(blueLight);
-
-    const purpleLight = new THREE.PointLight(0x6600ff, 0.5, 10);
-    purpleLight.position.set(3, -2, -2);
-    this.scene.add(purpleLight);
 
     // Use ResizeObserver for the container instead of body
     const resizeObserver = new ResizeObserver((entries) => { 
@@ -68,12 +59,11 @@ export class App {
   }
 
   loadModel() {
-    console.log('Loading ETH model...');
     this.loader = new GLTFLoader();
     this.loader.load('/eth.glb', (response) => {
       if (this.isDisposed) return;
       
-      console.log('Model loaded successfully:', response);
+      console.log('Model loaded:', response);
       console.log('Scene children:', response.scene.children);
       
       // Try to find the first mesh in the scene (recursively search through groups)
@@ -98,8 +88,6 @@ export class App {
         return;
       }
       
-      console.log('Found mesh:', mesh);
-      
       // Create a material that will work well with ASCII effect
       let material = new MeshStandardMaterial({
         metalness: 0.8,
@@ -114,24 +102,21 @@ export class App {
       this.figure.receiveShadow = false;
       this.scene.add(this.figure);
       
-      console.log('Figure added to scene');
-      
       // Center the model based on its bounding box
       const box = new THREE.Box3().setFromObject(this.figure);
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
       
-      console.log('Model bounds:', { center, size });
-      
       // Move the model to center
       this.figure.position.sub(center);
       
-      // Scale the model to make it bigger
-      const maxDim = Math.max(size.x, size.y, size.z);
-      const scale = 4.5 / maxDim; // Increased scale for larger display
-      this.figure.scale.setScalar(scale);
+      // Add vertical offset to move it down
+      this.figure.position.y -= 2.6;
       
-      console.log('Model scaled and positioned, starting animation');
+      // Scale the model to fit nicely in view
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = 3.5 / maxDim; // Increased scale to make it bigger
+      this.figure.scale.setScalar(scale);
       
       this.animate();
     }, (progress) => {
@@ -142,13 +127,13 @@ export class App {
   }
 
   asciiInit() {
-    // Create ASCII effect with better settings for visibility
+    // Create ASCII effect with better settings for clean background
     const asciiEffect = new ASCII({ 
-      fontSize: 18, // Smaller font size for more characters in larger area
-      cellSize: 6, // Smaller cell size for more detail
-      invert: true, // Invert for better visibility on black background
+      fontSize: 28, 
+      cellSize: 12,
+      invert: false, 
       color: "#ffffff", 
-      characters: ` .:,'-^=*+?!|0#X%WM@`
+      characters: ` .:,'-^=*+?!|0#X%WM@$&`
     });
 
     this.composer = new EffectComposer(this.renderer);
@@ -168,18 +153,13 @@ export class App {
     requestAnimationFrame(this.animate.bind(this));
     
     if (this.figure) {
-      // Faster rotation for more visible animation
-      this.figure.rotation.y += 0.02;
-      // Add some gentle floating motion
-      this.figure.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
+      this.figure.rotation.y += 0.003;
     }
     
     if (this.composer) {
-      // Clear with solid black background
-      this.renderer.setClearColor(0x000000, 1);
+      // Clear with transparent background
+      this.renderer.setClearColor(0x000000, 0);
       this.composer.render(this.scene, this.camera);
-    } else {
-      console.log('Composer not available for rendering');
     }
   }
 
@@ -223,21 +203,36 @@ export class App {
       });
 
       // Remove old effect and add new one
-      this.composer.removePass(this.composer.passes[1]);
+      this.composer.removePass(this.composer.passes[1]); // Remove old EffectPass
       this.composer.addPass(new EffectPass(this.camera, asciiEffect));
     }
   }
 
   dispose() {
     this.isDisposed = true;
-    this.isPaused = true;
     
     if (this.renderer) {
       this.renderer.dispose();
     }
     
-    if (this.container && this.renderer) {
-      this.container.removeChild(this.renderer.domElement);
+    if (this.composer) {
+      this.composer.dispose();
+    }
+    
+    // Clean up Three.js resources
+    if (this.scene) {
+      this.scene.traverse((object) => {
+        if (object.geometry) {
+          object.geometry.dispose();
+        }
+        if (object.material) {
+          if (Array.isArray(object.material)) {
+            object.material.forEach(material => material.dispose());
+          } else {
+            object.material.dispose();
+          }
+        }
+      });
     }
   }
 } 

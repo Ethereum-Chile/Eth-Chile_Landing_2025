@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ContainerAnimated,
   ContainerScroll,
@@ -33,8 +33,89 @@ const IMAGES_3 = [
 ];
 
 export const PhotoGallery = () => {
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const autoScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setScrollPosition(scrollY);
+      
+      // Check if WhyEthereum section is visible in viewport
+      const whyEthereumSection = document.querySelector('[data-section="why-ethereum"]');
+      if (whyEthereumSection) {
+        const rect = whyEthereumSection.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsAutoScrolling(isVisible);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let animationId: number;
+    
+    if (isAutoScrolling && autoScrollRef.current) {
+      const animate = () => {
+        if (autoScrollRef.current) {
+          const currentTransform = autoScrollRef.current.style.transform;
+          const currentY = currentTransform.includes('translateY') 
+            ? parseFloat(currentTransform.match(/translateY\(([^)]+)px\)/)?.[1] || '0')
+            : 0;
+          
+          autoScrollRef.current.style.transform = `translateY(${currentY - 1}px)`;
+        }
+        animationId = requestAnimationFrame(animate);
+      };
+      
+      animationId = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isAutoScrolling]);
+
   return (
-    <div className="relative bg-custom-black min-h-screen">
+    <div className="relative bg-custom-black min-h-screen" style={{ scrollBehavior: 'smooth' }}>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .auto-scroll .gallery-col:nth-child(1) {
+            animation: autoScrollUp 20s linear infinite;
+          }
+          
+          .auto-scroll .gallery-col:nth-child(2) {
+            animation: autoScrollDown 20s linear infinite;
+          }
+          
+          .auto-scroll .gallery-col:nth-child(3) {
+            animation: autoScrollUp 20s linear infinite;
+          }
+          
+          @keyframes autoScrollUp {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(-100%);
+            }
+          }
+          
+          @keyframes autoScrollDown {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(100%);
+            }
+          }
+        `
+      }} />
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-32 text-center">
         <ContainerAnimated>
           <h1 className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white mb-4">
@@ -77,10 +158,13 @@ export const PhotoGallery = () => {
         }}
       />
 
-      <ContainerScroll className="relative h-[350vh]">
+      <ContainerScroll className="relative h-[400vh]">
         <ContainerSticky className="h-svh">
-          <GalleryContainer className="">
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+          <GalleryContainer 
+            ref={autoScrollRef}
+            className={`transition-transform duration-1000 ${isAutoScrolling ? 'auto-scroll' : ''}`}
+          >
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2 gallery-col">
               {IMAGES_1.map((imageUrl, index) => (
                 <img
                   key={index}
@@ -90,7 +174,7 @@ export const PhotoGallery = () => {
                 />
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[-50%] gallery-col" yRange={["15%", "5%"]}>
               {IMAGES_2.map((imageUrl, index) => (
                 <img
                   key={index}
@@ -100,7 +184,7 @@ export const PhotoGallery = () => {
                 />
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2 gallery-col">
               {IMAGES_3.map((imageUrl, index) => (
                 <img
                   key={index}

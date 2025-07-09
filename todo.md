@@ -36,6 +36,8 @@
 - [x] Update PhotoGallery styling for hero section (larger text, better spacing, full-screen height)
 - [x] Remove old Latin America content from WhyLatinAmerica section
 - [x] Update FeatureSteps component to work with Astro (remove Next.js dependencies)
+- [x] Remove all cards from Social Proof & Community section
+- [x] Add CircularText component to top left of Why Latin America section
 - [ ] Add more interactive sections using ScrollExpandMedia
 - [ ] Optimize mobile responsiveness for interactive components
 

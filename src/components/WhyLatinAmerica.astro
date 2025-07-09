@@ -1,47 +1,62 @@
 ---
 import { FeatureSteps } from "./FeatureSteps";
+import CircularText from "./CircularText";
 ---
 
-<section class="py-20 bg-custom-black">
+<section class="py-20 bg-custom-black mt-16">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white">
-        Why Latin America, Why Chile
-      </h2>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-        Discover why Latin America is becoming the epicenter of blockchain
-        innovation and why Chile is leading the charge in regulatory innovation.
-      </p>
-    </div>
+    <div class="relative">
+      <!-- Circular Text in top left -->
+      <div class="absolute top-0 left-0 z-10">
+        <CircularText
+          client:load
+          text="Destino Devconnect "
+          spinDuration={30}
+          onHover="speedUp"
+          className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 bg-clip-text text-transparent"
+        />
+      </div>
 
-    <FeatureSteps
-      client:load
-      title="Chile's Innovation Journey"
-      features={[
-        {
-          step: "Fintech Law",
-          title: "Progressive Regulatory Framework",
-          content:
-            "Chile's Fintech Law provides a comprehensive regulatory framework for financial technology, enabling innovation while ensuring consumer protection and financial stability.",
-          image: "/src/assets/catedral.png",
-        },
-        {
-          step: "Open Finance",
-          title: "API-Driven Financial Ecosystem",
-          content:
-            "Open Finance initiatives in Chile create seamless integration between traditional banking and blockchain technology, fostering a collaborative financial ecosystem.",
-          image: "/src/assets/panel.jpg",
-        },
-        {
-          step: "Regulatory Testbed",
-          title: "Ethereum's Bridge to Regulation",
-          content:
-            "Chile serves as the perfect testbed for Ethereum's integration with traditional finance, bridging the gap between decentralized innovation and regulatory compliance.",
-          image: "/src/assets/apertura.jpg",
-        },
-      ]}
-      autoPlayInterval={4000}
-      className="bg-transparent"
-    />
+      <div class="text-right mb-16">
+        <h2 class="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white">
+          Why Latin America, Why Chile
+        </h2>
+        <p class="text-xl text-gray-300 max-w-3xl ml-auto">
+          Discover why Latin America is becoming the epicenter of blockchain
+          innovation and why Chile is leading the charge in regulatory
+          innovation.
+        </p>
+      </div>
+
+      <FeatureSteps
+        client:load
+        title="Chile's Innovation Journey"
+        features={[
+          {
+            step: "Fintech Law",
+            title: "Progressive Regulatory Framework",
+            content:
+              "Chile's Fintech Law provides a comprehensive regulatory framework for financial technology, enabling innovation while ensuring consumer protection and financial stability.",
+            image: "/src/assets/catedral.png",
+          },
+          {
+            step: "Open Finance",
+            title: "API-Driven Financial Ecosystem",
+            content:
+              "Open Finance initiatives in Chile create seamless integration between traditional banking and blockchain technology, fostering a collaborative financial ecosystem.",
+            image: "/src/assets/panel.jpg",
+          },
+          {
+            step: "Regulatory Testbed",
+            title: "Ethereum's Bridge to Regulation",
+            content:
+              "Chile serves as the perfect testbed for Ethereum's integration with traditional finance, bridging the gap between decentralized innovation and regulatory compliance.",
+            image: "/src/assets/apertura.jpg",
+          },
+        ]}
+        autoPlayInterval={4000}
+        className="bg-transparent"
+      />
+    </div>
   </div>
 </section>
