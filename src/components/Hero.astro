@@ -1,32 +1,18 @@
 ---
-import { Picture } from '@astrojs/image/components'
-import apertura from '../assets/apertura.jpg'
-import cierre from '../assets/cierre.jpg'
-import panel from '../assets/panel.jpg'
-import publico from '../assets/publico.jpg'
+import { Image } from 'astro:assets'
+import ethChileHero from '../assets/eth_chile2025.png'
 ---
 
 <main class="flex flex-col min-h-[90vh]">
     <div class="relative w-full">
         <div class="relative overflow-hidden h-[40vh] md:h-[60vh]">
-            <div id="carousel-item-1" class="hidden duration-700 ease-in-out">
-                <Picture src={cierre} alt="Fotografía cierre evento" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
-            </div>
-            <div id="carousel-item-2" class="hidden duration-700 ease-in-out">
-                <Picture src={apertura} alt="Fotografía apertura evento" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px', class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
-            </div>
-            <div id="carousel-item-3" class="hidden duration-700 ease-in-out">
-                <Picture src={publico} alt="Fotografía público" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
-            </div>
-            <div id="carousel-item-4" class="hidden duration-700 ease-in-out">
-                <Picture src={panel} alt="Fotografía panel" widths={[480, 1440]} aspectRatio="16:9" sizes='(min-width: 1024px) 100vw, 480px' class='object-cover min-h-[40vh] md:object-none md:w-full md:max-h-[60vh]'/>
-            </div>
-        </div>
-        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-            <button id="carousel-indicator-1" type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"></button>
-            <button id="carousel-indicator-2" type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"></button>
-            <button id="carousel-indicator-3" type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"></button>
-            <button id="carousel-indicator-4" type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"></button>
+            <Image 
+                src={ethChileHero} 
+                alt="ETHChile 2025 Hero Image" 
+                width={1920} 
+                height={1080} 
+                class='object-cover w-full h-full min-h-[40vh] md:min-h-[60vh]'
+            />
         </div>
     </div>
     <div class="flex flex-col grow md:justify-evenly items-center md:flex-row">

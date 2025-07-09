@@ -1,0 +1,36 @@
+---
+import ETH3DViewer from "./ASCIIProcessor/ASCIIProcessor.jsx";
+---
+
+<section
+  class="min-h-screen border border-white p-8 flex flex-col justify-center pt-32 pb-48"
+>
+  <h2 class="text-4xl font-raleway font-semibold mb-8 text-center">
+    Why Ethereum, Why Now
+  </h2>
+  <div
+    class="max-w-4xl mx-auto text-center flex flex-col justify-start flex-1 gap-16"
+  >
+    <p class="text-2xl mb-6">🧠 Ethereum is now critical infrastructure</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div class="border border-white p-6 rounded-lg">
+        <p class="text-3xl font-bold">17M+</p>
+        <p class="text-lg">Users</p>
+      </div>
+      <div class="border border-white p-6 rounded-lg">
+        <p class="text-3xl font-bold">$50B+</p>
+        <p class="text-lg">TVL</p>
+      </div>
+      <div class="border border-white p-6 rounded-lg">
+        <p class="text-3xl font-bold">Pectra</p>
+        <p class="text-lg">Upgrade</p>
+      </div>
+    </div>
+
+    <!-- 3D ETH Model Animation -->
+    <div class="mt-32 flex justify-center items-end min-h-[400px] pb-32 flex-1">
+      <ETH3DViewer client:load width="400px" height="400px" />
+    </div>
+  </div>
+</section>
+

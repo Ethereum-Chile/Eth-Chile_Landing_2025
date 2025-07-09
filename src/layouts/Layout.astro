@@ -1,25 +1,132 @@
 ---
-import '@fontsource-variable/raleway';
-import '@fontsource-variable/open-sans';
+import "@fontsource-variable/raleway";
+import "@fontsource-variable/open-sans";
 
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" style="scroll-behavior: smooth;">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="favicon.ico?" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="flex flex-col min-h-screen text-custom-black relative">
-		<slot />
-	<script src="../utils/carousel.js"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico?" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#000000" />
+    <title>{title}</title>
+    <style>
+      :root {
+        /* Light theme variables */
+        --bg-primary-light: #ffffff;
+        --bg-secondary-light: #f8f9fa;
+        --text-primary-light: #1a1a1a;
+        --text-secondary-light: #4a5568;
+        --border-light: #e2e8f0;
+        --accent-light: #3b82f6;
+
+        /* Dark theme variables */
+        --bg-primary-dark: #0a0a0a;
+        --bg-secondary-dark: #1a1a1a;
+        --text-primary-dark: #ffffff;
+        --text-secondary-dark: #a0aec0;
+        --border-dark: #2d3748;
+        --accent-dark: #60a5fa;
+
+        /* Default to dark theme */
+        --bg-primary: var(--bg-primary-dark);
+        --bg-secondary: var(--bg-secondary-dark);
+        --text-primary: var(--text-primary-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --border: var(--border-dark);
+        --accent: var(--accent-dark);
+      }
+
+      /* Light theme */
+      .theme-light {
+        --bg-primary: var(--bg-primary-light);
+        --bg-secondary: var(--bg-secondary-light);
+        --text-primary: var(--text-primary-light);
+        --text-secondary: var(--text-secondary-light);
+        --border: var(--border-light);
+        --accent: var(--accent-light);
+      }
+
+      /* Dark theme */
+      .theme-dark {
+        --bg-primary: var(--bg-primary-dark);
+        --bg-secondary: var(--bg-secondary-dark);
+        --text-primary: var(--text-primary-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --border: var(--border-dark);
+        --accent: var(--accent-dark);
+      }
+
+      /* Smooth transitions */
+      * {
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      /* Dark gradient background */
+      .bg-dark-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--bg-primary) 0%,
+          var(--bg-secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* Light gradient background */
+      .bg-light-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--bg-primary) 0%,
+          var(--bg-secondary) 100%
+        );
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen text-white relative">
+    <slot />
+    <script src="../utils/carousel.js"></script>
+    <script>
+      // Initialize theme manager on client side
+      import("../utils/theme.js").then(({ themeManager }) => {
+        // Force initialization on client side
+        themeManager.forceInit();
+
+        console.log(
+          "Theme manager initialized:",
+          themeManager.getCurrentTheme()
+        );
+
+        // Update body classes based on theme
+        const updateBodyClasses = () => {
+          const theme = themeManager.getCurrentTheme();
+          document.body.className = `flex flex-col min-h-screen relative ${
+            theme === "light"
+              ? "text-black bg-light-gradient"
+              : "text-white bg-dark-gradient"
+          }`;
+        };
+
+        // Initial update
+        updateBodyClasses();
+
+        // Listen for theme changes
+        window.addEventListener("themeChanged", (event) => {
+          console.log("Theme changed to:", (event as CustomEvent).detail.theme);
+          updateBodyClasses();
+        });
+      });
+    </script>
+  </body>
 </html>

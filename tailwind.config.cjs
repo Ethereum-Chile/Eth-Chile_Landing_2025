@@ -3,21 +3,25 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	content: [
-		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-		'./node_modules/flowbite/**/*.js',
-	],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	darkMode: 'class',
 	theme: {
 		extend: {
-			fontFamily: {
-				sans: ['Open Sans Variable', ...defaultTheme.fontFamily.sans],
-				raleway: ['Raleway Variable'],
-			},
 			colors: {
-				'custom-black': '#333333',
-				'custom-blue': '#0500CF',
+				'custom-black': '#0a0a0a',
+				'custom-blue': '#3b82f6',
+				'custom-dark': '#000000',
+				'custom-dark-center': '#0a0a0a',
+				'custom-dark-border': '#000000',
 			},
+			fontFamily: {
+				'raleway': ['Raleway Variable', 'sans-serif'],
+				'open-sans': ['Open Sans Variable', 'sans-serif'],
+			},
+			backgroundImage: {
+				'dark-gradient': 'radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%)',
+			}
 		},
 	},
-	plugins: [require('flowbite/plugin')],
+	plugins: [],
 };
