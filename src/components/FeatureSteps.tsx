@@ -27,8 +27,11 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
+    if (isHovered) return; // Pause auto-slide when hovered
+
     const timer = setInterval(() => {
       if (progress < 100) {
         setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
@@ -39,7 +42,12 @@ export function FeatureSteps({
     }, 100)
 
     return () => clearInterval(timer)
-  }, [progress, features.length, autoPlayInterval])
+  }, [progress, features.length, autoPlayInterval, isHovered])
+
+  const handleFeatureClick = (index: number) => {
+    setCurrentFeature(index)
+    setProgress(0)
+  }
 
   return (
     <div className={`p-8 md:p-12 ${className || ""}`}>
@@ -49,14 +57,22 @@ export function FeatureSteps({
         </h2>
 
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
-          <div className="order-2 md:order-1 space-y-8">
+          
+          <div 
+            className="order-2 md:order-1 space-y-8"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex items-center gap-6 md:gap-8"
+                className="flex items-center gap-6 md:gap-8 cursor-pointer hover:opacity-100 transition-opacity"
                 initial={{ opacity: 0.3 }}
                 animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
                 transition={{ duration: 0.5 }}
+                onClick={() => handleFeatureClick(index)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 <motion.div
                   className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2 ${

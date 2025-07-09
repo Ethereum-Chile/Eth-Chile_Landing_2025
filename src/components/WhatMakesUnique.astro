@@ -1,77 +1,66 @@
 ---
-import { AnimatedTestimonials } from "./AnimatedTestimonials.tsx";
+import { Team } from "./Team.tsx";
+import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
 ---
 
-<section
-  class="min-h-screen border border-white p-8 flex flex-col justify-center"
->
-  <h2 class="text-4xl font-raleway font-semibold mb-8 text-center">
-    What Makes ETHChile Unique
-  </h2>
-  <div class="max-w-4xl mx-auto text-center">
-    <p class="text-2xl mb-8">🧩 Only Ethereum event in LatAm focused on:</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="border border-white p-6 rounded-lg">
-        <p class="text-xl font-semibold">Tokenization</p>
-      </div>
-      <div class="border border-white p-6 rounded-lg">
-        <p class="text-xl font-semibold">Regulation</p>
-      </div>
-      <div class="border border-white p-6 rounded-lg">
-        <p class="text-xl font-semibold">AI & Real-World Integration</p>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-      <div class="border border-white p-6 rounded-lg">
-        <p class="text-xl mb-2">🔄 Devconnect warmup + strategic hub</p>
-      </div>
-      <div class="border border-white p-6 rounded-lg">
-        <p class="text-xl mb-2">
-          👥 High-value crowd: Builders, Banks, VCs, DAOs
-        </p>
-      </div>
-    </div>
-  </div>
+<section class="min-h-screen relative">
+  <ScrollExpandMedia
+    client:load
+    mediaType="video"
+    mediaSrc="https://www.youtube.com/embed/JavAmLx8EG0?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=JavAmLx8EG0&start=30"
+    posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
+    title="What Makes ETHChile Unique"
+    date="Latin America's Premier Ethereum Event"
+    scrollToExpand="Scroll to Discover More"
+    textBlend
+  >
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-white text-center">
+        Meet the ETHChile Team
+      </h2>
 
-  <!-- Testimonials Section -->
-  <div class="mt-16">
-    <h3 class="text-3xl font-raleway font-semibold mb-12 text-center">
-      What Industry Leaders Say About Chile
-    </h3>
-    <AnimatedTestimonials
-      client:load
-      testimonials={[
-        {
-          quote:
-            "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
-          name: "María González",
-          designation: "CEO, Fintech Chile",
-          src: "/src/assets/nati.jpg",
-        },
-        {
-          quote:
-            "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
-          name: "Carlos Mendoza",
-          designation: "Head of Innovation, Banco de Chile",
-          src: "/src/assets/cristobal.jpg",
-        },
-        {
-          quote:
-            "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
-          name: "Ana Silva",
-          designation: "Regulatory Affairs, CMF Chile",
-          src: "/src/assets/andres.jpg",
-        },
-        {
-          quote:
-            "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
-          name: "Roberto Torres",
-          designation: "Managing Partner, LatAm Ventures",
-          src: "/src/assets/diego.jpg",
-        },
-      ]}
-      autoplay={true}
-      className="mt-8"
-    />
-  </div>
+      <Team
+        client:load
+        teamMembers={[
+          {
+            quote:
+              "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
+            name: "Andrés Junge",
+            designation: "Founder & CEO, ETHChile",
+            src: "/src/assets/andres.jpg",
+          },
+          {
+            quote:
+              "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
+            name: "Patricio López",
+            designation: "Head of Innovation, ETHChile",
+            src: "/src/assets/patricio.jpg",
+          },
+          {
+            quote:
+              "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
+            name: "Cristóbal Pereira",
+            designation: "Technical Lead, ETHChile",
+            src: "/src/assets/cristobal.jpg",
+          },
+          {
+            quote:
+              "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
+            name: "Ignacio Puga",
+            designation: "Community Manager, ETHChile",
+            src: "/src/assets/ignacio.jpg",
+          },
+          {
+            quote:
+              "Building bridges between traditional finance and decentralized innovation is our mission. ETHChile is the catalyst for Latin America's Web3 transformation.",
+            name: "Joseph Sanchez",
+            designation: "Partnerships Director, ETHChile",
+            src: "/src/assets/nate.jpg",
+          },
+        ]}
+        autoplay={true}
+        className="mt-8"
+      />
+    </div>
+  </ScrollExpandMedia>
 </section>

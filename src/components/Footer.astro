@@ -3,13 +3,18 @@ import FlipLink from "./FlipLink";
 ---
 
 <footer
-  class="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8"
+  class="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8 relative rounded-t-3xl"
+  style="background-image: url('/imgs/moai footer.png'); background-size: cover; background-position: center; background-repeat: no-repeat;"
 >
-  <div class="w-full max-w-6xl mx-auto">
+  <!-- Background overlay for better text readability -->
+  <div class="absolute inset-0 bg-black/60 rounded-t-3xl"></div>
+  <div
+    class="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-between h-full"
+  >
     <!-- Main Content Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 flex-grow">
       <!-- Let's Build Together Section -->
-      <div class="text-center lg:text-left">
+      <div class="text-center lg:text-left lg:pr-8">
         <h2 class="text-4xl font-raleway font-semibold mb-8 text-white">
           Let's Build Together
         </h2>
@@ -51,9 +56,6 @@ import FlipLink from "./FlipLink";
             >
           </form>
           <div class="space-y-4">
-            <p class="text-xl text-white">
-              📩 Email: comunidadethchile@gmail.com
-            </p>
             <button
               class="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
               >Download Deck</button
@@ -63,7 +65,7 @@ import FlipLink from "./FlipLink";
       </div>
 
       <!-- Social Links Section -->
-      <div class="text-center lg:text-left">
+      <div class="text-center lg:text-left lg:pl-8">
         <h3 class="text-2xl font-raleway font-semibold mb-8 text-white">
           Connect With Us
         </h3>
@@ -113,7 +115,7 @@ import FlipLink from "./FlipLink";
     </div>
 
     <!-- Copyright Section -->
-    <div class="text-center">
+    <div class="text-center mt-auto pt-8">
       <span class="text-white font-light text-lg"
         >ethereumchile.org © {new Date().getFullYear()}</span
       >

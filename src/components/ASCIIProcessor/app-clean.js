@@ -14,6 +14,8 @@ export class App {
 
     this.isDisposed = false;
     this.isPaused = false;
+    this.lastResetTime = 0;
+    this.resetInterval = 5000; // 5 seconds in milliseconds
     
     this.initThree();
     this.asciiInit();
@@ -120,6 +122,7 @@ export class App {
       
       // Initialize rotation to ensure it starts properly
       this.figure.rotation.y = 0;
+      this.lastResetTime = Date.now(); // Initialize the reset timer
       console.log('Figure initialized with rotation:', this.figure.rotation.y);
       
       // Ensure ASCII effect is initialized before starting animation
@@ -168,25 +171,21 @@ export class App {
       return;
     }
     
-    requestAnimationFrame(this.animate.bind(this));
+    // Always schedule the next frame first
+    this.animationId = requestAnimationFrame(this.animate.bind(this));
     
     if (this.figure && !this.isPaused) {
       // Add rotation
       this.figure.rotation.y += 0.005;
       
-      // Check if we've completed a full circle (2π radians)
-      if (this.figure.rotation.y >= 2 * Math.PI) {
-        console.log('Full circle completed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
+      // Check if 5 seconds have passed since last reset
+      const currentTime = Date.now();
+      if (currentTime - this.lastResetTime >= this.resetInterval) {
+        console.log('5 seconds passed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
         
-        // Smooth reset by subtracting 2π instead of setting to 0
-        this.figure.rotation.y -= 2 * Math.PI;
-        
-        // Add a small delay to make the reset more visible
-        setTimeout(() => {
-          if (!this.isDisposed && !this.isPaused) {
-            console.log('Animation restarted after reset');
-          }
-        }, 50);
+        // Reset rotation to 0 for that beautiful first rotation effect
+        this.figure.rotation.y = 0;
+        this.lastResetTime = currentTime;
       }
       
       // Debug: log rotation every 200 frames
@@ -195,11 +194,12 @@ export class App {
       }
     } else {
       // Debug: log when animation is not running
-      if (Math.random() < 0.05) { // Log 5% of the time
+      if (Math.random() < 0.01) { // Log 1% of the time to reduce spam
         console.log('Animation check - figure:', !!this.figure, 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
       }
     }
     
+    // Always render if we have a composer, even if figure is not ready
     if (this.composer) {
       // Clear with transparent background
       this.renderer.setClearColor(0x000000, 0);
@@ -224,7 +224,11 @@ export class App {
   resume() {
     console.log('Resuming animation...');
     this.isPaused = false;
-    this.animate();
+    
+    // If animation is not running, start it
+    if (!this.animationId) {
+      this.animate();
+    }
   }
 
   togglePause() {
@@ -239,9 +243,18 @@ export class App {
     console.log('Force restarting animation...');
     this.isPaused = false;
     this.isDisposed = false;
+    
+    // Cancel any existing animation
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
+    
     if (this.figure) {
       this.figure.rotation.y = 0;
     }
+    
+    // Start the animation loop
     this.animate();
   }
 
@@ -275,6 +288,12 @@ export class App {
 
   dispose() {
     this.isDisposed = true;
+    
+    // Cancel the animation frame
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
     
     if (this.renderer) {
       this.renderer.dispose();

@@ -1,49 +1,92 @@
 ---
 import { Image } from "astro:assets";
-import andres from '../assets/andres.jpg'
-import cristobal from '../assets/cristobal.jpg'
-import diego from '../assets/diego.jpg'
-import ignacio from '../assets/ignacio.jpg'
-import nate from '../assets/nate.jpg'
-import nati from '../assets/nati.jpg'
-import pato from '../assets/pato.jpg'
-import patricio from '../assets/patricio.jpg'
+import andres from "../assets/andres.jpg";
+import cristobal from "../assets/cristobal.jpg";
+import diego from "../assets/diego.jpg";
+import ignacio from "../assets/ignacio.jpg";
+import joseph from "../assets/joseph.jpg";
+import pato from "../assets/pato.jpg";
+import patricio from "../assets/patricio.jpg";
 ---
 
 <section class="flex flex-col px-5 md:px-40 min-h-[100vh] pt-[10vh]" id="team">
-    <h2 class="font-raleway text-4xl mb-10 font-semibold pl-5 md:pl-0">Equipo</h2>
-    <div class="flex flex-col mb-10">
-        <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={andres} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Andrés Junge</h3>
-            </div>
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={cristobal} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Cristóbal Pereira</h3>
-            </div>
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={diego} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Diego Ibieta</h3>
-            </div>
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={ignacio} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Ignacio Puga</h3>
-            </div>
-        </div>
-        <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={nati} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Natalia Miranda</h3>
-            </div>
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={pato} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg mb-4 md:mb-0">Patricio López</h3>
-            </div>
-            <div class="flex flex-col items-center mb-4 md:mb-0">
-                <Image src={patricio} alt="Foto perfil" width={213} height={213} class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"/>
-                <h3 class="font-medium mt-2 md:mt-4 text-lg">Patricio López Juri</h3>
-            </div>
-        </div>
+  <h2 class="font-raleway text-4xl mb-10 font-semibold pl-5 md:pl-0">Equipo</h2>
+  <div class="flex flex-col mb-10">
+    <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={andres}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Andrés Junge</h3>
+      </div>
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={cristobal}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Cristóbal Pereira</h3>
+      </div>
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={diego}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Diego Ibieta</h3>
+      </div>
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={ignacio}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Ignacio Puga</h3>
+      </div>
     </div>
+    <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={joseph}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Joseph Pérez</h3>
+      </div>
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={pato}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg mb-4 md:mb-0">
+          Patricio López
+        </h3>
+      </div>
+      <div class="flex flex-col items-center mb-4 md:mb-0">
+        <Image
+          src={patricio}
+          alt="Foto perfil"
+          width={213}
+          height={213}
+          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
+        />
+        <h3 class="font-medium mt-2 md:mt-4 text-lg">Patricio López Juri</h3>
+      </div>
+    </div>
+  </div>
 </section>

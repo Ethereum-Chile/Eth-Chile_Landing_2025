@@ -4,6 +4,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useCallback,
 } from 'react';
 import type {
   ReactNode,
@@ -14,7 +15,7 @@ import { motion } from 'framer-motion';
 
 interface ScrollExpandMediaProps {
   mediaType?: 'video' | 'image';
-  mediaSrc?: string;
+  mediaSrc: string;
   posterSrc?: string;
   bgImageSrc?: string;
   title?: string;
@@ -23,6 +24,18 @@ interface ScrollExpandMediaProps {
   textBlend?: boolean;
   children?: ReactNode;
 }
+
+const getTimeOfDayImage = () => {
+  if (typeof window === 'undefined') return '/imgs/campus_oriente_night.png';
+  const hour = new Date().getHours();
+  if (hour >= 6 && hour < 10) {
+    return '/imgs/campus_oriente_sunwirse.png';
+  } else if (hour >= 10 && hour < 20) {
+    return '/imgs/campus_oriente_day.png';
+  } else {
+    return '/imgs/campus_oriente_night.png';
+  }
+};
 
 const ScrollExpandMedia = ({
   mediaType = 'video',
@@ -40,8 +53,10 @@ const ScrollExpandMedia = ({
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [touchStartY, setTouchStartY] = useState<number>(0);
   const [isMobileState, setIsMobileState] = useState<boolean>(false);
+  const [bgImage, setBgImage] = useState<string>(bgImageSrc || '/imgs/campus_oriente_night.png');
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [sectionVisibility, setSectionVisibility] = useState(1);
 
   useEffect(() => {
     setScrollProgress(0);
@@ -50,13 +65,35 @@ const ScrollExpandMedia = ({
   }, [mediaType]);
 
   useEffect(() => {
+    if (!bgImageSrc) {
+      setBgImage(getTimeOfDayImage());
+    } else {
+      setBgImage(bgImageSrc);
+    }
+  }, [bgImageSrc]);
+
+  useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      if (mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
+      // Only handle scroll if we're in the section
+      if (!sectionRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInSection = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      
+      if (!isInSection) return;
+      
+      // Only prevent default if we're actively animating
+      if (scrollProgress > 0 && scrollProgress < 1) {
+        e.preventDefault();
+      }
+      
+      if (mediaFullyExpanded && e.deltaY < 0) {
+        // Scrolling up when expanded - collapse
         setMediaFullyExpanded(false);
-        e.preventDefault();
+        setScrollProgress(0.99); // Keep it just below threshold
       } else if (!mediaFullyExpanded) {
-        e.preventDefault();
-        const scrollDelta = e.deltaY * 0.0009;
+        // Scrolling down when collapsed - expand
+        const scrollDelta = e.deltaY * 0.002; // Increased sensitivity
         const newProgress = Math.min(
           Math.max(scrollProgress + scrollDelta, 0),
           1
@@ -73,23 +110,38 @@ const ScrollExpandMedia = ({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (!sectionRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInSection = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      
+      if (!isInSection) return;
+      
       setTouchStartY(e.touches[0].clientY);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!touchStartY) return;
+      if (!touchStartY || !sectionRef.current) return;
 
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInSection = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      
+      if (!isInSection) return;
+
+      // Only prevent default if we're actively animating
+      if (scrollProgress > 0 && scrollProgress < 1) {
+        e.preventDefault();
+      }
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
 
-      if (mediaFullyExpanded && deltaY < -20 && window.scrollY <= 5) {
+      if (mediaFullyExpanded && deltaY < -50) {
+        // Scrolling up when expanded - collapse
         setMediaFullyExpanded(false);
-        e.preventDefault();
+        setScrollProgress(0.99);
       } else if (!mediaFullyExpanded) {
-        e.preventDefault();
-        // Increase sensitivity for mobile, especially when scrolling back
-        const scrollFactor = deltaY < 0 ? 0.008 : 0.005; // Higher sensitivity for scrolling back
-        const scrollDelta = deltaY * scrollFactor;
+        // Scrolling down when collapsed - expand
+        const scrollDelta = deltaY * 0.01; // Increased sensitivity
         const newProgress = Math.min(
           Math.max(scrollProgress + scrollDelta, 0),
           1
@@ -102,54 +154,52 @@ const ScrollExpandMedia = ({
         } else if (newProgress < 0.75) {
           setShowContent(false);
         }
-
-        setTouchStartY(touchY);
       }
+
+      setTouchStartY(touchY);
     };
 
     const handleTouchEnd = (): void => {
       setTouchStartY(0);
     };
 
-    const handleScroll = (): void => {
-      if (!mediaFullyExpanded) {
-        window.scrollTo(0, 0);
-      }
-    };
+    // Add event listeners
+    const wheelHandler = handleWheel as unknown as EventListener;
+    const touchStartHandler = handleTouchStart as unknown as EventListener;
+    const touchMoveHandler = handleTouchMove as unknown as EventListener;
+    const touchEndHandler = handleTouchEnd as EventListener;
 
-    window.addEventListener('wheel', handleWheel as unknown as EventListener, {
-      passive: false,
-    });
-    window.addEventListener('scroll', handleScroll as EventListener);
-    window.addEventListener(
-      'touchstart',
-      handleTouchStart as unknown as EventListener,
-      { passive: false }
-    );
-    window.addEventListener(
-      'touchmove',
-      handleTouchMove as unknown as EventListener,
-      { passive: false }
-    );
-    window.addEventListener('touchend', handleTouchEnd as EventListener);
+    window.addEventListener('wheel', wheelHandler, { passive: false });
+    window.addEventListener('touchstart', touchStartHandler, { passive: false });
+    window.addEventListener('touchmove', touchMoveHandler, { passive: false });
+    window.addEventListener('touchend', touchEndHandler);
 
     return () => {
-      window.removeEventListener(
-        'wheel',
-        handleWheel as unknown as EventListener
-      );
-      window.removeEventListener('scroll', handleScroll as EventListener);
-      window.removeEventListener(
-        'touchstart',
-        handleTouchStart as unknown as EventListener
-      );
-      window.removeEventListener(
-        'touchmove',
-        handleTouchMove as unknown as EventListener
-      );
-      window.removeEventListener('touchend', handleTouchEnd as EventListener);
+      window.removeEventListener('wheel', wheelHandler);
+      window.removeEventListener('touchstart', touchStartHandler);
+      window.removeEventListener('touchmove', touchMoveHandler);
+      window.removeEventListener('touchend', touchEndHandler);
     };
   }, [scrollProgress, mediaFullyExpanded, touchStartY]);
+
+  // Track section visibility for background fade out
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      // Calculate how much of the section is visible (1 = fully in view, 0 = out)
+      const visible = Math.max(0, Math.min(1, (rect.bottom - 0.2 * rect.height) / windowHeight));
+      setSectionVisibility(visible);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const checkIfMobile = (): void => {
@@ -169,33 +219,51 @@ const ScrollExpandMedia = ({
   const firstWord = title ? title.split(' ')[0] : '';
   const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
 
+  // Select background image based on local time if not provided
+  const getTimeBasedBg = () => {
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour < 10) {
+      return '/imgs/campus_oriente_sunwirse.png'; // sunrise/morning
+    } else if (hour >= 10 && hour < 19) {
+      return '/imgs/campus_oriente_day.png'; // day
+    } else {
+      return '/imgs/campus_oriente_night.png'; // night
+    }
+  };
+  const selectedBgImage = bgImageSrc || getTimeBasedBg();
+
+  // Fade out only when section is almost out of view (last 20%)
+  let bgOpacity = 1;
+  if (sectionVisibility < 0.2) {
+    bgOpacity = sectionVisibility / 0.2;
+    if (bgOpacity < 0) bgOpacity = 0;
+  }
+
   return (
     <div
       ref={sectionRef}
-      className='transition-colors duration-700 ease-in-out overflow-x-hidden'
+      className='transition-colors duration-700 ease-in-out overflow-x-hidden relative'
     >
-      <section className='relative flex flex-col items-center justify-start min-h-[100dvh]'>
-        <div className='relative w-full flex flex-col items-center min-h-[100dvh]'>
-          {bgImageSrc && (
-            <motion.div
-              className='absolute inset-0 z-0 h-full'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 - scrollProgress }}
-              transition={{ duration: 0.1 }}
-            >
-              <img
-                src={bgImageSrc}
-                alt='Background'
-                className='w-screen h-screen object-cover object-center'
-              />
-              <div className='absolute inset-0 bg-black/10' />
-            </motion.div>
-          )}
+      <section className='relative flex flex-col items-center justify-start min-h-[100vh]'>
+        <div className='relative w-full flex flex-col items-center min-h-[100vh]'>
+          <motion.div
+            className='absolute inset-0 z-0 h-full'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: bgOpacity }}
+            transition={{ duration: 0.1 }}
+          >
+            <img
+              src={selectedBgImage}
+              alt='Background'
+              className='w-full h-full object-cover object-center'
+            />
+            <div className='absolute inset-0 bg-black/10' />
+          </motion.div>
 
           <div className='container mx-auto flex flex-col items-center justify-start relative z-10'>
-            <div className='flex flex-col items-center justify-center w-full h-[100dvh] relative'>
+            <div className='flex flex-col items-center justify-center w-full h-[100vh] relative'>
               <div
-                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-white/20'
+                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl'
                 style={{
                   width: `${mediaWidth}px`,
                   height: `${mediaHeight}px`,
@@ -204,22 +272,15 @@ const ScrollExpandMedia = ({
                   boxShadow: '0px 0px 50px rgba(0, 0, 0, 0.3)',
                 }}
               >
-                {mediaSrc && mediaType === 'video' ? (
+                {mediaType === 'video' ? (
                   mediaSrc.includes('youtube.com') ? (
                     <div className='relative w-full h-full pointer-events-none'>
                       <iframe
                         width='100%'
                         height='100%'
-                        src={
-                          mediaSrc.includes('embed')
-                            ? mediaSrc +
-                              (mediaSrc.includes('?') ? '&' : '?') +
-                              'autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1'
-                            : mediaSrc.replace('watch?v=', 'embed/') +
-                              '?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=' +
-                              mediaSrc.split('v=')[1]
-                        }
+                        src={mediaSrc}
                         className='w-full h-full rounded-xl'
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
                         frameBorder='0'
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -228,7 +289,6 @@ const ScrollExpandMedia = ({
                         className='absolute inset-0 z-10'
                         style={{ pointerEvents: 'none' }}
                       ></div>
-
                       <motion.div
                         className='absolute inset-0 bg-black/30 rounded-xl'
                         initial={{ opacity: 0.7 }}
@@ -264,7 +324,7 @@ const ScrollExpandMedia = ({
                       />
                     </div>
                   )
-                ) : mediaSrc ? (
+                ) : (
                   <div className='relative w-full h-full'>
                     <img
                       src={mediaSrc}
@@ -278,13 +338,6 @@ const ScrollExpandMedia = ({
                       animate={{ opacity: 0.7 - scrollProgress * 0.3 }}
                       transition={{ duration: 0.2 }}
                     />
-                  </div>
-                ) : (
-                  <div className='w-full h-full flex items-center justify-center'>
-                    <div className='text-center text-white/60'>
-                      <div className='text-6xl mb-4'>🌎</div>
-                      <p className='text-lg'>Scroll to expand</p>
-                    </div>
                   </div>
                 )}
 

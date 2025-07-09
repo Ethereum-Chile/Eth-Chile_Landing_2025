@@ -27,7 +27,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
     ],
     description: "For protocols, exchanges, layer 1 and layer 2 companies. Maximum brand exposure and influence at ETHChile 2025.",
     color: "from-red-600 to-pink-600",
-    imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/imgs/RARE_sponsor.png"
   },
   {
     name: "WAGMI",
@@ -41,7 +41,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
     ],
     description: "For funds, DeFi solutions, and infrastructure companies. Comprehensive brand presence and engagement opportunities.",
     color: "from-green-600 to-emerald-600",
-    imageUrl: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2126&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/imgs/WAGMI_sponsor.png"
   },
   {
     name: "Hash",
@@ -55,7 +55,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
     ],
     description: "For dev tools, apps, and wallet companies. Balanced sponsorship package offering solid brand exposure.",
     color: "from-blue-600 to-cyan-600",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/imgs/HASH.png"
   },
   {
     name: "Gwei",
@@ -69,7 +69,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
     ],
     description: "For growing startups and communities. Entry-level sponsorship package for Web3 ecosystem presence.",
     color: "from-yellow-500 to-orange-500",
-    imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/imgs/gwei.png"
   },
   {
     name: "Startup Garden",
@@ -83,7 +83,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
     ],
     description: "For curated early-stage projects with demo or MVP. Affordable option for startups entering the Web3 space.",
     color: "from-green-400 to-teal-500",
-    imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/imgs/garden.png"
   }
 ];
 
@@ -97,6 +97,7 @@ const ImageWithPricing: React.FC<{ tier: SponsorshipTier; index: number }> = ({ 
         src={tier.imageUrl}
         alt={tier.name}
         className="w-full h-full object-cover rounded-lg"
+        style={{ objectPosition: 'center' }}
         loading="eager"
         decoding="async"
         transition={{ ease: [0.33, 1, 0.68, 1], duration: 0.8 }}
@@ -160,15 +161,20 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           {/* Additional Info */}
           <div className="mt-16 text-center">
             <p className="text-xl mb-8">
-              Ready to showcase your brand at Latin America's premier Ethereum event?
+              Ready to showcase your brand at Chile's premier Ethereum event?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                 Download Sponsorship Deck
               </button>
-              <button className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors">
+              <a 
+                href="https://t.me/cristpereirag" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors text-center"
+              >
                 Contact Sales Team
-              </button>
+              </a>
             </div>
           </div>
         </HoverSlider>
