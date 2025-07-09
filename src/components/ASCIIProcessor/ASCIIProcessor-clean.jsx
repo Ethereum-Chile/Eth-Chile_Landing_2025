@@ -61,6 +61,13 @@ const ASCIIProcessor = ({
         if (onReady) {
           onReady(appRef.current);
         }
+        
+        // Add debugging - check status after 2 seconds
+        setTimeout(() => {
+          if (appRef.current) {
+            console.log('ASCII App Status:', appRef.current.getStatus());
+          }
+        }, 2000);
       }, 1000);
 
     } catch (error) {

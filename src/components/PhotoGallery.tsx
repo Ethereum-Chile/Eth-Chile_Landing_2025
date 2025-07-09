@@ -34,6 +34,7 @@ const IMAGES_3 = [
 
 export const PhotoGallery = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [isWhyEthVisible, setIsWhyEthVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const autoScrollRef = useRef<HTMLDivElement>(null);
 
@@ -48,6 +49,7 @@ export const PhotoGallery = () => {
         const rect = whyEthereumSection.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         setIsAutoScrolling(isVisible);
+        setIsWhyEthVisible(isVisible);
       }
     };
 
@@ -95,6 +97,18 @@ export const PhotoGallery = () => {
           
           .auto-scroll .gallery-col:nth-child(3) {
             animation: autoScrollUp 20s linear infinite;
+          }
+          
+          .auto-scroll.why-eth-visible .gallery-col:nth-child(1) {
+            animation: autoScrollDown 20s linear infinite;
+          }
+          
+          .auto-scroll.why-eth-visible .gallery-col:nth-child(2) {
+            animation: autoScrollUp 20s linear infinite;
+          }
+          
+          .auto-scroll.why-eth-visible .gallery-col:nth-child(3) {
+            animation: autoScrollDown 20s linear infinite;
           }
           
           @keyframes autoScrollUp {
@@ -162,7 +176,7 @@ export const PhotoGallery = () => {
         <ContainerSticky className="h-svh">
           <GalleryContainer 
             ref={autoScrollRef}
-            className={`transition-transform duration-1000 ${isAutoScrolling ? 'auto-scroll' : ''}`}
+            className={`transition-transform duration-1000 ${isAutoScrolling ? 'auto-scroll' : ''} ${isWhyEthVisible ? 'why-eth-visible' : ''}`}
           >
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2 gallery-col">
               {IMAGES_1.map((imageUrl, index) => (

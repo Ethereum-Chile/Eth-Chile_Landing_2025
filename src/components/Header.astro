@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo-claro.png";
 import { ConnectWallet } from "./ConnectWallet.tsx";
+import { RulerCarousel } from "./RulerCarousel.tsx";
 ---
 
 <header
@@ -25,6 +26,29 @@ import { ConnectWallet } from "./ConnectWallet.tsx";
       ethereum <span class="font-semibold">Chile</span>
     </h2>
   </a>
+
+  <!-- Ruler Carousel in the center -->
+  <div class="flex justify-center items-center px-4 relative w-[500px]">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-transparent via-black to-transparent opacity-50 pointer-events-none z-10"
+    >
+    </div>
+    <div class="relative z-20 w-full">
+      <RulerCarousel
+        client:load
+        originalItems={[
+          { id: 1, title: "About" },
+          { id: 2, title: "Schedule" },
+          { id: 3, title: "Speakers" },
+          { id: 4, title: "Sponsors" },
+          { id: 5, title: "Hackathon" },
+          { id: 6, title: "Venue" },
+          { id: 7, title: "Contact" },
+        ]}
+      />
+    </div>
+  </div>
+
   <div class="flex items-center">
     <ConnectWallet client:load />
   </div>

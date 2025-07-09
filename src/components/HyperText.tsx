@@ -69,20 +69,32 @@ export function HyperText({
 
   return (
     <div
-      className="flex scale-100 cursor-default overflow-hidden py-2"
+      className="relative inline-block cursor-default"
       onMouseEnter={triggerAnimation}
+      style={{ 
+        minWidth: 'fit-content',
+        width: 'auto'
+      }}
     >
-      <AnimatePresence mode="sync">
-        {displayText.map((letter, i) => (
-          <motion.span
-            key={i}
-            className={`font-mono ${letter === " " ? "w-3" : ""} ${className || ""}`}
-            {...framerProps}
-          >
-            {letter.toUpperCase()}
-          </motion.span>
-        ))}
-      </AnimatePresence>
+      <div className="relative">
+        <AnimatePresence mode="sync">
+          {displayText.map((letter, i) => (
+            <motion.span
+              key={i}
+              className={`font-mono inline-block ${letter === " " ? "w-3" : ""} ${className || ""}`}
+              style={{ 
+                position: 'relative',
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+                transform: 'translateZ(0)' // Force hardware acceleration
+              }}
+              {...framerProps}
+            >
+              {letter.toUpperCase()}
+            </motion.span>
+          ))}
+        </AnimatePresence>
+      </div>
     </div>
   );
 } 

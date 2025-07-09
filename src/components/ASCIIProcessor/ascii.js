@@ -17,7 +17,7 @@ import {
   uniform bool uInvert;
   uniform vec3 uColor;
   
-  const vec2 SIZE = vec2(16.);
+  const vec2 SIZE = vec2(32.);
   
   vec3 greyscale(vec3 color, float strength) {
       float g = dot(color, vec3(0.299, 0.587, 0.114));
@@ -57,8 +57,8 @@ import {
   `
   export class ASCII extends Effect {
     constructor({
-      font = "arial",
-      characters = ` .:,'-^=*+?!|0#X%WM@`,
+      font = "monospace",
+      characters = ` .:,'-^=*+?!|0#X%WM@$&<>{}[]()@#$%^&*+=<>{}[]()@#$%^&*`,
       fontSize = 54,
       cellSize = 16,
       color = "#ffffff",
@@ -83,7 +83,7 @@ import {
     createCharactersTexture(characters, font, fontSize) {
       const canvas = document.createElement("canvas")
       const SIZE = 1024
-      const MAX_PER_ROW = 16
+      const MAX_PER_ROW = 32
       const CELL = SIZE / MAX_PER_ROW
   
       canvas.width = canvas.height = SIZE
@@ -103,11 +103,13 @@ import {
       context.textBaseline = "middle"
       context.fillStyle = "#fff"
   
+      console.log('Creating ASCII texture with', characters.length, 'characters:', characters);
       for (let i = 0; i < characters.length; i++) {
         const char = characters[i]
         const x = i % MAX_PER_ROW
         const y = Math.floor(i / MAX_PER_ROW)
         context.fillText(char, x * CELL + CELL / 2, y * CELL + CELL / 2)
+        if (i < 10) console.log(`Character ${i}: "${char}" at position (${x}, ${y})`);
       }
   
       texture.needsUpdate = true

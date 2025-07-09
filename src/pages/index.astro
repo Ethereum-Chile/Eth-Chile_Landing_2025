@@ -10,7 +10,7 @@ import Team from "../components/Team.astro";
 import Footer from "../components/Footer.astro";
 import Hackathon from "../components/Hackathon.astro";
 import EventFormat from "../components/EventFormat.astro";
-import SponsorshipTiers from "../components/SponsorshipTiers.astro";
+import { SponsorshipTiersAnimated } from "../components/SponsorshipTiersAnimated.tsx";
 
 import SocialProof from "../components/SocialProof.astro";
 import PhotoGallery from "../components/PhotoGallery";
@@ -24,7 +24,7 @@ import PhotoGallery from "../components/PhotoGallery";
   <WhatMakesUnique />
   <Hackathon />
   <EventFormat />
-  <SponsorshipTiers />
+  <SponsorshipTiersAnimated client:load />
   <SocialProof />
   <Footer />
 </Layout>

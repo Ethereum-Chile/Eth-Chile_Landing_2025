@@ -16,8 +16,8 @@ export class App {
     this.isPaused = false;
     
     this.initThree();
-    this.loadModel();
     this.asciiInit();
+    this.loadModel();
   }
 
   initThree() {
@@ -118,7 +118,21 @@ export class App {
       const scale = 3.5 / maxDim; // Increased scale to make it bigger
       this.figure.scale.setScalar(scale);
       
-      this.animate();
+      // Initialize rotation to ensure it starts properly
+      this.figure.rotation.y = 0;
+      console.log('Figure initialized with rotation:', this.figure.rotation.y);
+      
+      // Ensure ASCII effect is initialized before starting animation
+      if (this.composer) {
+        this.animate();
+      } else {
+        // If ASCII effect isn't ready yet, wait a bit and try again
+        setTimeout(() => {
+          if (!this.isDisposed) {
+            this.animate();
+          }
+        }, 100);
+      }
     }, (progress) => {
       console.log('Loading progress:', progress);
     }, (error) => {
@@ -129,11 +143,12 @@ export class App {
   asciiInit() {
     // Create ASCII effect with better settings for clean background
     const asciiEffect = new ASCII({ 
+      font: "monospace",
       fontSize: 28, 
       cellSize: 12,
       invert: false, 
       color: "#ffffff", 
-      characters: ` .:,'-^=*+?!|0#X%WM@$&`
+      characters: ` .:,'-^=*+?!|0#X%WM@$&<>{}[]()@#$%^&*+=<>{}[]()@#$%^&*`
     });
 
     this.composer = new EffectComposer(this.renderer);
@@ -148,12 +163,41 @@ export class App {
   }
 
   animate() {
-    if (this.isDisposed || this.isPaused) return;
+    if (this.isDisposed) {
+      console.log('Animation stopped: isDisposed = true');
+      return;
+    }
     
     requestAnimationFrame(this.animate.bind(this));
     
-    if (this.figure) {
-      this.figure.rotation.y += 0.003;
+    if (this.figure && !this.isPaused) {
+      // Add rotation
+      this.figure.rotation.y += 0.005;
+      
+      // Check if we've completed a full circle (2π radians)
+      if (this.figure.rotation.y >= 2 * Math.PI) {
+        console.log('Full circle completed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
+        
+        // Smooth reset by subtracting 2π instead of setting to 0
+        this.figure.rotation.y -= 2 * Math.PI;
+        
+        // Add a small delay to make the reset more visible
+        setTimeout(() => {
+          if (!this.isDisposed && !this.isPaused) {
+            console.log('Animation restarted after reset');
+          }
+        }, 50);
+      }
+      
+      // Debug: log rotation every 200 frames
+      if (Math.floor(this.figure.rotation.y * 200) % 200 === 0) {
+        console.log('Diamond rotation:', this.figure.rotation.y.toFixed(3), 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
+      }
+    } else {
+      // Debug: log when animation is not running
+      if (Math.random() < 0.05) { // Log 5% of the time
+        console.log('Animation check - figure:', !!this.figure, 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
+      }
     }
     
     if (this.composer) {
@@ -178,6 +222,7 @@ export class App {
   }
 
   resume() {
+    console.log('Resuming animation...');
     this.isPaused = false;
     this.animate();
   }
@@ -188,6 +233,26 @@ export class App {
     } else {
       this.pause();
     }
+  }
+
+  forceRestart() {
+    console.log('Force restarting animation...');
+    this.isPaused = false;
+    this.isDisposed = false;
+    if (this.figure) {
+      this.figure.rotation.y = 0;
+    }
+    this.animate();
+  }
+
+  getStatus() {
+    return {
+      isDisposed: this.isDisposed,
+      isPaused: this.isPaused,
+      hasFigure: !!this.figure,
+      hasComposer: !!this.composer,
+      rotation: this.figure ? this.figure.rotation.y : 'no figure'
+    };
   }
 
   updateConfig(config) {
