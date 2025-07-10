@@ -40,21 +40,21 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
                   title: "Latin America's Financial Innovation Hub",
                   content:
                     "Chile leads Latin America with over 200 fintech companies and $1.2B in fintech investments. The 2023 Fintech Law created a sandbox environment where web3 startups can test innovative solutions while regulators learn and adapt.",
-                  image: "/src/assets/catedral.png",
+                  image: "/catedral.png",
                 },
                 {
                   step: "Open Banking Pioneer",
                   title: "API Infrastructure Ready for Web3",
                   content:
                     "Chile's Open Finance platform connects 80% of the banking system through standardized APIs. This existing infrastructure is perfectly positioned for web3 integration, creating unprecedented opportunities for DeFi and blockchain applications.",
-                  image: "/src/assets/panel.jpg",
+                  image: "/panel.jpg",
                 },
                 {
                   step: "Untapped Potential",
                   title: "Web3's Gateway to Latin America",
                   content:
                     "Despite Chile's advanced fintech ecosystem, web3 adoption remains at just 3%. With 19M people, high smartphone penetration, and regulatory clarity, Chile represents the perfect market for web3's next breakthrough moment.",
-                  image: "/src/assets/apertura.jpg",
+                  image: "/apertura.jpg",
                 },
               ]}
               autoPlayInterval={4000}
