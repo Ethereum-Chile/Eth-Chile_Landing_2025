@@ -14,8 +14,6 @@ export class App {
 
     this.isDisposed = false;
     this.isPaused = false;
-    this.lastResetTime = 0;
-    this.resetInterval = 5000; // 5 seconds in milliseconds
     
     this.initThree();
     this.asciiInit();
@@ -122,7 +120,6 @@ export class App {
       
       // Initialize rotation to ensure it starts properly
       this.figure.rotation.y = 0;
-      this.lastResetTime = Date.now(); // Initialize the reset timer
       console.log('Figure initialized with rotation:', this.figure.rotation.y);
       
       // Ensure ASCII effect is initialized before starting animation
@@ -175,19 +172,11 @@ export class App {
     this.animationId = requestAnimationFrame(this.animate.bind(this));
     
     if (this.figure && !this.isPaused) {
-      // Add rotation
-      this.figure.rotation.y += 0.005;
+      // Add rotation - let it continue infinitely without resetting
+      this.figure.rotation.y += 0.008; // Slightly faster rotation for better visibility
       
-      // Check if rotation has completed a full cycle (2π radians)
-      if (this.figure.rotation.y >= 2 * Math.PI) {
-        console.log('Full rotation completed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
-        
-        // Reset rotation to 0 for continuous looping
-        this.figure.rotation.y = 0;
-      }
-      
-      // Debug: log rotation every 200 frames
-      if (Math.floor(this.figure.rotation.y * 200) % 200 === 0) {
+      // Debug: log rotation every 100 frames for better monitoring
+      if (Math.floor(this.figure.rotation.y * 100) % 100 === 0) {
         console.log('Diamond rotation:', this.figure.rotation.y.toFixed(3), 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
       }
     } else {
@@ -254,6 +243,11 @@ export class App {
     
     // Start the animation loop
     this.animate();
+    
+    // Log status after restart
+    setTimeout(() => {
+      console.log('Animation restart status:', this.getStatus());
+    }, 100);
   }
 
   getStatus() {
@@ -262,7 +256,9 @@ export class App {
       isPaused: this.isPaused,
       hasFigure: !!this.figure,
       hasComposer: !!this.composer,
-      rotation: this.figure ? this.figure.rotation.y : 'no figure'
+      hasAnimationId: !!this.animationId,
+      rotation: this.figure ? this.figure.rotation.y : 'no figure',
+      animationRunning: !this.isDisposed && !this.isPaused && !!this.figure && !!this.animationId
     };
   }
 

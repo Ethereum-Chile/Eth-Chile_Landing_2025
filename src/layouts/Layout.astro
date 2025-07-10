@@ -19,6 +19,57 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#000000" />
     <title>{title}</title>
+
+    <!-- OpenGraph Meta Tags -->
+    <meta
+      property="og:title"
+      content="ETHChile 2025 - Ethereum Meets the Real World"
+    />
+    <meta
+      property="og:description"
+      content="Join Latin America's premier Ethereum event in Santiago, Chile. Experience the convergence of traditional finance and decentralized innovation."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ethchile.com" />
+    <meta property="og:image" content="/imgs/eth_chile2025.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ETHChile 2025 - Ethereum Conference in Chile"
+    />
+    <meta property="og:site_name" content="ETHChile" />
+    <meta property="og:locale" content="es_CL" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ETHChile 2025 - Ethereum Meets the Real World"
+    />
+    <meta
+      name="twitter:description"
+      content="Join Latin America's premier Ethereum event in Santiago, Chile. Experience the convergence of traditional finance and decentralized innovation."
+    />
+    <meta name="twitter:image" content="/imgs/eth_chile2025.png" />
+    <meta
+      name="twitter:image:alt"
+      content="ETHChile 2025 - Ethereum Conference in Chile"
+    />
+
+    <!-- Additional Meta Tags -->
+    <meta
+      name="description"
+      content="Join Latin America's premier Ethereum event in Santiago, Chile. Experience the convergence of traditional finance and decentralized innovation."
+    />
+    <meta
+      name="keywords"
+      content="Ethereum, ETHChile, blockchain, DeFi, Web3, Chile, Latin America, cryptocurrency, fintech"
+    />
+    <meta name="author" content="ETHChile Team" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ethchile.com" />
     <script>
       // Polyfill for global
       if (typeof global === "undefined") {

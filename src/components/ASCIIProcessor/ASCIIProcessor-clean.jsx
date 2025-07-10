@@ -66,6 +66,20 @@ const ASCIIProcessor = ({
         setTimeout(() => {
           if (appRef.current) {
             console.log('ASCII App Status:', appRef.current.getStatus());
+            
+            // Additional check after 5 seconds to ensure animation is still running
+            setTimeout(() => {
+              if (appRef.current) {
+                const status = appRef.current.getStatus();
+                console.log('ASCII App Status (5s later):', status);
+                
+                // If animation is not running, try to restart it
+                if (!status.animationRunning && status.hasFigure) {
+                  console.log('Animation not running, attempting restart...');
+                  appRef.current.forceRestart();
+                }
+              }
+            }, 3000);
           }
         }, 2000);
       }, 1000);
