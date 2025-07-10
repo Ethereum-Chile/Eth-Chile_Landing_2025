@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { HyperText } from "./HyperText.tsx"
 
 interface Feature {
   step: string
@@ -52,9 +53,14 @@ export function FeatureSteps({
   return (
     <div className={`p-8 md:p-12 ${className || ""}`}>
       <div className="max-w-7xl mx-auto w-full">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center text-white">
-          {title}
-        </h2>
+        <div className="mb-10 text-center">
+          <HyperText
+            text={title}
+            duration={1000}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
+            animateOnLoad={true}
+          />
+        </div>
 
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
           

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { HyperText } from "./HyperText.tsx";
 
 const cards = [
   {
@@ -68,9 +69,12 @@ export default function ParallaxCards() {
                 willChange: "transform"
               }}
             >
-              <h3 className="text-3xl md:text-4xl font-bold text-white font-raleway">
-                {card.title}
-              </h3>
+              <HyperText
+                text={card.title}
+                duration={800}
+                className="text-3xl md:text-4xl font-bold text-white font-raleway"
+                animateOnLoad={false}
+              />
               <h4 className="text-lg md:text-xl font-semibold text-blue-300 font-raleway">
                 {card.subtitle}
               </h4>

@@ -1,5 +1,6 @@
 ---
 import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
+import { HyperText } from "./HyperText.tsx";
 ---
 
 <section class="min-h-screen relative">
@@ -13,9 +14,15 @@ import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
     scrollToExpand="Scroll to Discover More"
   >
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-white text-center">
-        What Makes Chile the Perfect Hub for Ethereum Innovation
-      </h2>
+      <div class="text-center mb-6">
+        <HyperText
+          client:load
+          text="What Makes Chile the Perfect Hub for Ethereum Innovation"
+          duration={1000}
+          className="text-3xl font-bold text-white"
+          animateOnLoad={true}
+        />
+      </div>
       <p class="text-lg text-gray-300 text-center max-w-4xl mx-auto">
         Discover why Chile's unique combination of regulatory clarity, fintech
         infrastructure, and technological talent makes it the ideal location for

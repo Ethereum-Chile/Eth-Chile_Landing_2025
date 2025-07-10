@@ -1,11 +1,18 @@
 ---
+import { HyperText } from "./HyperText.tsx";
 // Hackathon component for ETH Chile 2025
 ---
 
 <section class="min-h-screen bg-custom-black p-8 flex flex-col justify-center">
-  <h2 class="text-4xl font-raleway font-semibold mb-8 text-center text-white">
-    Hackathons
-  </h2>
+  <div class="text-center mb-8">
+    <HyperText
+      client:load
+      text="Hackathons"
+      duration={1000}
+      className="text-4xl font-raleway font-semibold text-white"
+      animateOnLoad={true}
+    />
+  </div>
 
   <div class="max-w-6xl mx-auto">
     <!-- Biggest Web3 Hackathon in Chile -->
@@ -138,20 +145,20 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Call to Action -->
-    <div class="mt-12 text-center text-white">
-      <p class="text-xl mb-6">Ready to build the future of Web3 in Chile?</p>
-      <div class="flex gap-4 justify-center">
-        <button class="bg-white text-black px-8 py-3 rounded-lg font-semibold">
-          Apply as Participant
-        </button>
-        <button
-          class="border border-white text-white px-8 py-3 rounded-lg font-semibold"
-        >
-          Become a Mentor
-        </button>
-      </div>
+  <!-- Call to Action -->
+  <div class="mt-12 text-center">
+    <p class="text-xl mb-6">Ready to build the future of Web3 in Chile?</p>
+    <div class="flex gap-4 justify-center">
+      <button class="bg-white text-black px-8 py-3 rounded-lg font-semibold">
+        Apply Now
+      </button>
+      <button
+        class="border border-white text-white px-8 py-3 rounded-lg font-semibold"
+      >
+        Learn More
+      </button>
     </div>
   </div>
 </section>

@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { FeatureSteps } from "./FeatureSteps";
 import CircularText from "./CircularText";
+import { HyperText } from "./HyperText.tsx";
 
 const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
   return (
