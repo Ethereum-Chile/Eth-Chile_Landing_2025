@@ -137,33 +137,31 @@ export default function RulerCarousel() {
       className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 h-96 w-16 overflow-hidden cursor-pointer"
       onClick={handleRulerClick}
     >
-      {/* Background container with fade out effects */}
-      <div className="absolute inset-0 rounded-2xl backdrop-blur-sm border border-white/10" 
+      {/* Background container with transparency fade-out using mask */}
+      <div className="absolute inset-0 rounded-2xl backdrop-blur-sm border border-white/10 bg-black/80" 
            style={{
-             background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.2) 80%, transparent 100%)'
+             maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)'
            }} />
       
-      {/* Bottom fade out gradient for background */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 rounded-b-2xl pointer-events-none z-20" 
-           style={{
-             background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)'
-           }} />
-      
-      {/* Ruler lines on left */}
-      <div className="absolute left-0 top-0 h-full z-10">
-        <RulerLines left={true} />
-      </div>
 
-      {/* Ruler lines on right */}
-      <div className="absolute right-0 top-0 h-full z-10">
-        <RulerLines left={false} />
+      
+      {/* Lines container with fade-out mask */}
+      <div className="absolute inset-0 pointer-events-none z-30" 
+           style={{
+             maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)'
+           }}>
+        {/* Ruler lines on left */}
+        <div className="absolute left-0 top-0 h-full">
+          <RulerLines left={true} />
+        </div>
+
+        {/* Ruler lines on right */}
+        <div className="absolute right-0 top-0 h-full">
+          <RulerLines left={false} />
+        </div>
       </div>
-      
-      {/* Top fade out gradient for lines */}
-      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/70 via-black/35 to-transparent pointer-events-none z-30" />
-      
-      {/* Bottom fade out gradient for lines */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/70 via-black/35 to-transparent pointer-events-none z-30" />
       
       {/* Navigation buttons container */}
       <div className="relative h-full flex flex-col items-center justify-center">

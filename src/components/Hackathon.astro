@@ -88,18 +88,18 @@ import { PixelCard } from "./PixelCard.tsx";
 
       <!-- Centered Image with Pixel Animation -->
       <div class="flex justify-center mb-8">
-        <div class="max-w-4xl w-full">
+        <div class="max-w-3xl w-full">
           <PixelCard
             client:load
             variant="default"
             gap={12}
             speed={40}
-            className="w-full h-96"
+            className="w-full h-[600px]"
           >
             <img
               src="/imgs/GuY62_cWoAA4shu.jpeg"
               alt="Crecimiento Hackathon"
-              class="w-full h-full object-cover rounded-2xl shadow-2xl border border-white/20"
+              class="w-full h-full object-contain rounded-2xl shadow-2xl border border-white/20"
             />
           </PixelCard>
         </div>

@@ -178,14 +178,12 @@ export class App {
       // Add rotation
       this.figure.rotation.y += 0.005;
       
-      // Check if 5 seconds have passed since last reset
-      const currentTime = Date.now();
-      if (currentTime - this.lastResetTime >= this.resetInterval) {
-        console.log('5 seconds passed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
+      // Check if rotation has completed a full cycle (2π radians)
+      if (this.figure.rotation.y >= 2 * Math.PI) {
+        console.log('Full rotation completed! Resetting rotation from', this.figure.rotation.y.toFixed(3), 'to 0');
         
-        // Reset rotation to 0 for that beautiful first rotation effect
+        // Reset rotation to 0 for continuous looping
         this.figure.rotation.y = 0;
-        this.lastResetTime = currentTime;
       }
       
       // Debug: log rotation every 200 frames
