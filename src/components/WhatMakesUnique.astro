@@ -1,5 +1,4 @@
 ---
-import { Team } from "./Team.tsx";
 import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
 ---
 
@@ -12,55 +11,16 @@ import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
     title="What Makes ETHChile Unique"
     date="Latin America's Premier Ethereum Event"
     scrollToExpand="Scroll to Discover More"
-    textBlend
   >
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold mb-6 text-white text-center">
-        Meet the ETHChile Team
+        What Makes Chile the Perfect Hub for Ethereum Innovation
       </h2>
-
-      <Team
-        client:load
-        teamMembers={[
-          {
-            quote:
-              "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
-            name: "Andrés Junge",
-            designation: "Founder & CEO, ETHChile",
-            src: "/src/assets/andres.jpg",
-          },
-          {
-            quote:
-              "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
-            name: "Patricio López",
-            designation: "Head of Innovation, ETHChile",
-            src: "/src/assets/patricio.jpg",
-          },
-          {
-            quote:
-              "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
-            name: "Cristóbal Pereira",
-            designation: "Technical Lead, ETHChile",
-            src: "/src/assets/cristobal.jpg",
-          },
-          {
-            quote:
-              "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
-            name: "Ignacio Puga",
-            designation: "Community Manager, ETHChile",
-            src: "/src/assets/ignacio.jpg",
-          },
-          {
-            quote:
-              "Building bridges between traditional finance and decentralized innovation is our mission. ETHChile is the catalyst for Latin America's Web3 transformation.",
-            name: "Joseph Sanchez",
-            designation: "Partnerships Director, ETHChile",
-            src: "/src/assets/nate.jpg",
-          },
-        ]}
-        autoplay={true}
-        className="mt-8"
-      />
+      <p class="text-lg text-gray-300 text-center max-w-4xl mx-auto">
+        Discover why Chile's unique combination of regulatory clarity, fintech
+        infrastructure, and technological talent makes it the ideal location for
+        the next generation of blockchain innovation.
+      </p>
     </div>
   </ScrollExpandMedia>
 </section>

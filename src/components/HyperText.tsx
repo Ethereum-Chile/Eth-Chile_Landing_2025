@@ -77,10 +77,10 @@ export function HyperText({
       }}
     >
       <div className="relative">
-        <AnimatePresence mode="sync">
-          {displayText.map((letter, i) => (
-            <motion.span
-              key={i}
+      <AnimatePresence mode="sync">
+        {displayText.map((letter, i) => (
+          <motion.span
+            key={i}
               className={`font-mono inline-block ${letter === " " ? "w-3" : ""} ${className || ""}`}
               style={{ 
                 position: 'relative',
@@ -88,12 +88,12 @@ export function HyperText({
                 whiteSpace: 'nowrap',
                 transform: 'translateZ(0)' // Force hardware acceleration
               }}
-              {...framerProps}
-            >
-              {letter.toUpperCase()}
-            </motion.span>
-          ))}
-        </AnimatePresence>
+            {...framerProps}
+          >
+            {letter.toUpperCase()}
+          </motion.span>
+        ))}
+      </AnimatePresence>
       </div>
     </div>
   );

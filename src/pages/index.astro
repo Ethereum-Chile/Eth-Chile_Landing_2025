@@ -4,26 +4,48 @@ import Header from "../components/Header.astro";
 import WhyEthereum from "../components/WhyEthereum.astro";
 import ScrollAnimationSections from "../components/ScrollAnimationSections.tsx";
 import WhatMakesUnique from "../components/WhatMakesUnique.astro";
+import Team from "../components/Team.astro";
 import Hackathon from "../components/Hackathon.astro";
 import Conference from "../components/Conference.astro";
 import Socials from "../components/Socials.astro";
-import Team from "../components/Team.astro";
+
 import Footer from "../components/Footer.astro";
 
 import { SponsorshipTiersAnimated } from "../components/SponsorshipTiersAnimated.tsx";
 
 import SocialProof from "../components/SocialProof.astro";
 import Hero from "../components/Hero";
+import RulerCarousel from "../components/RulerCarousel.tsx";
 ---
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
+  <RulerCarousel client:load />
   <Header />
-  <Hero client:load />
-  <WhyEthereum />
-  <ScrollAnimationSections client:load />
-  <WhatMakesUnique />
-  <Hackathon />
-  <SponsorshipTiersAnimated client:load />
-  <SocialProof />
-  <Footer />
+  <section id="hero">
+    <Hero client:load />
+  </section>
+  <section id="why-eth">
+    <WhyEthereum />
+  </section>
+  <section id="why-latam">
+    <ScrollAnimationSections client:load />
+  </section>
+  <section id="chile">
+    <WhatMakesUnique />
+  </section>
+  <section id="team">
+    <Team />
+  </section>
+  <section id="hackathons">
+    <Hackathon />
+  </section>
+  <section id="sponsors">
+    <SponsorshipTiersAnimated client:load />
+  </section>
+  <section id="web3">
+    <SocialProof />
+  </section>
+  <section id="footer">
+    <Footer />
+  </section>
 </Layout>

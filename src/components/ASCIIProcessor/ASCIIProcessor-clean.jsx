@@ -28,7 +28,7 @@ const ASCIIProcessor = ({
       const container = document.createElement('div');
       container.className = 'webglCanvas';
       containerRef.current.appendChild(container);
-      
+
       console.log('Container created:', container);
       console.log('Container dimensions:', {
         width: container.offsetWidth,
@@ -39,9 +39,9 @@ const ASCIIProcessor = ({
 
       // Wait a frame to ensure container is properly sized
       requestAnimationFrame(() => {
-        // Initialize the ASCII app
+      // Initialize the ASCII app
         console.log('Initializing ASCII app...');
-        appRef.current = new App(container);
+      appRef.current = new App(container);
         console.log('ASCII app initialized:', appRef.current);
       });
       

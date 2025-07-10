@@ -1,92 +1,62 @@
 ---
-import { Image } from "astro:assets";
-import andres from "../assets/andres.jpg";
-import cristobal from "../assets/cristobal.jpg";
-import diego from "../assets/diego.jpg";
-import ignacio from "../assets/ignacio.jpg";
-import joseph from "../assets/joseph.jpg";
-import pato from "../assets/pato.jpg";
-import patricio from "../assets/patricio.jpg";
+import { AnimatedTestimonials } from "./AnimatedTestimonials.tsx";
 ---
 
-<section class="flex flex-col px-5 md:px-40 min-h-[100vh] pt-[10vh]" id="team">
-  <h2 class="font-raleway text-4xl mb-10 font-semibold pl-5 md:pl-0">Equipo</h2>
-  <div class="flex flex-col mb-10">
-    <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={andres}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Andrés Junge</h3>
-      </div>
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={cristobal}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Cristóbal Pereira</h3>
-      </div>
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={diego}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Diego Ibieta</h3>
-      </div>
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={ignacio}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Ignacio Puga</h3>
-      </div>
+<section
+  class="min-h-screen bg-custom-black p-8 flex flex-col justify-center"
+  id="team"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-raleway font-semibold text-white mb-4">
+        Meet the ETHChile Team
+      </h2>
+      <p class="text-xl text-gray-300">
+        The visionaries behind Latin America's premier Ethereum event
+      </p>
     </div>
-    <div class="flex flex-wrap justify-evenly md:justify-between md:mb-10">
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={joseph}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Joseph Pérez</h3>
-      </div>
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={pato}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg mb-4 md:mb-0">
-          Patricio López
-        </h3>
-      </div>
-      <div class="flex flex-col items-center mb-4 md:mb-0">
-        <Image
-          src={patricio}
-          alt="Foto perfil"
-          width={213}
-          height={213}
-          class="rounded-sm w-40 lg:w-[213px] h-40 lg:h-[213px]"
-        />
-        <h3 class="font-medium mt-2 md:mt-4 text-lg">Patricio López Juri</h3>
-      </div>
-    </div>
+
+    <AnimatedTestimonials
+      client:load
+      testimonials={[
+        {
+          quote:
+            "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
+          name: "Andrés Junge",
+          designation: "Founder & CEO, ETHChile",
+          src: "/src/assets/andres.jpg",
+        },
+        {
+          quote:
+            "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
+          name: "Patricio López",
+          designation: "Head of Innovation, ETHChile",
+          src: "/src/assets/patricio.jpg",
+        },
+        {
+          quote:
+            "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
+          name: "Cristóbal Pereira",
+          designation: "Technical Lead, ETHChile",
+          src: "/src/assets/cristobal.jpg",
+        },
+        {
+          quote:
+            "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
+          name: "Ignacio Puga",
+          designation: "Community Manager, ETHChile",
+          src: "/src/assets/ignacio.jpg",
+        },
+        {
+          quote:
+            "Building bridges between traditional finance and decentralized innovation is our mission. ETHChile is the catalyst for Latin America's Web3 transformation.",
+          name: "Joseph Sanchez",
+          designation: "Partnerships Director, ETHChile",
+          src: "/src/assets/joseph.jpg",
+        },
+      ]}
+      autoplay={true}
+      className="mt-8"
+    />
   </div>
 </section>

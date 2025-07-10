@@ -1,122 +1,152 @@
-# ETHChile 2025 - Todo List
+# ETH Chile 2025 - Project TODO List
 
-## Current Issues to Fix
+## ✅ Top Priority Tasks (Must Do Now)
 
-- [ ] ASCII ETH animation not visible - needs debugging
-- [ ] Fix import errors in ASCIIProcessor component
-- [ ] Ensure proper model loading and rendering
+### 🧭 Navigation & Interaction
 
-## Wallet Connection & Profile Creation
+- [ ] **Fix carousel navigation**: Sections should scroll based on scroll position, not just button clicks
+  - [ ] Implement smooth scroll behavior
+  - [ ] Sync navigation with scroll position
+  - [ ] Test on all viewport sizes
 
-- [x] Implement MetaMask wallet connection
-- [x] Create profile creation page
-- [x] Add wallet connection button to header
-- [x] Handle wallet connection errors
-- [x] Redirect to profile page after wallet connection
-- [ ] Add form validation for profile creation
-- [ ] Implement profile data persistence
-- [ ] Add profile completion status
-- [ ] Connect profile data to backend API
+### 📂 Sponsored Deck
 
-## Interactive Components
+- [ ] **Make "Download Sponsor Deck" button functional**
+  - [ ] Link to actual downloadable PDF
+  - [ ] Add proper file hosting
+  - [ ] Implement download tracking
 
-- [x] Create ScrollExpandMedia component
-- [x] Integrate ScrollExpandMedia into Why Latin America section
-- [x] Add scroll-based animations and interactions
-- [x] Implement touch and wheel event handling
-- [x] Create FlipLink component with letter flip animations
-- [x] Add FlipLink social section to footer
-- [x] Unify "Let's Build Together" and footer into single section
-- [x] Create FeatureSteps component with auto-rotating features
-- [x] Replace Chile section with interactive FeatureSteps component
-- [x] Create ContainerScroll component with 3D scroll effects
-- [x] Update Social Proof section with ContainerScroll gallery
-- [x] Create PhotoGallery component with 3D image gallery effects
-- [x] Move PhotoGallery to hero section position
-- [x] Update PhotoGallery styling for hero section (larger text, better spacing, full-screen height)
-- [x] Remove old Latin America content from WhyLatinAmerica section
-- [x] Update FeatureSteps component to work with Astro (remove Next.js dependencies)
-- [x] Remove all cards from Social Proof & Community section
-- [x] Add CircularText component to top left of Why Latin America section
-- [ ] Add more interactive sections using ScrollExpandMedia
-- [ ] Optimize mobile responsiveness for interactive components
+### 🎯 Hero Sections
 
-## Completed Tasks
+- [ ] **Update images in Hero section**
+  - [ ] Source new, consistent aesthetic images
+  - [ ] Optimize for web performance
+  - [ ] Ensure responsive behavior
+- [ ] **Add unhover animation to all section titles**
+  - [ ] Implement smooth transition effects
+  - [ ] Test hover/unhover states
 
-- [x] Set up Astro project with dark theme
-- [x] Create landing page structure
-- [x] Integrate React components
-- [x] Add ASCII art processor
-- [x] Replace with 3D ETH model ASCII animation
-- [x] Fix import errors (app-clean.js → app.js)
-- [x] Add debugging console logs
-- [x] Implement time-based light/dark mode
-- [x] Create theme manager utility
-- [x] Add theme toggle component
-- [x] Implement automatic theme switching (6 AM - 8 PM light, 8 PM - 6 AM dark)
+### 🏔️ Sections to Update Visuals & Layouts
 
-## Features to Implement
+- [ ] **Update background in "What Makes Chile Unique"**
+  - [ ] Source appropriate background imagery
+  - [ ] Ensure proper contrast with text
+- [ ] **Update images in "Chile's Fintech Revolution"**
+  - [ ] Replace with relevant fintech imagery
+  - [ ] Maintain visual consistency
+- [ ] **Fix background in "Why ETH?" section**
+  - [ ] Resolve any visual issues
+  - [ ] Ensure proper glassmorphism effects
 
-- [ ] Improve ASCII animation visibility
-- [ ] Add loading states and error handling
-- [ ] Optimize 3D model performance
-- [ ] Add interactive controls for ASCII animation
-- [ ] Implement responsive design improvements
-- [ ] Add more sections to landing page
-- [ ] Integrate with backend APIs
-- [ ] Add form handling for sponsorship applications
-- [ ] Implement analytics tracking
+### 👥 Teams & Profiles
 
-## Technical Improvements
+- [ ] **Update team images**
+  - [ ] Source high-quality profile photos
+  - [ ] Ensure consistent sizing and style
+- [ ] **Get profile creation flow working**
+  - [ ] Connect wallet functionality
+  - [ ] Create profile form
+  - [ ] Save to Supabase database
+  - [ ] Implement user authentication
 
-- [ ] Optimize bundle size
-- [ ] Add proper TypeScript types
-- [ ] Implement proper error boundaries
-- [ ] Add unit tests
-- [ ] Set up CI/CD pipeline
-- [ ] Add accessibility features
-- [ ] Optimize images and assets
-- [ ] Add PWA capabilities
+---
 
-## Design Enhancements
+## 🧩 Footer Fixes
 
-- [ ] Improve typography hierarchy
-- [ ] Add micro-interactions
-- [ ] Implement smooth transitions
-- [ ] Add more visual elements
-- [ ] Improve mobile responsiveness
-- [ ] Add animations for page sections
+### 🖼️ Footer Visual Updates
 
-## Content Updates
+- [ ] **Update footer image**
+  - [ ] Remove extra/unintended Ethereum logos
+  - [ ] Keep only key, relevant logos
+  - [ ] Ensure proper spacing and alignment
 
-- [ ] Add real event details
-- [ ] Update sponsorship information
-- [ ] Add team member profiles
-- [ ] Include event schedule
-- [ ] Add venue information
-- [ ] Include registration forms
+### 🔗 Footer Functionality
 
-## Performance Optimizations
+- [ ] **Fix contact form/forum in the footer**
+  - [ ] Implement working contact form
+  - [ ] Add form validation
+  - [ ] Connect to email service
+- [ ] **Update all footer links**
+  - [ ] Social media links
+  - [ ] Navigation links
+  - [ ] External resources
 
-- [ ] Lazy load components
-- [ ] Optimize 3D rendering
-- [ ] Implement proper caching
-- [ ] Add service worker
-- [ ] Optimize font loading
-- [ ] Minimize re-renders
+---
 
-## Security
+## 🧱 Hackathon Section
 
-- [ ] Add CSP headers
-- [ ] Implement proper form validation
-- [ ] Add rate limiting
-- [ ] Secure API endpoints
-- [ ] Add input sanitization
+### 🎨 Visual Updates
 
-## Documentation
+- [ ] **Update Hackathons section**
+  - [ ] Implement minimalist layout
+  - [ ] Add interactive timeline or module
+  - [ ] Ensure clean, accurate information display
+  - [ ] Test responsive behavior
 
-- [ ] Add README with setup instructions
-- [ ] Document component architecture
-- [ ] Add API documentation
-- [ ] Create deployment guide
-- [ ] Add troubleshooting section
+---
+
+## 🌐 Community Section
+
+### 🔗 Social Integration
+
+- [ ] **Update Web3 Community social links**
+  - [ ] Ensure all links are accurate and working
+  - [ ] Test link functionality
+  - [ ] Update any broken or outdated links
+
+---
+
+## 🚧 Coming Soon / Later Tasks
+
+### 💳 Payments Integration
+
+- [ ] **Integrate crypto payments (Railway)**
+  - [ ] Set up Railway payment gateway
+  - [ ] Implement crypto payment flow
+  - [ ] Add payment confirmation
+- [ ] **Integrate fiat payments (for ticket sales)**
+  - [ ] Set up traditional payment processing
+  - [ ] Implement ticket sales flow
+  - [ ] Add payment tracking
+
+---
+
+## 📋 Project Management
+
+### 🎯 Current Sprint Goals
+
+- [ ] Complete all Top Priority Tasks
+- [ ] Test navigation functionality
+- [ ] Ensure responsive design across devices
+- [ ] Optimize performance
+
+### 🔄 Regular Maintenance
+
+- [ ] Update dependencies
+- [ ] Monitor site performance
+- [ ] Check for broken links
+- [ ] Review analytics
+
+---
+
+## 📝 Notes
+
+### 🎨 Design Guidelines
+
+- Maintain consistent visual aesthetic
+- Ensure accessibility standards
+- Optimize for mobile experience
+- Follow web3/blockchain design trends
+
+### 🚀 Performance Goals
+
+- Fast loading times
+- Smooth animations
+- Responsive design
+- SEO optimization
+
+---
+
+_Last Updated: [Current Date]_
+_Project: ETH Chile 2025_
+_Status: In Development_

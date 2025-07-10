@@ -121,7 +121,7 @@ const ImageWithPricing: React.FC<{ tier: SponsorshipTier; index: number }> = ({ 
 
 export const SponsorshipTiersAnimated: React.FC = () => {
   return (
-    <section className="min-h-screen border border-white p-8 flex flex-col justify-center">
+    <section className="min-h-screen bg-custom-black p-8 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 text-center">
           <HyperText
@@ -144,7 +144,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                 <TextStaggerHover
                   key={tier.name}
                   index={index}
-                  className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter hover:text-blue-400 transition-colors"
+                  className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors"
                   text={tier.name}
                 />
               ))}

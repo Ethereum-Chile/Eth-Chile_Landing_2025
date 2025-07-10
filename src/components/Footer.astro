@@ -1,5 +1,6 @@
 ---
 import FlipLink from "./FlipLink";
+import { HyperText } from "./HyperText.tsx";
 ---
 
 <footer
@@ -15,9 +16,15 @@ import FlipLink from "./FlipLink";
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 flex-grow">
       <!-- Let's Build Together Section -->
       <div class="text-center lg:text-left lg:pr-8">
-        <h2 class="text-4xl font-raleway font-semibold mb-8 text-white">
-          Let's Build Together
-        </h2>
+        <div class="mb-8" style="min-height: 3rem;">
+          <HyperText
+            client:load
+            text="Let's Build Together"
+            duration={1000}
+            className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+            animateOnLoad={true}
+          />
+        </div>
         <div class="max-w-2xl mx-auto lg:mx-0">
           <form class="space-y-6 mb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -27,50 +34,45 @@ import FlipLink from "./FlipLink";
                 class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
               />
               <input
-                type="text"
-                placeholder="Organization"
+                type="email"
+                placeholder="Email"
                 class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
               />
             </div>
-            <select
-              class="border border-white bg-transparent p-3 rounded text-white w-full focus:outline-none focus:border-blue-400"
-            >
-              <option>Select Interest</option>
-              <option>Sponsorship</option>
-              <option>Partnership</option>
-              <option>Media</option>
-            </select>
-            <select
-              class="border border-white bg-transparent p-3 rounded text-white w-full focus:outline-none focus:border-blue-400"
-            >
-              <option>Budget Range</option>
-              <option>$500 - $4K</option>
-              <option>$4K - $8K</option>
-              <option>$8K - $10K</option>
-              <option>$10K+</option>
-            </select>
-            <button
-              type="submit"
-              class="bg-white text-black px-8 py-3 rounded-lg font-semibold w-full hover:bg-gray-100 transition-colors"
-              >Submit</button
-            >
+            <textarea
+              placeholder="Message"
+              rows="4"
+              class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400 w-full resize-none"
+            ></textarea>
+            <div class="flex gap-4">
+              <button
+                type="button"
+                class="border border-white text-white px-8 py-3 rounded-lg font-semibold flex-3 hover:bg-white hover:text-black transition-colors"
+                >Download Deck</button
+              >
+              <button
+                type="submit"
+                class="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-gray-100 transition-colors"
+                >Submit</button
+              >
+            </div>
           </form>
-          <div class="space-y-4">
-            <button
-              class="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
-              >Download Deck</button
-            >
-          </div>
         </div>
       </div>
 
       <!-- Social Links Section -->
       <div class="text-center lg:text-left lg:pl-8">
-        <h3 class="text-2xl font-raleway font-semibold mb-8 text-white">
-          Connect With Us
-        </h3>
+        <div class="mb-8" style="min-height: 3rem;">
+          <HyperText
+            client:load
+            text="Connect With Us"
+            duration={1000}
+            className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+            animateOnLoad={true}
+          />
+        </div>
         <!-- Mobile: Horizontal Grid -->
-        <div class="lg:hidden grid grid-cols-2 gap-6 justify-items-center">
+        <div class="lg:hidden grid grid-cols-2 gap-4 justify-items-center">
           <FlipLink
             href="https://github.com/ethereumchile"
             text="Github"
@@ -91,7 +93,7 @@ import FlipLink from "./FlipLink";
           >
         </div>
         <!-- Desktop: Vertical List -->
-        <div class="hidden lg:flex flex-col space-y-8">
+        <div class="hidden lg:flex flex-col space-y-6">
           <FlipLink
             href="https://github.com/ethereumchile"
             text="Github"
@@ -115,7 +117,7 @@ import FlipLink from "./FlipLink";
     </div>
 
     <!-- Copyright Section -->
-    <div class="text-center mt-auto pt-8">
+    <div class="text-center mt-auto pt-4">
       <span class="text-white font-light text-lg"
         >ethereumchile.org © {new Date().getFullYear()}</span
       >

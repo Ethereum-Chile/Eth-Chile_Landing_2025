@@ -118,8 +118,19 @@ export const GalleryContainer = ({
   }, []);
 
   const { scrollYProgress } = useContainerScrollContext();
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0]);
-  const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1]);
+  
+  // Use linear easing for immediate response to scroll
+  const rotateX = useTransform(
+    scrollYProgress, 
+    [0, 0.5], 
+    [75, 0]
+  );
+  
+  const scale = useTransform(
+    scrollYProgress, 
+    [0.5, 0.9], 
+    [1.2, 1]
+  );
 
   return (
     <motion.div
@@ -129,6 +140,7 @@ export const GalleryContainer = ({
         scale: isClient ? scale : 1,
         transformStyle: "preserve-3d",
         perspective: "1000px",
+        willChange: "transform",
         ...style,
       }}
       {...props}
@@ -160,6 +172,7 @@ export const GalleryCol = ({
       className={`relative flex w-full flex-col gap-2 ${className}`}
       style={{
         y: isClient ? y : 0,
+        willChange: "transform",
         ...style,
       }}
       {...props}

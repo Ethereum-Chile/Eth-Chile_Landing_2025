@@ -118,6 +118,19 @@ const { title } = Astro.props;
       .bg-custom-black {
         background-color: #000000;
       }
+
+      /* Parallax hover effect */
+      .parallax-img {
+        transition: transform 0.1s ease-out;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      .parallax-img:hover {
+        transform: perspective(1000px)
+          rotateX(calc(var(--f) * var(--mouse-y, 0) * 1deg))
+          rotateY(calc(var(--f) * var(--mouse-x, 0) * 1deg)) scale(1.05);
+      }
     </style>
   </head>
   <body class="flex flex-col min-h-screen text-white relative">

@@ -1,56 +1,111 @@
 ---
 import { HyperText } from "./HyperText.tsx";
 import ASCIIProcessor from "./ASCIIProcessor/ASCIIProcessor-clean.jsx";
+import ParallaxCards from "./ParallaxCards.tsx";
+import MagneticCard from "./MagneticCard.tsx";
 ---
 
 <section
   data-section="why-ethereum"
-  class="min-h-screen p-8 flex flex-col justify-center pt-32 pb-48 relative -mt-64 z-10"
-  style="
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  "
+  class="relative min-h-screen flex items-center justify-center bg-transparent py-32 px-4 z-10 overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-    <!-- Left Side: ASCII Processor -->
-    <div class="lg:w-1/2">
-      <ASCIIProcessor
-        client:load
-        width="100%"
-        height="500px"
-        transparent={true}
-      />
-    </div>
-
-    <!-- Right Side: Title and Content -->
-    <div class="lg:w-1/2 text-center lg:text-left">
-      <div class="mb-8" style="min-height: 3rem;">
-        <HyperText
-          client:load
-          text="Why Ethereum, Why Now"
-          duration={1000}
-          className="text-4xl font-raleway font-semibold"
-          animateOnLoad={true}
-        />
-      </div>
-      <p class="text-2xl mb-8">Ethereum is now critical infrastructure</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="border border-white p-6 rounded-lg">
-          <p class="text-3xl font-bold">17M+</p>
-          <p class="text-lg">Users</p>
-        </div>
-        <div class="border border-white p-6 rounded-lg">
-          <p class="text-3xl font-bold">$50B+</p>
-          <p class="text-lg">TVL</p>
-        </div>
-        <div class="border border-white p-6 rounded-lg">
-          <p class="text-3xl font-bold">Pectra</p>
-          <p class="text-lg">Upgrade</p>
-        </div>
-      </div>
-    </div>
+  <!-- Background gradient effects -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style={{
+      background:
+        "radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%)",
+      filter: "blur(60px)",
+    }}
+  >
   </div>
+
+  <!-- Animated grid pattern -->
+  <div class="absolute inset-0 bg-black"></div>
+  <div
+    class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10"
+  >
+  </div>
+
+  <MagneticCard client:load strength={0.12}>
+    <div
+      class="relative max-w-7xl w-full mx-auto p-8 rounded-3xl backdrop-blur-2xl bg-black/80 border border-white/10 shadow-2xl overflow-hidden text-white"
+      style={{
+        boxShadow:
+          "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+        background:
+          "linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%)",
+      }}
+    >
+      <!-- Inner glow effect -->
+      <div
+        class="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12"
+      >
+        <!-- Left Side: ASCII Processor -->
+        <div class="lg:w-1/2">
+          <div class="relative">
+            <!-- Glow effect behind ASCII Processor -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl"
+            >
+            </div>
+            <div class="relative">
+              <ASCIIProcessor
+                client:load
+                width="100%"
+                height="500px"
+                transparent={true}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Title and Content -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <div class="mb-8" style="min-height: 3rem;">
+            <HyperText
+              client:load
+              text="Why Ethereum, Why Now"
+              duration={1000}
+              className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+              animateOnLoad={true}
+            />
+          </div>
+          <p class="text-2xl mb-8 text-gray-200 font-light">
+            Ethereum is now critical infrastructure
+          </p>
+
+          <!-- Enhanced subtitle with gradient -->
+          <p class="text-lg mb-12 text-gray-300 leading-relaxed">
+            The world's programmable blockchain has evolved into the foundation
+            for the next generation of financial applications, decentralized
+            systems, and digital innovation.
+          </p>
+
+          <div class="relative">
+            <ParallaxCards client:load />
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating particles effect -->
+      <div
+        class="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-60"
+      >
+      </div>
+      <div
+        class="absolute bottom-8 left-8 w-1 h-1 bg-purple-400 rounded-full animate-ping opacity-40"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 right-8 w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce opacity-50"
+      >
+      </div>
+    </div>
+  </MagneticCard>
 </section>
