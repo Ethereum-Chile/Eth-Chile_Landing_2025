@@ -141,7 +141,7 @@ export const HoverSliderImageWrap = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={`grid overflow-hidden [&>*]:col-start-1 [&>*]:col-end-1 [&>*]:row-start-1 [&>*]:row-end-1 [&>*]:size-full ${className || ""}`}
+      className={`grid overflow-visible [&>*]:col-start-1 [&>*]:col-end-1 [&>*]:row-start-1 [&>*]:row-end-1 [&>*]:size-full ${className || ""}`}
       {...props}
     />
   )
