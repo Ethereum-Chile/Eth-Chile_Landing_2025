@@ -1,5 +1,6 @@
 ---
 import { HyperText } from "./HyperText.tsx";
+import { PixelCard } from "./PixelCard.tsx";
 // Hackathon component for ETH Chile 2025
 ---
 
@@ -74,91 +75,65 @@ import { HyperText } from "./HyperText.tsx";
     </div>
 
     <!-- Crecimiento Hackathon -->
-    <div>
-      <h3
-        class="text-3xl font-raleway font-semibold mb-6 text-center text-white"
-      >
-        🌱 Crecimiento Hackathon
-      </h3>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="border border-white p-8 rounded-lg text-white">
-          <h4 class="text-2xl font-semibold mb-4">
-            💡 ETH Chile's Signature Event
-          </h4>
-          <p class="text-lg mb-4">
-            The Crecimiento Hackathon is ETH Chile's flagship event, designed to
-            foster sustainable growth in the Latin American Web3 ecosystem.
-          </p>
-          <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="text-center">
-              <p class="text-3xl font-bold">72h</p>
-              <p class="text-sm">Duration</p>
-            </div>
-            <div class="text-center">
-              <p class="text-3xl font-bold">$25K</p>
-              <p class="text-sm">Prize Pool</p>
-            </div>
-          </div>
-          <button
-            class="bg-white text-black px-6 py-3 rounded-lg font-semibold w-full"
-          >
-            Register Now
-          </button>
-        </div>
+    <div class="text-center">
+      <div class="mb-8">
+        <HyperText
+          client:load
+          text="Crecimiento Hackathon"
+          duration={1000}
+          className="text-3xl font-raleway font-semibold text-white"
+          animateOnLoad={true}
+        />
+      </div>
 
-        <div class="border border-white p-8 rounded-lg text-white">
-          <h4 class="text-2xl font-semibold mb-4">🎪 Event Highlights</h4>
-          <div class="space-y-4">
-            <div class="flex items-start space-x-3">
-              <span class="text-2xl">🏗️</span>
-              <div>
-                <p class="font-semibold">Builder Workshops</p>
-                <p class="text-sm">Hands-on sessions with Ethereum experts</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <span class="text-2xl">🤝</span>
-              <div>
-                <p class="font-semibold">Team Formation</p>
-                <p class="text-sm">
-                  Connect with developers, designers, and entrepreneurs
-                </p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <span class="text-2xl">🏆</span>
-              <div>
-                <p class="font-semibold">Judging Panel</p>
-                <p class="text-sm">Industry leaders from Chile and beyond</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3">
-              <span class="text-2xl">🚀</span>
-              <div>
-                <p class="font-semibold">Post-Hackathon Support</p>
-                <p class="text-sm">
-                  Continued mentorship and funding opportunities
-                </p>
-              </div>
-            </div>
-          </div>
+      <!-- Centered Image with Pixel Animation -->
+      <div class="flex justify-center mb-8">
+        <div class="max-w-4xl w-full">
+          <PixelCard
+            client:load
+            variant="default"
+            gap={12}
+            speed={40}
+            className="w-full h-96"
+          >
+            <img
+              src="/imgs/GuY62_cWoAA4shu.jpeg"
+              alt="Crecimiento Hackathon"
+              class="w-full h-full object-cover rounded-2xl shadow-2xl border border-white/20"
+            />
+          </PixelCard>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Call to Action -->
-  <div class="mt-12 text-center">
-    <p class="text-xl mb-6">Ready to build the future of Web3 in Chile?</p>
-    <div class="flex gap-4 justify-center">
-      <button class="bg-white text-black px-8 py-3 rounded-lg font-semibold">
-        Apply Now
-      </button>
-      <button
-        class="border border-white text-white px-8 py-3 rounded-lg font-semibold"
-      >
-        Learn More
-      </button>
+      <!-- Description below image -->
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-lg text-gray-300 mb-6">
+          The Crecimiento Hackathon is ETH Chile's flagship event, designed to
+          foster sustainable growth in the Latin American Web3 ecosystem.
+        </p>
+
+        <!-- Key stats -->
+        <div class="flex justify-center gap-8 mb-8">
+          <div class="text-center">
+            <p class="text-3xl font-bold text-white">72h</p>
+            <p class="text-sm text-gray-400">Duration</p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl font-bold text-white">$25K</p>
+            <p class="text-sm text-gray-400">Prize Pool</p>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="https://x.com/crecimientoar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        >
+          Register Now
+        </a>
+      </div>
     </div>
   </div>
 </section>
