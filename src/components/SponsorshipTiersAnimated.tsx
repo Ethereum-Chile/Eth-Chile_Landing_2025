@@ -182,7 +182,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           <HyperText
             text="Sponsorship Tiers"
             duration={1000}
-            className="text-4xl font-raleway font-semibold"
+            className="text-4xl font-raleway font-semibold text-white"
             animateOnLoad={true}
           />
         </div>
@@ -216,7 +216,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
 
           {/* Additional Info */}
           <div className="mt-32 text-center">
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 text-gray-300">
               Ready to showcase your brand at Chile's premier Ethereum event?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
