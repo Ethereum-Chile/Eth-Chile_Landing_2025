@@ -59,11 +59,9 @@ const SponsorshipTierCard: React.FC<{ tier: SponsorshipTier }> = ({ tier }) => {
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
       onMouseEnter={() => {
-        console.log('Hovering tier:', tier.name);
         setIsHovered(true);
       }}
       onMouseLeave={() => {
-        console.log('Leaving tier:', tier.name);
         setIsHovered(false);
       }}
     >

@@ -29,9 +29,7 @@ const FlipLink = ({ children, href, text }: FlipLinkProps) => {
     textContent = text || 'Link';
   }
 
-  // Debug logging
-  console.log('FlipLink children:', children);
-  console.log('FlipLink textContent:', textContent);
+  // Debug logging removed for production
 
   return (
     <a
