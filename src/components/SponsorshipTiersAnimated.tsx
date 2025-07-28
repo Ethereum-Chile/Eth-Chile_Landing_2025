@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HoverSlider, TextStaggerHover, HoverSliderImageWrap, HoverSliderImage, clipPathVariants, useHoverSliderContext } from './HoverSlider';
 import { HyperText } from './HyperText';
 import { ProgressiveBlur } from './ProgressiveBlur';
 
@@ -88,93 +87,9 @@ const sponsorshipTiers: SponsorshipTier[] = [
   }
 ];
 
-// Custom component to handle the image with pricing overlay
-const ImageWithPricing: React.FC<{ tier: SponsorshipTier; index: number }> = ({ tier, index }) => {
-  const { activeSlide } = useHoverSliderContext();
-  const [isHovered, setIsHovered] = React.useState(false);
-  
-  return (
-    <div 
-      className="w-full h-full relative group cursor-pointer overflow-visible"
-      style={{ aspectRatio: '1/1' }}
-      onMouseEnter={() => {
-        setIsHovered(true);
-      }}
-      onMouseLeave={() => {
-        setIsHovered(false);
-      }}
-    >
-      <motion.img
-        src={tier.imageUrl}
-        alt={tier.name}
-        className="w-full h-full object-cover rounded-lg aspect-square"
-        style={{ objectPosition: 'center' }}
-        loading="eager"
-        decoding="async"
-        transition={{ ease: [0.33, 1, 0.68, 1], duration: 0.8 }}
-        variants={clipPathVariants}
-        animate={activeSlide === index ? "visible" : "hidden"}
-      />
-      
-      {/* Progressive Blur Effect - Only on hover */}
-      <ProgressiveBlur
-        direction="bottom"
-        blurLayers={12}
-        blurIntensity={0.6}
-        className="absolute inset-0 rounded-lg"
-        isVisible={isHovered}
-      />
-      
-      {/* Hover Text - No background, no borders */}
-      <motion.div
-        className="absolute inset-0 z-50 flex flex-col justify-end p-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-      >
-        <div className="text-white">
-          <p className="text-3xl font-bold mb-2 text-shadow-lg">
-            {tier.name}
-          </p>
-          <p className="text-2xl font-semibold mb-4 text-white text-shadow-lg">
-            {tier.price}
-          </p>
-          <div className="space-y-1">
-            <p className="text-xs font-semibold text-gray-300 mb-2 text-shadow-lg">
-              Benefits:
-            </p>
-            {tier.benefits.map((benefit, benefitIndex) => (
-              <p key={benefitIndex} className="text-xs text-gray-200 text-shadow-lg">
-                • {benefit}
-              </p>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
-// Component to render the active image
-const ActiveImageRenderer: React.FC = () => {
-  const { activeSlide } = useHoverSliderContext();
-  
-  return (
-    <>
-      {sponsorshipTiers.map((tier, index) => {
-        return activeSlide === index ? (
-          <ImageWithPricing 
-            key={`${tier.name}-${index}`} 
-            tier={tier} 
-            index={index} 
-          />
-        ) : null;
-      })}
-    </>
-  );
-};
-
 export const SponsorshipTiersAnimated: React.FC = () => {
+  const [hoveredTier, setHoveredTier] = React.useState<string | null>(null);
+
   return (
     <section className="min-h-screen bg-custom-black p-8 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto">
@@ -182,36 +97,80 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           <HyperText
             text="Sponsorship Tiers"
             duration={1000}
-            className="text-4xl font-raleway font-semibold text-white"
+            className="text-4xl font-raleway font-semibold"
             animateOnLoad={true}
           />
         </div>
         
-        <HoverSlider className="min-h-svh place-content-center p-6 md:px-12">
-          <h3 className="mb-6 text-blue-400 text-xs font-medium capitalize tracking-wide">
+        {/* Layout con títulos horizontales y cards más grandes */}
+        <div className="place-content-center p-6 md:px-12">
+          <h3 className="mb-4 text-blue-400 text-xs font-medium capitalize tracking-wide">
             / sponsorship packages
           </h3>
           
-          <div className="flex flex-wrap items-center justify-evenly gap-6 md:gap-12 mb-20">
-            {/* Left Side: Vertical List of Titles */}
-            <div className="flex flex-col space-y-2 md:space-y-4">
-              {sponsorshipTiers.map((tier, index) => (
-                <TextStaggerHover
-                  key={tier.name}
-                  index={index}
-                  className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors"
-                  text={tier.name}
-                />
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 relative z-50">
+            {sponsorshipTiers.map((tier, index) => (
+              <div
+                key={tier.name}
+                className="cursor-pointer text-xl md:text-2xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors relative z-50"
+                onMouseEnter={() => setHoveredTier(tier.name)}
+                onMouseLeave={() => setHoveredTier(null)}
+              >
+                {tier.name}
+              </div>
+            ))}
+          </div>
 
-            {/* Right Side: Images that update on hover */}
-            <HoverSliderImageWrap 
-              className="w-80 h-80 relative aspect-square"
-              style={{ width: '320px', height: '320px', aspectRatio: '1/1' }}
-            >
-              <ActiveImageRenderer />
-            </HoverSliderImageWrap>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {sponsorshipTiers.map((tier, index) => (
+              <motion.div 
+                key={tier.name} 
+                className={`relative group cursor-pointer transition-all duration-300 ${
+                  hoveredTier === tier.name ? 'ring-2 ring-blue-400 ring-opacity-60 shadow-lg shadow-blue-400/30' : ''
+                }`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredTier(tier.name)}
+                onMouseLeave={() => setHoveredTier(null)}
+              >
+                <img
+                  src={tier.imageUrl}
+                  alt={tier.name}
+                  className="w-full h-80 object-cover rounded-lg transition-all duration-300 group-hover:scale-105"
+                />
+                
+                <div className="absolute inset-0 bg-black/90 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-4">
+                  <div className="text-white text-center h-full flex flex-col justify-between py-3">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
+                      <p className="text-xl font-semibold text-blue-300">{tier.price}</p>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center py-4">
+                      <p className="text-sm md:text-base text-gray-300 leading-relaxed px-2">
+                        {tier.description}
+                      </p>
+                    </div>
+                    
+                    <div className="text-left">
+                      <p className="text-sm font-semibold text-blue-300 mb-2">Key Benefits:</p>
+                      <div className="space-y-1 text-sm">
+                        {tier.benefits.slice(0, 3).map((benefit, i) => (
+                          <p key={i} className="text-gray-200 leading-relaxed">
+                            • {benefit}
+                          </p>
+                        ))}
+                        {tier.benefits.length > 3 && (
+                          <p className="text-gray-400 text-sm mt-2">
+                            Plus {tier.benefits.length - 3} additional benefits
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Additional Info */}
@@ -233,8 +192,8 @@ export const SponsorshipTiersAnimated: React.FC = () => {
               </a>
             </div>
           </div>
-        </HoverSlider>
+        </div>
       </div>
     </section>
   );
-}; 
+};
