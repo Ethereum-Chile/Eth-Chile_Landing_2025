@@ -29,7 +29,6 @@ const IMAGES_3 = [
   "/imgs/gallery/gallery_image_09.webp",
   "/imgs/gallery/gallery_image_10.webp",
   "/imgs/gallery/gallery_image_11.webp",
-  "/imgs/gallery/gallery_image_12.webp",
 ];
 
 export const Hero = () => {
