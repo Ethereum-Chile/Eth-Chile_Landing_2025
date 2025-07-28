@@ -4,123 +4,154 @@ import { HyperText } from "./HyperText.tsx";
 ---
 
 <footer
-  class="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8 relative rounded-t-3xl"
-  style="background-image: url('/imgs/moai footer.png'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+    class="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8 relative rounded-t-3xl"
+    style="background-image: url('/imgs/moai footer.png'); background-size: cover; background-position: center; background-repeat: no-repeat;"
 >
-  <!-- Background overlay for better text readability -->
-  <div class="absolute inset-0 bg-black/60 rounded-t-3xl"></div>
-  <div
-    class="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-between h-full"
-  >
-    <!-- Main Content Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 flex-grow">
-      <!-- Let's Build Together Section -->
-      <div class="text-center lg:text-left lg:pr-8">
-        <div class="mb-8" style="min-height: 3rem;">
-          <HyperText
-            client:load
-            text="Let's Build Together"
-            duration={1000}
-            className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-            animateOnLoad={true}
-          />
-        </div>
-        <div class="max-w-2xl mx-auto lg:mx-0">
-          <form class="space-y-6 mb-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Name"
-                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
-              />
-            </div>
-            <textarea
-              placeholder="Message"
-              rows="4"
-              class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400 w-full resize-none"
-            ></textarea>
-            <div class="flex gap-4">
-              <button
-                type="button"
-                class="border border-white text-white px-8 py-3 rounded-lg font-semibold flex-3 hover:bg-white hover:text-black transition-colors"
-                >Download Deck</button
-              >
-              <button
-                type="submit"
-                class="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-gray-100 transition-colors"
-                >Submit</button
-              >
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="absolute inset-0 bg-black/60 rounded-t-3xl"></div>
+    <div
+        class="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-between h-full"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 flex-grow">
+            <div class="text-center lg:text-left lg:pr-8">
+                <div class="mb-8" style="min-height: 3rem;">
+                    <HyperText
+                        client:load
+                        text="Let's Build Together"
+                        duration={1000}
+                        className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                        animateOnLoad={true}
+                    />
+                </div>
 
-      <!-- Social Links Section -->
-      <div class="text-center lg:text-left lg:pl-8">
-        <div class="mb-8" style="min-height: 3rem;">
-          <HyperText
-            client:load
-            text="Connect With Us"
-            duration={1000}
-            className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-            animateOnLoad={true}
-          />
+                <div class="max-w-2xl mx-auto lg:mx-0">
+                    <form
+                        id="contactForm"
+                        action="https://docs.google.com/forms/d/e/1FAIpQLScYLmfvcsa1Y_vo1-kh4Mccdmf2lppuqEHBxtZf_9HJCG1Hzg/formResponse"
+                        method="POST"
+                        target="hidden_iframe"
+                        class="space-y-6 mb-8"
+                        onsubmit="return validateEmailAndReset(this)"
+                    >
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input
+                                type="text"
+                                name="entry.2029058125"
+                                id="name"
+                                placeholder="Name"
+                                required
+                                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+                            />
+                            <input
+                                type="email"
+                                name="entry.203636535"
+                                id="email"
+                                placeholder="Email"
+                                required
+                                class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+                            />
+                        </div>
+
+                        <textarea
+                            name="entry.1447673471"
+                            id="message"
+                            placeholder="Message"
+                            rows="4"
+                            required
+                            class="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400 w-full resize-none"
+                        ></textarea>
+
+                        <button
+                            type="submit"
+                            class="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-gray-100 transition-colors"
+                        >
+                            Submit
+                        </button>
+
+                        <p class="form-status text-sm mt-2 h-5"></p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center lg:text-left lg:pl-8">
+                <div class="mb-8" style="min-height: 3rem;">
+                    <HyperText
+                        client:load
+                        text="Connect With Us"
+                        duration={1000}
+                        className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                        animateOnLoad={true}
+                    />
+                </div>
+
+                <div
+                    class="lg:hidden grid grid-cols-2 gap-4 justify-items-center"
+                >
+                    <FlipLink
+                        href="https://x.com/ethereumchile"
+                        text="Twitter"
+                        client:load>Twitter</FlipLink
+                    >
+                    <FlipLink
+                        href="https://lu.ma/ethereumchile"
+                        text="Luma"
+                        client:load>Luma</FlipLink
+                    >
+                </div>
+
+                <div class="hidden lg:flex flex-col space-y-6">
+                    <FlipLink
+                        href="https://x.com/Ethereum_Chile"
+                        text="Twitter"
+                        client:load>Twitter</FlipLink
+                    >
+                    <FlipLink
+                        href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
+                        text="Luma"
+                        client:load>Luma</FlipLink
+                    >
+                </div>
+            </div>
         </div>
-        <!-- Mobile: Horizontal Grid -->
-        <div class="lg:hidden grid grid-cols-2 gap-4 justify-items-center">
-          <FlipLink
-            href="https://github.com/blessedux"
-            text="Github"
-            client:load>Github</FlipLink
-          >
-          <FlipLink
-            href="https://x.com/ethereumchile"
-            text="Twitter"
-            client:load>Twitter</FlipLink
-          >
-          <FlipLink href="https://lu.ma/ethereumchile" text="Luma" client:load
-            >Luma</FlipLink
-          >
-          <FlipLink
-            href="https://t.me/cristpereirag"
-            text="Telegram"
-            client:load>Telegram</FlipLink
-          >
+
+        <div class="text-center mt-auto pt-4">
+            <span class="text-white font-light text-lg">
+                ethereumchile.org © {new Date().getFullYear()}
+            </span>
         </div>
-        <!-- Desktop: Vertical List -->
-        <div class="hidden lg:flex flex-col space-y-6">
-          <FlipLink
-            href="https://github.com/ethereumchile"
-            text="Github"
-            client:load>Github</FlipLink
-          >
-          <FlipLink
-            href="https://x.com/ethereumchile"
-            text="Twitter"
-            client:load>Twitter</FlipLink
-          >
-          <FlipLink href="https://lu.ma/ethereumchile" text="Luma" client:load
-            >Luma</FlipLink
-          >
-          <FlipLink
-            href="https://t.me/ethereumchile"
-            text="Telegram"
-            client:load>Telegram</FlipLink
-          >
-        </div>
-      </div>
     </div>
 
-    <!-- Copyright Section -->
-    <div class="text-center mt-auto pt-4">
-      <span class="text-white font-light text-lg"
-        >ethereumchile.org © {new Date().getFullYear()}</span
-      >
-    </div>
-  </div>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+    ></iframe>
+
+    <script>
+        function validateEmailAndReset(form: HTMLFormElement) {
+            const email =
+                form.querySelector<HTMLInputElement>("#email")?.value.trim() ||
+                "";
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            const formData = new FormData(form);
+
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const iframe = document.getElementById("hidden_iframe");
+            if (iframe) {
+                iframe.addEventListener("load", function () {
+                    const form = document.getElementById(
+                        "contactForm",
+                    ) as HTMLFormElement;
+                    if (form) {
+                        form.reset();
+                    }
+                });
+            }
+        });
+    </script>
 </footer>
