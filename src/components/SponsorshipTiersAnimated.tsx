@@ -229,7 +229,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                 rel="noopener noreferrer"
                 className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors text-center"
               >
-                Contact Sales Team
+                Contactar al equipo de Ventas
               </a>
             </div>
           </div>
