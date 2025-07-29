@@ -48,28 +48,28 @@ const MediaContent = () => {
               "Chile's regulatory framework and fintech ecosystem make it the perfect bridge between traditional finance and decentralized innovation. ETHChile is where the future of finance converges.",
             name: "María González",
             designation: "CEO, Fintech Chile",
-            src: "/patricio.jpg",
+            src: "/imgs/team/pato_pfp.webp",
           },
           {
             quote:
               "The combination of Chile's stable economy, progressive regulations, and tech talent creates an ideal environment for Ethereum adoption. This is where Latin America's DeFi revolution begins.",
             name: "Carlos Mendoza",
             designation: "Head of Innovation, Banco de Chile",
-            src: "/cristobal.jpg",
+            src: "/imgs/team/cristobal_pfp.webp",
           },
           {
             quote:
               "ETHChile represents the perfect intersection of regulatory clarity and technological innovation. Chile is positioned to become the fintech hub of Latin America.",
             name: "Ana Silva",
             designation: "Regulatory Affairs, CMF Chile",
-            src: "/andres.jpg",
+            src: "/imgs/team/andres_pfp.webp",
           },
           {
             quote:
               "The Chilean market's maturity and the government's forward-thinking approach to fintech make it an attractive destination for global blockchain projects and investments.",
             name: "Roberto Torres",
             designation: "Managing Partner, LatAm Ventures",
-            src: "/joseph.jpg",
+            src: "/imgs/team/joseph_pfp.webp",
           },
         ]}
         autoplay={true}

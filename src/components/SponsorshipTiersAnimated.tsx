@@ -182,7 +182,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           <HyperText
             text="Sponsorship Tiers"
             duration={1000}
-            className="text-4xl font-raleway font-semibold"
+            className="text-4xl font-raleway font-semibold text-white"
             animateOnLoad={true}
           />
         </div>
