@@ -32,19 +32,28 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const distributeLogos = (allLogos: Logo[], columnCount: number): Logo[][] => {
-  const shuffled = shuffleArray(allLogos);
   const columns: Logo[][] = Array.from({ length: columnCount }, () => []);
 
-  shuffled.forEach((logo, index) => {
-    columns[index % columnCount].push(logo);
+  // Figure out how many logos each column needs
+  const logosPerColumn = Math.ceil(allLogos.length / columnCount);
+
+  // Round-robin distribution to keep things balanced
+  allLogos.forEach((logo, index) => {
+    const columnIndex = index % columnCount;
+    columns[columnIndex].push(logo);
   });
 
-  const maxLength = Math.max(...columns.map((col) => col.length));
-  columns.forEach((col) => {
-    while (col.length < maxLength) {
-      col.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
-    }
-  });
+  // Fill any gaps by cycling through logos again
+  if (allLogos.length < columnCount * logosPerColumn) {
+    const repeatedLogos = [...allLogos, ...allLogos];
+    columns.forEach((col, colIndex) => {
+      while (col.length < logosPerColumn) {
+        const nextLogoIndex =
+          (col.length * columnCount + colIndex) % repeatedLogos.length;
+        col.push(repeatedLogos[nextLogoIndex]);
+      }
+    });
+  }
 
   return columns;
 };

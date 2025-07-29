@@ -9,7 +9,7 @@ const TrustedBy = () => {
     <section className="min-h-[60vh] bg-custom-black relative pb-16 border border-white rounded-3xl mx-4 mt-8">
       <div className="flex flex-col items-center justify-center h-full">
         <div className="text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -22,8 +22,8 @@ const TrustedBy = () => {
               animateOnLoad={true}
             />
           </motion.div>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -31,7 +31,7 @@ const TrustedBy = () => {
           >
             Trusted by the world's leading Web3 protocols and companies
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -45,4 +45,4 @@ const TrustedBy = () => {
   );
 };
 
-export default TrustedBy; 
+export default TrustedBy;
