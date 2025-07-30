@@ -16,12 +16,12 @@ const Footer = () => {
         marginBottom: "0",
         borderBottom: "none",
         zIndex: "10",
-        position: "relative"
+        position: "relative",
       }}
     >
       <div className="absolute inset-0 bg-black/20"></div>
-      <div className="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-between h-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 flex-grow">
+      <div className="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-center h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="text-center lg:text-left lg:pr-8">
             <div className="mb-8" style={{ minHeight: "3rem" }}>
               <HyperText
@@ -43,21 +43,28 @@ const Footer = () => {
                   e.preventDefault();
                   const form = e.target as HTMLFormElement;
                   const formData = new FormData(form);
-                  const email = formData.get('entry.203636535') as string;
-                  
+                  const email = formData.get("entry.203636535") as string;
+
                   if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                     form.submit();
                     form.reset();
-                    const statusElement = form.querySelector('.form-status') as HTMLElement;
+                    const statusElement = form.querySelector(
+                      ".form-status",
+                    ) as HTMLElement;
                     if (statusElement) {
-                      statusElement.textContent = 'Message sent successfully!';
-                      statusElement.className = 'form-status text-sm mt-2 h-5 text-green-400';
+                      statusElement.textContent = "Message sent successfully!";
+                      statusElement.className =
+                        "form-status text-sm mt-2 h-5 text-green-400";
                     }
                   } else {
-                    const statusElement = form.querySelector('.form-status') as HTMLElement;
+                    const statusElement = form.querySelector(
+                      ".form-status",
+                    ) as HTMLElement;
                     if (statusElement) {
-                      statusElement.textContent = 'Please enter a valid email address.';
-                      statusElement.className = 'form-status text-sm mt-2 h-5 text-red-400';
+                      statusElement.textContent =
+                        "Please enter a valid email address.";
+                      statusElement.className =
+                        "form-status text-sm mt-2 h-5 text-red-400";
                     }
                   }
                 }}
@@ -114,44 +121,66 @@ const Footer = () => {
 
             <div className="lg:hidden grid grid-cols-2 gap-4 justify-items-center">
               <div className="text-2xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">Twitter</FlipLink>
+                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                  Twitter
+                </FlipLink>
               </div>
               <div className="text-2xl">
-                <FlipLink href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U" text="Luma">Luma</FlipLink>
+                <FlipLink
+                  href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
+                  text="Luma"
+                >
+                  Luma
+                </FlipLink>
               </div>
               <div className="text-2xl">
-                <FlipLink href="https://github.com/ethereumchile" text="GitHub">GitHub</FlipLink>
+                <FlipLink href="https://github.com/ethereumchile" text="GitHub">
+                  GitHub
+                </FlipLink>
               </div>
               <div className="text-2xl">
-                <FlipLink href="https://t.me/ethereumchile" text="Telegram">Telegram</FlipLink>
+                <FlipLink href="https://t.me/ethereumchile" text="Telegram">
+                  Telegram
+                </FlipLink>
               </div>
             </div>
 
             <div className="hidden lg:flex flex-col space-y-6">
               <div className="text-3xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">Twitter</FlipLink>
+                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                  Twitter
+                </FlipLink>
               </div>
               <div className="text-3xl">
-                <FlipLink href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U" text="Luma">Luma</FlipLink>
+                <FlipLink
+                  href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
+                  text="Luma"
+                >
+                  Luma
+                </FlipLink>
               </div>
               <div className="text-3xl">
-                <FlipLink href="https://github.com/ethereumchile" text="GitHub">GitHub</FlipLink>
+                <FlipLink href="https://github.com/ethereumchile" text="GitHub">
+                  GitHub
+                </FlipLink>
               </div>
               <div className="text-3xl">
-                <FlipLink href="https://t.me/ethereumchile" text="Telegram">Telegram</FlipLink>
+                <FlipLink href="https://t.me/ethereumchile" text="Telegram">
+                  Telegram
+                </FlipLink>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="text-center text-gray-400 text-sm">
+        <div className="text-center text-gray-400 text-sm mt-16">
           <p>&copy; 2025 ETH Chile. All rights reserved.</p>
         </div>
       </div>
 
-      <iframe name="hidden_iframe" style={{ display: 'none' }}></iframe>
+      <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
     </motion.footer>
   );
 };
 
-export default Footer; 
+export default Footer;

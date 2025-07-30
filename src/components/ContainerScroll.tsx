@@ -1,16 +1,8 @@
-'use client';
+"use client";
 
 import * as React from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import type {
-  HTMLMotionProps,
-  MotionValue,
-  Variants,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { HTMLMotionProps, MotionValue, Variants } from "framer-motion";
 
 interface ContainerScrollContextValue {
   scrollYProgress: MotionValue<number>;
@@ -45,7 +37,12 @@ function useContainerScrollContext() {
   if (!context) {
     // Return a default context during SSR to prevent errors
     return {
-      scrollYProgress: { get: () => 0, set: () => {}, on: () => {}, off: () => {} } as any
+      scrollYProgress: {
+        get: () => 0,
+        set: () => {},
+        on: () => {},
+        off: () => {},
+      } as any,
     };
   }
   return context;
@@ -66,7 +63,7 @@ export const ContainerScroll = ({
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
       <div
         ref={scrollRef}
-        className={`relative min-h-[120vh] ${className}`}
+        className={`relative min-h-[50vh] ${className}`}
         style={{
           perspective: "1000px",
           perspectiveOrigin: "center top",
@@ -112,25 +109,17 @@ export const GalleryContainer = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
   const [isClient, setIsClient] = React.useState(false);
-  
+
   React.useEffect(() => {
     setIsClient(true);
   }, []);
 
   const { scrollYProgress } = useContainerScrollContext();
-  
+
   // Use linear easing for immediate response to scroll
-  const rotateX = useTransform(
-    scrollYProgress, 
-    [0, 0.5], 
-    [75, 0]
-  );
-  
-  const scale = useTransform(
-    scrollYProgress, 
-    [0.5, 0.9], 
-    [1.2, 1]
-  );
+  const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0]);
+
+  const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1]);
 
   return (
     <motion.div
@@ -159,7 +148,7 @@ export const GalleryCol = ({
   ...props
 }: HTMLMotionProps<"div"> & { yRange?: string[] }) => {
   const [isClient, setIsClient] = React.useState(false);
-  
+
   React.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -221,4 +210,4 @@ export const ContainerAnimated = React.forwardRef<
 
 ContainerAnimated.displayName = "ContainerAnimated";
 
-export default ContainerScroll; 
+export default ContainerScroll;

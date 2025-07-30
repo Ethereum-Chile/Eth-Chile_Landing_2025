@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 const TrustedBy = () => {
   return (
-    <section className="min-h-[60vh] bg-custom-black relative pb-16 border border-white rounded-3xl mx-4 mt-8">
-      <div className="flex flex-col items-center justify-center h-full">
-        <div className="text-center">
+    <section className="h-[120vh] bg-custom-black relative">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center px-8">
+        <div className="text-center w-full max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
