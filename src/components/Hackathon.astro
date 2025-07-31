@@ -1,6 +1,7 @@
 ---
 import { HyperText } from "./HyperText.tsx";
 import { PixelCard } from "./PixelCard.tsx";
+import { HackathonCards } from "./Hackathon.tsx";
 // Hackathon component for ETH Chile 2025
 ---
 
@@ -18,71 +19,11 @@ import { PixelCard } from "./PixelCard.tsx";
     </div>
 
     <div class="max-w-6xl mx-auto">
-        <!-- Biggest Web3 Hackathon in Chile -->
-        <div class="mb-16">
-            <h3
-                class="text-3xl font-raleway font-semibold mb-6 text-center text-white"
-            >
-                Chile's Biggest Web3 Hackathon
-            </h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="border border-white p-8 rounded-lg text-white">
-                    <h4 class="text-2xl font-semibold mb-4">Innovation Hub</h4>
-                    <p class="text-lg mb-4">
-                        Join the largest Web3 hackathon in Chile, bringing
-                        together the brightest minds in blockchain, DeFi, and
-                        decentralized applications.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="text-center">
-                            <p class="text-3xl font-bold">500+</p>
-                            <p class="text-sm">Participants</p>
-                        </div>
-                        <div class="text-center">
-                            <p class="text-3xl font-bold">$50K+</p>
-                            <p class="text-sm">Prize Pool</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-2 text-sm">
-                        <li>• 48-hour intensive coding</li>
-                        <li>• Expert mentors & workshops</li>
-                        <li>• Networking with industry leaders</li>
-                        <li>• Real-world problem solving</li>
-                    </ul>
-                </div>
-
-                <div class="border border-white p-8 rounded-lg text-white">
-                    <h4 class="text-2xl font-semibold mb-4">Focus Areas</h4>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="border border-white p-4 rounded text-white">
-                            <p class="font-semibold">DeFi & Tokenization</p>
-                            <p class="text-sm">Build the future of finance</p>
-                        </div>
-                        <div class="border border-white p-4 rounded text-white">
-                            <p class="font-semibold">AI & Web3 Integration</p>
-                            <p class="text-sm">
-                                Merge artificial intelligence with blockchain
-                            </p>
-                        </div>
-                        <div class="border border-white p-4 rounded text-white">
-                            <p class="font-semibold">Regulatory Compliance</p>
-                            <p class="text-sm">
-                                Navigate Chile's fintech regulations
-                            </p>
-                        </div>
-                        <div class="border border-white p-4 rounded text-white">
-                            <p class="font-semibold">Real-World Applications</p>
-                            <p class="text-sm">
-                                Solve local and global challenges
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Interactive Hackathon Component -->
+        <HackathonCards client:load />
 
         <!-- Crecimiento Hackathon -->
-        <div class="text-center">
+        <div class="text-center mt-16">
             <div class="mb-8">
                 <HyperText
                     client:load
