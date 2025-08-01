@@ -162,7 +162,7 @@ export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
   }, [logosToUse, columnCount]);
 
   return (
-    <div className="w-full py-16 bg-black">
+    <div className="w-full py-16 bg-custom-black">
       <div className="max-w-7xl mx-auto px-4">
         {/* Logo Carousel */}
         <div className="flex justify-center">
