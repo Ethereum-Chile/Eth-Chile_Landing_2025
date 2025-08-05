@@ -35,44 +35,25 @@ const Footer = () => {
             <div className="max-w-2xl mx-auto lg:mx-0">
               <form
                 id="contactForm"
-                action="https://docs.google.com/forms/d/e/1FAIpQLScYLmfvcsa1Y_vo1-kh4Mccdmf2lppuqEHBxtZf_9HJCG1Hzg/formResponse"
+                action="https://formspree.io/f/xqalylre"
                 method="POST"
-                target="hidden_iframe"
                 className="space-y-6 mb-8"
                 onSubmit={(e) => {
-                  e.preventDefault();
                   const form = e.target as HTMLFormElement;
-                  const formData = new FormData(form);
-                  const email = formData.get("entry.203636535") as string;
-
-                  if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    form.submit();
-                    form.reset();
-                    const statusElement = form.querySelector(
-                      ".form-status",
-                    ) as HTMLElement;
-                    if (statusElement) {
-                      statusElement.textContent = "Message sent successfully!";
-                      statusElement.className =
-                        "form-status text-sm mt-2 h-5 text-green-400";
-                    }
-                  } else {
-                    const statusElement = form.querySelector(
-                      ".form-status",
-                    ) as HTMLElement;
-                    if (statusElement) {
-                      statusElement.textContent =
-                        "Please enter a valid email address.";
-                      statusElement.className =
-                        "form-status text-sm mt-2 h-5 text-red-400";
-                    }
+                  const statusElement = form.querySelector(
+                    ".form-status",
+                  ) as HTMLElement;
+                  if (statusElement) {
+                    statusElement.textContent = "Sending...";
+                    statusElement.className =
+                      "form-status text-sm mt-2 h-5 text-blue-400";
                   }
                 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     type="text"
-                    name="entry.2029058125"
+                    name="name"
                     id="name"
                     placeholder="Name"
                     required
@@ -80,7 +61,7 @@ const Footer = () => {
                   />
                   <input
                     type="email"
-                    name="entry.203636535"
+                    name="email"
                     id="email"
                     placeholder="Email"
                     required
@@ -89,7 +70,7 @@ const Footer = () => {
                 </div>
 
                 <textarea
-                  name="entry.1447673471"
+                  name="message"
                   id="message"
                   placeholder="Message"
                   rows={4}
@@ -177,8 +158,6 @@ const Footer = () => {
           <p>&copy; 2025 ETH Chile. All rights reserved.</p>
         </div>
       </div>
-
-      <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
     </motion.footer>
   );
 };

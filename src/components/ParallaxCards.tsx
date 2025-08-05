@@ -25,11 +25,11 @@ const cards = [
 
 export default function ParallaxCards() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Use scroll progress for the container
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   return (
@@ -41,13 +41,13 @@ export default function ParallaxCards() {
         const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 1]);
         // Remove the y transform to keep all cards aligned
         const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
-        
+
         return (
-          <motion.a 
-            key={idx} 
+          <motion.a
+            key={idx}
             href={card.link}
-            target={card.link.startsWith('http') ? "_blank" : "_self"}
-            rel={card.link.startsWith('http') ? "noopener noreferrer" : ""}
+            target={card.link.startsWith("http") ? "_blank" : "_self"}
+            rel={card.link.startsWith("http") ? "noopener noreferrer" : ""}
             className="p-6 rounded-lg border border-white/20 bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center text-center aspect-[4/3] cursor-pointer"
             style={{
               rotateX,
@@ -55,24 +55,28 @@ export default function ParallaxCards() {
               scale,
               y,
               transformStyle: "preserve-3d",
-              perspective: "1000px"
+              perspective: "1000px",
             }}
             whileHover={{
               scale: 1.02,
               borderColor: "rgba(255, 255, 255, 0.4)",
-              transition: { duration: 0.2 }
+              transition: { duration: 0.2 },
             }}
           >
             <motion.div
               className="w-full h-full flex flex-col items-center justify-center space-y-4"
-              style={{ 
-                willChange: "transform"
+              style={{
+                willChange: "transform",
               }}
             >
               <HyperText
                 text={card.title}
                 duration={800}
-                className="text-3xl md:text-4xl font-bold text-white font-raleway"
+                className={
+                  card.title === "Pectra"
+                    ? "text-2xl md:text-3xl font-bold text-white font-raleway"
+                    : "text-3xl md:text-4xl font-bold text-white font-raleway"
+                }
                 animateOnLoad={false}
               />
               <h4 className="text-lg md:text-xl font-semibold text-blue-300 font-raleway">
@@ -84,4 +88,4 @@ export default function ParallaxCards() {
       })}
     </div>
   );
-} 
+}

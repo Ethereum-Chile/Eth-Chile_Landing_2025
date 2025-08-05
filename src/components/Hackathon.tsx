@@ -218,7 +218,14 @@ export const HackathonCards: React.FC = () => {
                   index={i}
                   isActive={selectedIndex === i}
                   onMouseEnter={() => setSelectedIndex(i)}
-                  className={`text-4xl font-raleway font-bold uppercase tracking-tighter transition-colors ${
+                  className={`${
+                    card.title === "Regulatory Compliance" ||
+                    card.title === "Real-World Applications"
+                      ? "text-2xl"
+                      : card.title === "AI & Web3 Integration"
+                        ? "text-3xl"
+                        : "text-4xl"
+                  } font-raleway font-bold uppercase tracking-tighter transition-colors ${
                     selectedIndex === i
                       ? "text-white hover:text-blue-400"
                       : "text-gray-500 "
