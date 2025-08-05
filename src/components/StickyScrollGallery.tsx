@@ -1,113 +1,124 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
-// Gallery images
-const LEFT_IMAGES = [
-  "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/gallery_image_02.webp",
-  "/imgs/gallery/gallery_image_03.webp",
-  "/imgs/gallery/gallery_image_04.webp",
-  "/imgs/gallery/gallery_image_05.webp",
-  "/imgs/gallery/gallery_image_06.webp",
-  "/imgs/gallery/gallery_image_07.webp",
-  "/imgs/gallery/gallery_image_08.webp",
-  "/imgs/gallery/gallery_image_09.webp",
-  "/imgs/gallery/gallery_image_10.webp",
-  "/imgs/gallery/gallery_image_11.webp",
-  "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/gallery_image_02.webp",
-  "/imgs/gallery/gallery_image_03.webp",
-  "/imgs/gallery/gallery_image_04.webp",
-];
+interface StickyScrollGalleryProps {
+  leftImages: string[];
+  staticImage: string;
+  rightImages: string[];
+  className?: string;
+}
 
-const STICKY_IMAGES = [
-  "/imgs/gallery/gallery_image_06.webp",
-  "/imgs/gallery/gallery_image_07.webp",
-  "/imgs/gallery/gallery_image_08.webp",
-];
+export const StickyScrollGallery = ({
+  leftImages,
+  staticImage,
+  rightImages,
+  className = "",
+}: StickyScrollGalleryProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const scrollProgress = useMotionValue(0);
 
-const RIGHT_IMAGES = [
-  "/imgs/gallery/gallery_image_09.webp",
-  "/imgs/gallery/gallery_image_10.webp",
-  "/imgs/gallery/gallery_image_11.webp",
-  "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/gallery_image_02.webp",
-  "/imgs/gallery/gallery_image_03.webp",
-  "/imgs/gallery/gallery_image_04.webp",
-  "/imgs/gallery/gallery_image_05.webp",
-  "/imgs/gallery/gallery_image_06.webp",
-  "/imgs/gallery/gallery_image_07.webp",
-  "/imgs/gallery/gallery_image_08.webp",
-  "/imgs/gallery/gallery_image_09.webp",
-  "/imgs/gallery/gallery_image_10.webp",
-  "/imgs/gallery/gallery_image_11.webp",
-  "/imgs/gallery/gallery_image_01.webp",
-];
+  const leftY = useTransform(scrollProgress, [0, 1], ["0%", "-40%"]);
+  const rightY = useTransform(scrollProgress, [0, 1], ["0%", "40%"]);
 
-export const StickyScrollGallery = () => {
+  useEffect(() => {
+    const handleScroll = (e: WheelEvent) => {
+      if (!isInView || !containerRef.current) return;
+
+      const currentProgress = scrollProgress.get();
+
+      if (currentProgress >= 1 && e.deltaY > 0) {
+        setIsInView(false);
+        return;
+      }
+
+      if (currentProgress <= 0 && e.deltaY < 0) {
+        setIsInView(false);
+        return;
+      }
+
+      e.preventDefault();
+
+      const delta = e.deltaY * 0.001;
+      const newProgress = Math.max(0, Math.min(1, currentProgress + delta));
+      scrollProgress.set(newProgress);
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setIsInView(true);
+      }
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5,
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    if (isInView) {
+      window.addEventListener("wheel", handleScroll, { passive: false });
+    }
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [isInView, scrollProgress]);
+
   return (
-    <main className="bg-custom-black">
-      <div className="wrapper">
-        <section className="text-white h-screen w-full bg-custom-black grid place-content-center sticky top-0">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-
-          <h1 className="2xl:text-7xl text-5xl px-8 font-semibold text-center tracking-tight leading-[120%]">
-            Galería ETH Chile 2025
-            <br />
-            Scroll down! 👇
-          </h1>
-        </section>
-      </div>
-
-      <section className="text-white w-full bg-custom-black">
-        <div className="grid grid-cols-12 gap-2">
-          <div className="grid gap-2 col-span-4">
-            {LEFT_IMAGES.map((imageUrl, index) => (
-              <figure key={index} className="w-full">
+    <div
+      ref={containerRef}
+      className={`relative h-screen bg-custom-black ${className}`}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="grid grid-cols-3 gap-2 h-full p-2">
+          <motion.div
+            className="flex flex-col gap-2 h-full overflow-hidden"
+            style={{ y: leftY }}
+          >
+            <div className="flex flex-col gap-2">
+              {[...leftImages, ...leftImages].map((image, index) => (
                 <img
-                  src={imageUrl}
-                  alt=""
-                  className="transition-all duration-300 w-full h-96 align-bottom object-cover rounded-md"
+                  key={index}
+                  src={image}
+                  alt={`Gallery ${index}`}
+                  className="w-full h-64 object-cover rounded-md flex-shrink-0"
                 />
-              </figure>
-            ))}
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="flex items-center justify-center h-full">
+            <img
+              src={staticImage}
+              alt="Featured"
+              className="w-full h-full object-cover rounded-md"
+            />
           </div>
 
-          <div className="sticky top-0 h-screen w-full col-span-4 gap-2 grid grid-rows-3">
-            {STICKY_IMAGES.map((imageUrl, index) => (
-              <figure key={index} className="w-full h-full">
+          <motion.div
+            className="flex flex-col gap-2 h-full overflow-hidden"
+            style={{ y: rightY }}
+          >
+            <div className="flex flex-col gap-2">
+              {[...rightImages, ...rightImages].map((image, index) => (
                 <img
-                  src={imageUrl}
-                  alt=""
-                  className="transition-all duration-300 h-full w-full align-bottom object-cover rounded-md"
+                  key={index}
+                  src={image}
+                  alt={`Gallery ${index}`}
+                  className="w-full h-64 object-cover rounded-md flex-shrink-0"
                 />
-              </figure>
-            ))}
-          </div>
-
-          <div className="grid gap-2 col-span-4">
-            {RIGHT_IMAGES.map((imageUrl, index) => (
-              <figure key={index} className="w-full">
-                <img
-                  src={imageUrl}
-                  alt=""
-                  className="transition-all duration-300 w-full h-96 align-bottom object-cover rounded-md"
-                />
-              </figure>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </section>
-
-      <footer className="group bg-custom-black">
-        <h1 className="text-[16vw] translate-y-20 leading-[100%] uppercase font-semibold text-center bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent transition-all ease-linear">
-          eth-chile
-        </h1>
-        <div className="bg-black h-40 relative z-10 grid place-content-center text-2xl rounded-tr-full rounded-tl-full"></div>
-      </footer>
-    </main>
+      </div>
+    </div>
   );
 };
-
-export default StickyScrollGallery;
