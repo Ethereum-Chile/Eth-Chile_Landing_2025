@@ -6,18 +6,28 @@ import { ASCII } from './ascii.js';
 
 export class App {
   constructor(container) {
+    console.log('App constructor called with container:', container);
     this.container = container;
     this.canvas = { 
       width: container.offsetWidth, 
       height: container.offsetHeight 
     };
 
+    console.log('Canvas dimensions:', this.canvas);
+
     this.isDisposed = false;
     this.isPaused = false;
     
+    console.log('Initializing Three.js...');
     this.initThree();
+    
+    console.log('Initializing ASCII effect...');
     this.asciiInit();
+    
+    console.log('Loading 3D model...');
     this.loadModel();
+    
+    console.log('App constructor complete');
   }
 
   initThree() {
@@ -60,17 +70,25 @@ export class App {
 
   loadModel() {
     this.loader = new GLTFLoader();
+    console.log('Starting to load model: /eth.glb');
+    
     this.loader.load('/eth.glb', (response) => {
-      if (this.isDisposed) return;
+      if (this.isDisposed) {
+        console.log('Model loaded but app is disposed, skipping...');
+        return;
+      }
       
-      console.log('Model loaded:', response);
+      console.log('Model loaded successfully:', response);
+      console.log('Scene children count:', response.scene.children.length);
       console.log('Scene children:', response.scene.children);
       
       // Try to find the first mesh in the scene (recursively search through groups)
       let mesh = null;
       
       function findMesh(object) {
+        console.log('Checking object:', object.type, object.name);
         if (object.type === 'Mesh') {
+          console.log('Found mesh:', object.name);
           return object;
         }
         for (let child of object.children) {
@@ -85,6 +103,22 @@ export class App {
       if (!mesh) {
         console.error('No mesh found in the model');
         console.log('Scene structure:', response.scene);
+        
+        // Create a fallback cube if no mesh is found
+        console.log('Creating fallback cube...');
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshStandardMaterial({ 
+          color: 0xffffff,
+          metalness: 0.8,
+          roughness: 0.2
+        });
+        this.figure = new THREE.Mesh(geometry, material);
+        this.scene.add(this.figure);
+        
+        // Start animation even with fallback
+        if (this.composer) {
+          this.animate();
+        }
         return;
       }
       
@@ -124,15 +158,26 @@ export class App {
       
       // Ensure ASCII effect is initialized before starting animation
       if (this.composer) {
+        console.log('Starting animation with composer...');
         this.animate();
       } else {
         // If ASCII effect isn't ready yet, wait a bit and try again
+        console.log('Composer not ready, waiting 100ms...');
         setTimeout(() => {
           if (!this.isDisposed) {
+            console.log('Starting animation after delay...');
             this.animate();
           }
         }, 100);
       }
+      
+      // Also start animation after a longer delay as backup
+      setTimeout(() => {
+        if (!this.isDisposed && !this.animationId) {
+          console.log('Starting animation as backup...');
+          this.animate();
+        }
+      }, 2000);
     }, (progress) => {
       console.log('Loading progress:', progress);
     }, (error) => {
@@ -141,6 +186,8 @@ export class App {
   }
 
   asciiInit() {
+    console.log('Initializing ASCII effect...');
+    
     // Create ASCII effect with better settings for clean background
     const asciiEffect = new ASCII({ 
       font: "monospace",
@@ -151,15 +198,22 @@ export class App {
       characters: ` .:,'-^=*+?!|0#X%WM@$&<>{}[]()@#$%^&*+=<>{}[]()@#$%^&*`
     });
 
+    console.log('ASCII effect created:', asciiEffect);
+
     this.composer = new EffectComposer(this.renderer);
+    console.log('EffectComposer created:', this.composer);
     
     // Add render pass
     const renderPass = new RenderPass(this.scene, this.camera);
     renderPass.clearPass.enabled = false; // Don't clear the background
     this.composer.addPass(renderPass);
+    console.log('RenderPass added');
     
     // Add ASCII effect pass
     this.composer.addPass(new EffectPass(this.camera, asciiEffect));
+    console.log('ASCII EffectPass added');
+    
+    console.log('ASCII initialization complete');
   }
 
   animate() {
@@ -171,17 +225,24 @@ export class App {
     // Always schedule the next frame first
     this.animationId = requestAnimationFrame(this.animate.bind(this));
     
+    // Debug: log animation frame every 100 frames
+    if (!this._frameCount) this._frameCount = 0;
+    this._frameCount++;
+    if (this._frameCount % 100 === 0) {
+      console.log('Animation frame:', this._frameCount, 'figure:', !!this.figure, 'composer:', !!this.composer);
+    }
+    
     if (this.figure && !this.isPaused) {
       // Add rotation - let it continue infinitely without resetting
-      this.figure.rotation.y += 0.008; // Slightly faster rotation for better visibility
+      this.figure.rotation.y += 0.01; // Increased rotation speed for better visibility
       
-      // Debug: log rotation every 100 frames for better monitoring
-      if (Math.floor(this.figure.rotation.y * 100) % 100 === 0) {
+      // Debug: log rotation every 50 frames for better monitoring
+      if (Math.floor(this.figure.rotation.y * 50) % 50 === 0) {
         console.log('Diamond rotation:', this.figure.rotation.y.toFixed(3), 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
       }
     } else {
       // Debug: log when animation is not running
-      if (Math.random() < 0.01) { // Log 1% of the time to reduce spam
+      if (Math.random() < 0.005) { // Log 0.5% of the time to reduce spam
         console.log('Animation check - figure:', !!this.figure, 'isPaused:', this.isPaused, 'isDisposed:', this.isDisposed);
       }
     }
@@ -191,6 +252,10 @@ export class App {
       // Clear with transparent background
       this.renderer.setClearColor(0x000000, 0);
       this.composer.render(this.scene, this.camera);
+    } else if (this.renderer) {
+      // Fallback: render directly if composer is not ready
+      this.renderer.setClearColor(0x000000, 0);
+      this.renderer.render(this.scene, this.camera);
     }
   }
 

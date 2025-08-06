@@ -88,11 +88,7 @@ export const AnimatedTestimonials = ({
               <img
                 src={testimonials[0]?.src}
                 alt={testimonials[0]?.name}
-                className={`h-full w-full rounded-3xl object-cover ${
-                  testimonials[0]?.name === "Cristóbal Pereira"
-                    ? "object-[center_70%] scale-125"
-                    : "object-center"
-                }`}
+                className="h-full w-full rounded-3xl object-cover object-center"
               />
             </div>
           </div>
@@ -157,11 +153,7 @@ export const AnimatedTestimonials = ({
                     src={testimonial.src}
                     alt={testimonial.name}
                     draggable={false}
-                    className={`h-full w-full rounded-3xl object-cover ${
-                      testimonial.name === "Cristóbal Pereira"
-                        ? "object-[center_70%] scale-125"
-                        : "object-center"
-                    }`}
+                    className="h-full w-full rounded-3xl object-cover object-center"
                   />
                 </motion.div>
               ))}
@@ -272,6 +264,8 @@ export const AnimatedTestimonials = ({
             <button
               onClick={handlePrev}
               className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+              aria-label="Previous testimonial"
+              title="Previous testimonial"
             >
               <svg
                 className="h-5 w-5 text-white group-hover/button:rotate-12 transition-transform duration-300"
@@ -290,6 +284,8 @@ export const AnimatedTestimonials = ({
             <button
               onClick={handleNext}
               className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+              aria-label="Next testimonial"
+              title="Next testimonial"
             >
               <svg
                 className="h-5 w-5 text-white group-hover/button:-rotate-12 transition-transform duration-300"

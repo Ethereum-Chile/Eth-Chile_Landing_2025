@@ -5,7 +5,7 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 
 interface StickyScrollGalleryProps {
   leftImages: string[];
-  staticImage: string;
+  staticImage: string[];
   rightImages: string[];
   className?: string;
 }
@@ -21,7 +21,8 @@ export const StickyScrollGallery = ({
   const scrollProgress = useMotionValue(0);
 
   const leftY = useTransform(scrollProgress, [0, 1], ["0%", "-40%"]);
-  const rightY = useTransform(scrollProgress, [0, 1], ["0%", "40%"]);
+  const centerY = useTransform(scrollProgress, [0, 1], ["0%", "40%"]);
+  const rightY = useTransform(scrollProgress, [0, 1], ["0%", "-40%"]);
 
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
@@ -94,13 +95,21 @@ export const StickyScrollGallery = ({
             </div>
           </motion.div>
 
-          <div className="flex items-center justify-center h-full">
-            <img
-              src={staticImage}
-              alt="Featured"
-              className="w-full h-full object-cover rounded-md"
-            />
-          </div>
+          <motion.div
+            className="flex flex-col gap-2 h-full overflow-hidden"
+            style={{ y: centerY }}
+          >
+            <div className="flex flex-col gap-2">
+              {[...staticImage, ...staticImage].map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Gallery ${index}`}
+                  className="w-full h-64 object-cover rounded-md flex-shrink-0"
+                />
+              ))}
+            </div>
+          </motion.div>
 
           <motion.div
             className="flex flex-col gap-2 h-full overflow-hidden"

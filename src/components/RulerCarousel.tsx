@@ -63,7 +63,7 @@ export default function RulerCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Custom gaps array - each number is the gap AFTER that button
-  const gaps = [0, 1600, 300, 700, 500, 300, 600, 500, 400];
+  const gaps = [0, 1200, 300, 700, 500, 300, 600, 500, 400];
 
   // Calculate total height needed for all buttons
   const totalHeight = gaps.reduce((sum, gap) => sum + gap, 0);
