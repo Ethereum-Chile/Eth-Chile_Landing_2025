@@ -1,8 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import type { HTMLMotionProps, MotionValue, Variants } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import type {
+  HTMLMotionProps,
+  MotionValue,
+  Variants,
+} from "framer-motion";
 
 interface ContainerScrollContextValue {
   scrollYProgress: MotionValue<number>;
@@ -35,13 +43,9 @@ const ContainerScrollContext = React.createContext<
 function useContainerScrollContext() {
   const context = React.useContext(ContainerScrollContext);
   if (!context) {
+    // Return a default context during SSR to prevent errors
     return {
-      scrollYProgress: {
-        get: () => 0,
-        set: () => {},
-        on: () => () => {},
-        off: () => {},
-      } as any,
+      scrollYProgress: { get: () => 0, set: () => {}, on: () => {}, off: () => {} } as any
     };
   }
   return context;
@@ -62,11 +66,8 @@ export const ContainerScroll = ({
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
       <div
         ref={scrollRef}
-        className={`relative min-h-[50vh] ${className}`}
+        className={`relative min-h-[120vh] ${className}`}
         style={{
-          perspective: "1000px",
-          perspectiveOrigin: "center top",
-          transformStyle: "preserve-3d",
           ...style,
         }}
         {...props}
@@ -88,9 +89,6 @@ export const ContainerSticky = ({
     <div
       className={`sticky left-0 top-0 min-h-[30rem] w-full overflow-hidden ${className}`}
       style={{
-        perspective: "1000px",
-        perspectiveOrigin: "center top",
-        transformStyle: "preserve-3d",
         transformOrigin: "50% 50%",
         ...style,
       }}
@@ -108,24 +106,15 @@ export const GalleryContainer = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
   const [isClient, setIsClient] = React.useState(false);
-
+  
   React.useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const { scrollYProgress } = useContainerScrollContext();
-
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0]);
-  const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1]);
 
   return (
     <motion.div
       className={`relative grid size-full grid-cols-3 gap-2 rounded-2xl ${className}`}
       style={{
-        rotateX: isClient ? rotateX : 0,
-        scale: isClient ? scale : 1,
-        transformStyle: "preserve-3d",
-        perspective: "1000px",
         willChange: "transform",
         ...style,
       }}
@@ -145,19 +134,15 @@ export const GalleryCol = ({
   ...props
 }: HTMLMotionProps<"div"> & { yRange?: string[] }) => {
   const [isClient, setIsClient] = React.useState(false);
-
+  
   React.useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const { scrollYProgress } = useContainerScrollContext();
-  const y = useTransform(scrollYProgress, [0.5, 1], yRange);
 
   return (
     <motion.div
       className={`relative flex w-full flex-col gap-2 ${className}`}
       style={{
-        y: isClient ? y : 0,
         willChange: "transform",
         ...style,
       }}
@@ -268,18 +253,15 @@ ScrollColumn.displayName = "ScrollColumn";
 
 export const ContainerStagger = React.forwardRef<
   HTMLDivElement,
-  HTMLMotionProps<"div"> & {
-    viewport?: any;
-    transition?: any;
-  }
+  HTMLMotionProps<"div">
 >(({ className = "", viewport, transition, ...props }, ref) => {
   return (
     <motion.div
       className={`relative ${className}`}
       ref={ref}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, ...viewport }}
+      whileInView={"visible"}
+      viewport={{ once: true || viewport?.once, ...viewport }}
       transition={{
         staggerChildren: transition?.staggerChildren || 0.2,
         ...transition,
