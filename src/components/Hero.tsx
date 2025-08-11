@@ -247,14 +247,10 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white mb-4">
+            <h1 className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white">
               ETH Chile{" "}
               <span className="font-raleway font-extralight text-blue-400">
                 2025
-              </span>
-              <br />
-              <span className="font-raleway font-extralight text-white text-3xl md:text-4xl lg:text-5xl">
-                October 21st
               </span>
             </h1>
           </motion.div>
@@ -262,11 +258,21 @@ export const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h2 className="font-raleway text-2xl font-light md:text-3xl lg:text-4xl text-white mb-6">
+            <h2 className="font-raleway text-xl font-light md:text-2xl lg:text-3xl text-blue-400 mb-4">
               Fintech meets Ethereum 
             </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <p className="font-raleway font-extralight text-white text-2xl md:text-3xl lg:text-4xl mb-6">
+              October 24th & 25th
+            </p>
           </motion.div>
 
           <motion.div
