@@ -102,7 +102,7 @@ const Footer = () => {
 
             <div className="lg:hidden grid grid-cols-2 gap-4 justify-items-center">
               <div className="text-2xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                <FlipLink href="https://x.com/ethereum_chile" text="Twitter">
                   Twitter
                 </FlipLink>
               </div>
@@ -128,7 +128,7 @@ const Footer = () => {
 
             <div className="hidden lg:flex flex-col space-y-6">
               <div className="text-3xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                <FlipLink href="https://x.com/ethereum_chile" text="Twitter">
                   Twitter
                 </FlipLink>
               </div>

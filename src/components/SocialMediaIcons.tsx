@@ -41,7 +41,7 @@ const SocialMediaIcons: React.FC = () => {
 
       {/* Twitter/X */}
       <a
-        href="https://twitter.com/ethchile"
+        href="https://x.com/ethereum_chile"
         target="_blank"
         rel="noopener noreferrer"
         className="group"
