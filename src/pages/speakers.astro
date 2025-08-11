@@ -1,0 +1,180 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.tsx";
+import SpeakerForm from "../components/SpeakerForm.tsx";
+import SpeakerTimeline from "../components/SpeakerTimeline.tsx";
+---
+
+<Layout title="ETHChile 2025 - Speaker Application">
+  <div style="margin: 0; padding: 0; background-color: #000000;">
+    <Header />
+    
+    <main class="min-h-screen bg-custom-black pt-24 pb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section class="mb-16 text-center">
+          <h1 class="text-5xl md:text-6xl font-raleway font-bold bg-gradient-to-r from-white via-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
+            Speak at ETHChile 2025
+          </h1>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Hola! We are very happy you want to apply to speak at ETHChile 2025. If you want to know more about our application process, keep reading.
+          </p>
+        </section>
+
+        <!-- Application Form Section -->
+        <section class="mb-20">
+          <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
+            <h2 class="text-3xl font-raleway font-semibold text-white mb-8 text-center">
+              Speaker Application Form
+            </h2>
+            <SpeakerForm client:load />
+          </div>
+        </section>
+
+        <!-- Application Process Section -->
+        <section class="mb-20">
+          <h2 class="text-4xl font-raleway font-bold text-white mb-12 text-center">
+            Speaker Application Process
+          </h2>
+          
+          <div class="bg-gradient-to-br from-gray-900/30 to-gray-800/20 backdrop-blur-sm rounded-2xl p-8 mb-12">
+            <p class="text-lg text-gray-300 leading-relaxed">
+              At ETHChile we want to give everyone the chance to speak about their passion for Ethereum and its ecosystem. 
+              We welcome applications on different topics ranging from very technical deep-dives to high-level discussions 
+              on social impact. We have different formats from workshops to keynotes and discussion panels for you to 
+              choose the best way to express your ideas.
+            </p>
+          </div>
+
+          <!-- Timeline -->
+          <div class="mb-16">
+            <h3 class="text-2xl font-raleway font-semibold text-white mb-8 text-center">Timeline</h3>
+            <SpeakerTimeline client:load />
+          </div>
+
+          <!-- Process Steps -->
+          <div class="mb-16">
+            <h3 class="text-2xl font-raleway font-semibold text-white mb-8">Process Description</h3>
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  1
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-white mb-2">Submit your idea</h4>
+                  <p class="text-gray-300">Have an idea? Use the form above to tell us about it!</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  2
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-white mb-2">Choose format</h4>
+                  <p class="text-gray-300">Select your preferred format. Talk? Workshop? Want to gather relevant people and have a discussion panel? It's up to you</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  3
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-white mb-2">Track assignment</h4>
+                  <p class="text-gray-300">Please select the track that is most relevant to your session</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  4
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-white mb-2">Review process</h4>
+                  <p class="text-gray-300">Your application will be reviewed by our committee and we will let you know if you need to make some adjustments (if you apply before the first round of review)</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  5
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-white mb-2">Final selection</h4>
+                  <p class="text-gray-300">We will notify you if your session made it to be eligible for an invitation to present at ETHChile 2025 or not.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Track Descriptions -->
+          <div>
+            <h3 class="text-2xl font-raleway font-semibold text-white mb-8">Track Descriptions</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Core protocol</h4>
+                <p class="text-gray-300 text-sm">The latest on Ethereum tech.</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Layer 2s and Infrastructure</h4>
+                <p class="text-gray-300 text-sm">What's new on Layer 2, rollups, and similar EVM networks</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Tools for Users and Devs</h4>
+                <p class="text-gray-300 text-sm">Relevant tools that help users and developers work on Ethereum</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Enterprise and Regulation</h4>
+                <p class="text-gray-300 text-sm">New developments in enterprise adoption and regulatory landscape</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Privacy and cypherpunk community</h4>
+                <p class="text-gray-300 text-sm">Privacy tools, DAOs, and general community development</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Cryptography and Zero Knowledge</h4>
+                <p class="text-gray-300 text-sm">How to hide secrets :)</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Security</h4>
+                <p class="text-gray-300 text-sm">How can we protect ourselves, the users and the network</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Real use cases on Ethereum</h4>
+                <p class="text-gray-300 text-sm">What's Ethereum really useful for</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">DeFi</h4>
+                <p class="text-gray-300 text-sm">You know what this is :)</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">AI agents</h4>
+                <p class="text-gray-300 text-sm">Where Web3 meets AI</p>
+              </div>
+              
+              <div class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800">
+                <h4 class="text-lg font-semibold text-blue-400 mb-2">Web3 startups and VC</h4>
+                <p class="text-gray-300 text-sm">Funding and developing the ecosystem</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+    
+    <Footer client:load />
+  </div>
+</Layout>
