@@ -143,7 +143,7 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <div className="text-2xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                <FlipLink href="https://x.com/ethereum_chile" text="Twitter">
                   Twitter
                 </FlipLink>
               </div>
@@ -175,7 +175,7 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <div className="text-3xl">
-                <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
+                <FlipLink href="https://x.com/ethereum_chile" text="Twitter">
                   Twitter
                 </FlipLink>
               </div>
