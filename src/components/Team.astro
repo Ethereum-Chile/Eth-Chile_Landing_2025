@@ -4,11 +4,14 @@ import { HyperText } from "./HyperText.tsx";
 ---
 
 <section
-  class="min-h-screen bg-custom-black p-8 flex flex-col justify-center"
+  class="min-h-screen p-8 flex flex-col justify-center relative"
   id="team"
-  style="margin-bottom: 0;"
+  style="margin-bottom: 0; background-color: #0a0a0a;"
 >
-  <div class="max-w-7xl mx-auto">
+  <!-- Solid background to completely cover gallery -->
+  <div class="absolute inset-0 bg-custom-black"></div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="mb-8 text-center">
       <div style="min-height: 3rem;">
         <HyperText
@@ -100,8 +103,6 @@ import { HyperText } from "./HyperText.tsx";
           },
         },
       ]}
-      autoplay={true}
-      className="mt-8"
     />
   </div>
 </section>

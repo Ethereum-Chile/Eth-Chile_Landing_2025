@@ -111,11 +111,20 @@ export const AnimatedTestimonials = ({
   }
 
   return (
-    <div
+    <motion.div
       className={`max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20 ${className}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <div className="relative h-80 w-full">
             <AnimatePresence mode="sync">
               {testimonials.map((testimonial, index) => (
@@ -159,8 +168,14 @@ export const AnimatedTestimonials = ({
               ))}
             </AnimatePresence>
           </div>
-        </div>
-        <div className="flex justify-between flex-col py-4">
+        </motion.div>
+        <motion.div 
+          className="flex justify-between flex-col py-4"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
           <motion.div
             key={active}
             initial={{
@@ -213,7 +228,13 @@ export const AnimatedTestimonials = ({
               ))}
             </motion.div>
             {/* Social Media Icons */}
-            <div className="flex gap-4 mb-6 mt-8">
+            <motion.div 
+              className="flex gap-4 mb-6 mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               {/* Twitter/X */}
               <motion.a
                 href={testimonials[active].social?.twitter || "#"}
@@ -258,9 +279,15 @@ export const AnimatedTestimonials = ({
               >
                 <LinkedInIcon />
               </motion.a>
-            </div>
+            </motion.div>
           </motion.div>
-          <div className="flex gap-4 pt-12 md:pt-0">
+          <motion.div 
+            className="flex gap-4 pt-12 md:pt-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+          >
             <button
               onClick={handlePrev}
               className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
@@ -301,9 +328,9 @@ export const AnimatedTestimonials = ({
                 />
               </svg>
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };

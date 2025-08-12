@@ -17,39 +17,47 @@ import SocialProof from "../components/SocialProof.astro";
 import TrustedBy from "../components/TrustedBy.tsx";
 import Hero from "../components/Hero";
 import RulerCarousel from "../components/RulerCarousel.tsx";
+import AppWrapper from "../components/AppWrapper.tsx";
 ---
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
-  <div style="margin: 0; padding: 0; background-color: #000000;">
-    <RulerCarousel client:load />
-    <Header />
-    <section id="hero">
-      <Hero client:load />
-    </section>
-    <section id="why-eth">
-      <WhyEthereum />
-    </section>
-    <section id="why-latam">
-      <ScrollAnimationSections client:load />
-    </section>
-    <section id="chile">
-      <WhatMakesUnique />
-    </section>
-    <section id="team">
-      <Team />
-    </section>
-    <section id="web3">
-      <SocialProof />
-    </section>
-    <section id="hackathons">
-      <Hackathon />
-    </section>
-    <section id="sponsors">
-      <SponsorshipTiersAnimated client:load />
-    </section>
-<section id="trusted-by">
-    <TrustedBy client:load />
-</section>
-<section id="footer" style="margin: 0; padding: 0;">
-    <Footer client:load />
-</section>
+  <AppWrapper client:load>
+    <div style="margin: 0; padding: 0; background-color: #0a0a0a; position: relative;">
+      {/* Global solid background to prevent any gallery leakage */}
+      <div style="position: fixed; inset: 0; background-color: #0a0a0a; z-index: -1;"></div>
+      
+      <RulerCarousel client:load />
+      <Header />
+      <section id="hero" style="position: relative; z-index: 1;">
+        <Hero client:load />
+      </section>
+      <section id="why-eth" style="position: relative; z-index: 2;">
+        <WhyEthereum />
+      </section>
+      <section id="why-latam" style="position: relative; z-index: 2;">
+        <ScrollAnimationSections client:load />
+      </section>
+      <section id="chile" style="position: relative; z-index: 2;">
+        <WhatMakesUnique />
+      </section>
+      <section id="team" style="position: relative; z-index: 2;">
+        <Team />
+      </section>
+      <section id="web3" style="position: relative; z-index: 2;">
+        <SocialProof />
+      </section>
+      <section id="hackathons" style="position: relative; z-index: 2;">
+        <Hackathon />
+      </section>
+      <section id="sponsors" style="position: relative; z-index: 2;">
+        <SponsorshipTiersAnimated client:load />
+      </section>
+      <section id="trusted-by" style="position: relative; z-index: 2;">
+        <TrustedBy client:load />
+      </section>
+      <section id="footer" style="margin: 0; padding: 0; position: relative; z-index: 2;">
+        <Footer client:load />
+      </section>
+    </div>
+  </AppWrapper>
+</Layout>

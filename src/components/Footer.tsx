@@ -19,20 +19,42 @@ const Footer = () => {
         position: "relative",
       }}
     >
+      {/* Solid background overlay to prevent gallery leakage */}
+      <div className="absolute inset-0 bg-custom-black/80"></div>
+      
       <div className="absolute inset-0 bg-black/20"></div>
       <div className="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-center h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div className="text-center lg:text-left lg:pr-8">
-            <div className="mb-8" style={{ minHeight: "3rem" }}>
+          <motion.div 
+            className="text-center lg:text-left lg:pr-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="mb-8" 
+              style={{ minHeight: "3rem" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               <HyperText
                 text="Let's Build Together"
                 duration={1000}
                 className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                 animateOnLoad={true}
               />
-            </div>
+            </motion.div>
 
-            <div className="max-w-2xl mx-auto lg:mx-0">
+            <motion.div 
+              className="max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               <form
                 id="contactForm"
                 action="https://formspree.io/f/xqalylre"
@@ -87,20 +109,39 @@ const Footer = () => {
 
                 <p className="form-status text-sm mt-2 h-5"></p>
               </form>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="text-center lg:text-left lg:pl-8">
-            <div className="mb-8" style={{ minHeight: "3rem" }}>
+          <motion.div 
+            className="text-center lg:text-left lg:pl-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="mb-8" 
+              style={{ minHeight: "3rem" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               <HyperText
                 text="Connect With Us"
                 duration={1000}
                 className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                 animateOnLoad={true}
               />
-            </div>
+            </motion.div>
 
-            <div className="lg:hidden grid grid-cols-2 gap-4 justify-items-center">
+            <motion.div 
+              className="lg:hidden grid grid-cols-2 gap-4 justify-items-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="text-2xl">
                 <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
                   Twitter
@@ -124,9 +165,15 @@ const Footer = () => {
                   Telegram
                 </FlipLink>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="hidden lg:flex flex-col space-y-6">
+            <motion.div 
+              className="hidden lg:flex flex-col space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="text-3xl">
                 <FlipLink href="https://x.com/Ethereum_Chile" text="Twitter">
                   Twitter
@@ -150,13 +197,19 @@ const Footer = () => {
                   Telegram
                 </FlipLink>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        <div className="text-center text-gray-400 text-sm mt-16">
+        <motion.div 
+          className="text-center text-gray-400 text-sm mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p>&copy; 2025 ETH Chile. All rights reserved.</p>
-        </div>
+        </motion.div>
       </div>
     </motion.footer>
   );

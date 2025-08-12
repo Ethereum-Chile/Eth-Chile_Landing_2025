@@ -2,11 +2,11 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo-claro.png";
 import { ConnectWallet } from "./ConnectWallet.tsx";
-import { RulerCarousel } from "./RulerCarousel.tsx";
 ---
 
 <header
-  class="flex w-full min-h-[10vh] justify-between items-center px-10 fixed top-0 left-0 bg-transparent z-50"
+  class="flex w-full min-h-[10vh] justify-between items-center px-10 fixed top-0 left-0 bg-transparent z-50 animate-fade-in"
+  style="animation: fadeIn 1s ease-in-out;"
 >
   <a
     href="javascript:void(0);"
@@ -31,3 +31,16 @@ import { RulerCarousel } from "./RulerCarousel.tsx";
     <ConnectWallet client:load />
   </div>
 </header>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

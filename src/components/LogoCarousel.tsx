@@ -131,18 +131,18 @@ export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
   const [logoSets, setLogoSets] = useState<Logo[][]>([]);
   const [currentTime, setCurrentTime] = useState(0);
 
-  // Default logos if none provided
+  // Default logos if none provided - Updated with actual existing images
   const defaultLogos: Logo[] = [
-    { name: "Ethereum", id: 1, img: "/imgs/cripto/ethereum.webp" },
-    { name: "Polygon", id: 2, img: "/imgs/cripto/polygon.webp" },
-    { name: "Uniswap", id: 3, img: "/imgs/cripto/uniswap.webp" },
-    { name: "Aave", id: 4, img: "/imgs/cripto/aave.webp" },
-    { name: "Chainlink", id: 5, img: "/imgs/cripto/chainlink.webp" },
-    { name: "Optimism", id: 6, img: "/imgs/cripto/optimism.webp" },
-    { name: "Arbitrum", id: 7, img: "/imgs/cripto/arbitrum.webp" },
-    { name: "MakerDAO", id: 8, img: "/imgs/cripto/maker.webp" },
-    { name: "Compound", id: 9, img: "/imgs/cripto/compound.webp" },
-    { name: "Balancer", id: 10, img: "/imgs/cripto/balancer.webp" },
+    { name: "Arbitrum", id: 1, img: "/imgs/cripto/arbitrum.webp" },
+    { name: "Balancer", id: 2, img: "/imgs/cripto/balancer.webp" },
+    { name: "Ethereum", id: 3, img: "/imgs/cripto/ethereum.webp" },
+    { name: "Optimism", id: 4, img: "/imgs/cripto/optimism.webp" },
+    { name: "Polygon", id: 5, img: "/imgs/cripto/polygon.webp" },
+    { name: "Uniswap", id: 6, img: "/imgs/cripto/uniswap.webp" },
+    { name: "Chainlink", id: 7, img: "/imgs/cripto/chainlink.webp" },
+    { name: "Compound", id: 8, img: "/imgs/cripto/compound.webp" },
+    { name: "Maker", id: 9, img: "/imgs/cripto/maker.webp" },
+    { name: "Aave", id: 10, img: "/imgs/cripto/aave.webp" },
   ];
 
   const logosToUse = logos || defaultLogos;

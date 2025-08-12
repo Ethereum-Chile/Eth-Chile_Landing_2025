@@ -70,7 +70,6 @@ export function HyperText({
   return (
     <div
       className="relative inline-block cursor-default"
-      onMouseEnter={triggerAnimation}
       style={{ 
         minWidth: 'fit-content',
         width: 'auto'

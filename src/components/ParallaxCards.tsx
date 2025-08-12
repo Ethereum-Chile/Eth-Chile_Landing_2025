@@ -57,11 +57,10 @@ export default function ParallaxCards() {
               transformStyle: "preserve-3d",
               perspective: "1000px",
             }}
-            whileHover={{
-              scale: 1.02,
-              borderColor: "rgba(255, 255, 255, 0.4)",
-              transition: { duration: 0.2 },
-            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: idx * 0.2 }}
+            viewport={{ once: true }}
           >
             <motion.div
               className="w-full h-full flex flex-col items-center justify-center space-y-4"

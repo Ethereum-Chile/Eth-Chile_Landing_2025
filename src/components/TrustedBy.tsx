@@ -6,8 +6,11 @@ import { motion } from "framer-motion";
 
 const TrustedBy = () => {
   return (
-    <section className="h-[120vh] bg-custom-black relative">
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center px-8">
+    <section className="min-h-screen bg-custom-black relative py-20" style={{ backgroundColor: '#0a0a0a' }}>
+      {/* Solid background to completely cover gallery */}
+      <div className="absolute inset-0 bg-custom-black"></div>
+      
+      <div className="flex flex-col items-center justify-center px-8 relative z-10">
         <div className="text-center w-full max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -63,7 +63,8 @@ export default function RulerCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Custom gaps array - each number is the gap AFTER that button
-  const gaps = [0, 1200, 300, 700, 500, 300, 600, 500, 400];
+  // Moved Sponsors very close to Web3 in navigation wheel
+  const gaps = [0, 600, 400, 700, 400, 200, 500, 500, 600];
 
   // Calculate total height needed for all buttons
   const totalHeight = gaps.reduce((sum, gap) => sum + gap, 0);
@@ -170,7 +171,6 @@ export default function RulerCarousel() {
           style={{ 
             height: `${totalHeight}px`,
             transform: `translateY(-${scrollY}px)`,
-            transition: 'transform 0.1s ease-out',
             marginTop: '160px' // Center the Home button at the top
           }}
         >

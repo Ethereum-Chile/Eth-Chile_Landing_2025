@@ -128,6 +128,7 @@ const IMAGES_3 = [
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldRenderGallery, setShouldRenderGallery] = useState(true);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -137,6 +138,29 @@ export const Hero = () => {
   const textY = useTransform(scrollYProgress, [0, 0.8], [0, 400]); // Slide down 400px (adjusted for 250vh)
   const textOpacity = useTransform(scrollYProgress, [0, 0.6, 0.8], [1, 1, 0]); // Fade out at 80% scroll (200vh of 250vh)
   const textScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]); // More scale down for visibility
+
+  // Effect to control gallery rendering based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Stop rendering gallery when scrolling past the Latam component
+      // This is approximately after the Hero (250vh) + WhyEthereum (100vh) + ScrollAnimationSections (100vh)
+      const galleryStopPoint = windowHeight * 4.5; // 450vh total
+      
+      if (scrollY > galleryStopPoint) {
+        setShouldRenderGallery(false);
+      } else {
+        setShouldRenderGallery(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div ref={containerRef} className="relative bg-custom-black h-[250vh] w-full overflow-hidden" style={{ scrollBehavior: 'smooth' }}>
@@ -174,41 +198,43 @@ export const Hero = () => {
         `
       }} />
       
-      {/* Gallery Background - Fixed position, fills entire 250vh */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        <GalleryContainer className="w-full h-full grid-cols-3 gap-2 p-2">
-          <GalleryCol className="gallery-col h-full">
-            {IMAGES_1.map((imageUrl, index) => (
-              <img
-                key={index}
-                className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
-                src={imageUrl}
-                alt="ETHChile gallery item"
-              />
-            ))}
-          </GalleryCol>
-          <GalleryCol className="gallery-col h-full">
-            {IMAGES_2.map((imageUrl, index) => (
-              <img
-                key={index}
-                className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
-                src={imageUrl}
-                alt="ETHChile gallery item"
-              />
-            ))}
-          </GalleryCol>
-          <GalleryCol className="gallery-col h-full">
-            {IMAGES_3.map((imageUrl, index) => (
-              <img
-                key={index}
-                className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
-                src={imageUrl}
-                alt="ETHChile gallery item"
-              />
-            ))}
-          </GalleryCol>
-        </GalleryContainer>
-      </div>
+      {/* Gallery Background - Fixed position, fills entire 250vh, but only when shouldRenderGallery is true */}
+      {shouldRenderGallery && (
+        <div className="fixed inset-0 w-full h-full z-0">
+          <GalleryContainer className="w-full h-full grid-cols-3 gap-2 p-2">
+            <GalleryCol className="gallery-col h-full">
+              {IMAGES_1.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
+                  src={imageUrl}
+                  alt="ETHChile gallery item"
+                />
+              ))}
+            </GalleryCol>
+            <GalleryCol className="gallery-col h-full">
+              {IMAGES_2.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
+                  alt="ETHChile gallery item"
+                  src={imageUrl}
+                />
+              ))}
+            </GalleryCol>
+            <GalleryCol className="gallery-col h-full">
+              {IMAGES_3.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
+                  src={imageUrl}
+                  alt="ETHChile gallery item"
+                />
+              ))}
+            </GalleryCol>
+          </GalleryContainer>
+        </div>
+      )}
 
       {/* Background gradient effect */}
       <div 
@@ -299,11 +325,14 @@ export const Hero = () => {
               href="/speakers"
               className="text-blue-400 hover:text-blue-300 font-semibold transition-colors text-lg border border-blue-400 hover:border-blue-300 px-8 py-4 rounded-lg inline-block"
             >
-              Apply to Speak
+              Quiero ser Speaker
             </a>
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Bottom solid background to prevent gallery from showing through */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-custom-black z-40"></div>
     </div>
   );
 };

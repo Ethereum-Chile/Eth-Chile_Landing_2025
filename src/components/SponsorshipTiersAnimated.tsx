@@ -187,65 +187,102 @@ const ActiveImageRenderer: React.FC = () => {
 
 export const SponsorshipTiersAnimated: React.FC = () => {
   return (
-    <section className="min-h-screen bg-custom-black p-8 flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8 text-center">
+    <motion.section 
+      className="min-h-screen bg-custom-black p-8 flex flex-col justify-center relative" 
+      style={{ backgroundColor: '#0a0a0a' }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      {/* Solid background to completely cover gallery */}
+      <div className="absolute inset-0 bg-custom-black"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div 
+          className="mb-8 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <HyperText
             text="Sponsorship Tiers"
             duration={1000}
             className="text-4xl font-raleway font-semibold text-white"
             animateOnLoad={true}
           />
-        </div>
+        </motion.div>
 
-        <HoverSlider className="min-h-svh place-content-center p-6 md:px-12">
-          <h3 className="mb-6 text-blue-400 text-xs font-medium capitalize tracking-wide">
-            / sponsorship packages
-          </h3>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <HoverSlider className="min-h-svh place-content-center p-6 md:px-12">
+            <h3 className="mb-6 text-blue-400 text-xs font-medium capitalize tracking-wide">
+              / sponsorship packages
+            </h3>
 
-          <div className="flex flex-wrap items-center justify-evenly gap-6 md:gap-12 mb-20">
-            {/* Left Side: Vertical List of Titles */}
-            <div className="flex flex-col space-y-2 md:space-y-4">
-              {sponsorshipTiers.map((tier, index) => (
-                <TextStaggerHover
-                  key={tier.name}
-                  index={index}
-                  className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors"
-                  text={tier.name}
-                />
-              ))}
-            </div>
+            <div className="flex flex-wrap items-center justify-evenly gap-6 md:gap-12 mb-20">
+              {/* Left Side: Vertical List of Titles */}
+              <div className="flex flex-col space-y-2 md:space-y-4">
+                {sponsorshipTiers.map((tier, index) => (
+                  <TextStaggerHover
+                    key={tier.name}
+                    index={index}
+                    className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors"
+                    text={tier.name}
+                  />
+                ))}
+              </div>
 
-            {/* Right Side: Images that update on hover */}
-            <HoverSliderImageWrap
-              className="w-80 h-80 relative aspect-square"
-              style={{ width: "320px", height: "320px", aspectRatio: "1/1" }}
-            >
-              <ActiveImageRenderer />
-            </HoverSliderImageWrap>
-          </div>
-
-          {/* Additional Info */}
-          <div className="mt-32 text-center">
-            <p className="text-xl mb-8 text-gray-300">
-              Ready to showcase your brand at Chile's premier Ethereum event?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
-                Download Sponsorship Deck
-              </button>
-              <a
-                href="https://t.me/cristpereirag"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors text-center"
+              {/* Right Side: Images that update on hover */}
+              <HoverSliderImageWrap
+                className="w-80 h-80 relative aspect-square"
+                style={{ width: "320px", height: "320px", aspectRatio: "1/1" }}
               >
-                Contact Sales Team
-              </a>
+                <ActiveImageRenderer />
+              </HoverSliderImageWrap>
             </div>
-          </div>
-        </HoverSlider>
+
+            {/* Additional Info */}
+            <div className="mt-32 text-center">
+              <p className="text-xl mb-8 text-gray-300">
+                Ready to showcase your brand at Chile's premier Ethereum event?
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://drive.google.com/file/d/1-EXAMPLE-FILE-ID/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
+                  onClick={() => {
+                    // Google Analytics event tracking
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'download_sponsor_deck', {
+                        event_category: 'engagement',
+                        event_label: 'sponsorship_tiers'
+                      });
+                    }
+                  }}
+                >
+                  Download Sponsorship Deck
+                </a>
+                <a
+                  href="https://t.me/cristpereirag"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors text-center"
+                >
+                  Contact Sales Team
+                </a>
+              </div>
+            </div>
+          </HoverSlider>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
