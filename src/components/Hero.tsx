@@ -318,9 +318,14 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <button className="gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+            <a 
+              href="https://welcu.com/ethereum-chile/ethchile-2025/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg inline-block"
+            >
               Buy Ticket
-            </button>
+            </a>
             <a 
               href="/speakers"
               className="text-blue-400 hover:text-blue-300 font-semibold transition-colors text-lg border border-blue-400 hover:border-blue-300 px-8 py-4 rounded-lg inline-block"
