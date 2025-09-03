@@ -45,6 +45,37 @@ A modern, responsive landing page for ETH Chile 2025, Latin America's premier Et
 - `public/` - Public static files
 - `src/icons/` - Icon components and assets
 
+## Deployment Strategy
+
+### Branch Management
+
+This project uses a two-branch strategy for development and deployment:
+
+- **`main`**: Development branch for active development and testing
+  - All new features, bug fixes, and improvements are developed here
+  - Does NOT trigger Vercel deployments
+  - Used for code review and testing before production
+
+- **`prod`**: Production deployment branch
+  - Contains the latest stable version of the application
+  - ONLY branch that triggers Vercel deployments
+  - Automatically updated from `main` when ready for production
+
+### Deployment Workflow
+
+1. **Development**: Work on features in the `main` branch
+2. **Testing**: Test changes locally and in development environment
+3. **Production Update**: Merge `main` into `prod` branch
+4. **Deployment**: Vercel automatically deploys from `prod` branch
+5. **Sync**: Keep both branches in sync by regularly updating `prod`
+
+### Vercel Configuration
+
+The project includes a `vercel.json` configuration that ensures:
+- Only the `prod` branch triggers deployments
+- `main` branch changes do not affect production
+- Consistent build and deployment settings
+
 ## Sponsorship Tiers
 
 The landing page features an interactive sponsorship section with:
