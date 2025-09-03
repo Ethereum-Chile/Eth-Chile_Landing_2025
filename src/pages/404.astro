@@ -1,0 +1,106 @@
+---
+// 404.astro - Custom 404 page with Spline animation background
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | ETH Chile</title>
+    <meta name="description" content="Page not found - ETH Chile 2025" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway Variable", "Raleway", sans-serif;
+        background-color: #0a0a0a;
+        color: white;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .spline-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: #0a0a0a;
+      }
+
+      .spline-iframe {
+        width: 130%;
+        height: 130%;
+        border: none;
+        opacity: 0.8;
+        transform: scale(1.3);
+        transform-origin: center center;
+        position: absolute;
+        top: -15%;
+        left: -15%;
+      }
+
+      .content {
+        text-align: center;
+        z-index: 20;
+        position: relative;
+      }
+
+      .error-code {
+        font-size: 3rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Raleway Variable", "Raleway", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Spline Animation Background -->
+    <div class="spline-background">
+      <iframe
+        src="https://my.spline.design/loopingstaircaseportal-OgU6DptjGymnFXo1NCQr39C9/"
+        frameborder="0"
+        width="100%"
+        height="100%"
+        class="spline-iframe"
+        title="Spline Animation Background"></iframe>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="content">
+        <h1 class="error-code">404</h1>
+      </div>
+    </div>
+  </body>
+</html>
