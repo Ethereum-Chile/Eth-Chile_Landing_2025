@@ -6,12 +6,8 @@ import SocialMediaIcons from "./SocialMediaIcons.tsx";
 const SocialProofComponent = () => {
   return (
     <section
-      className="bg-custom-black relative py-20"
-      style={{ backgroundColor: "#0a0a0a" }}
+      className="relative py-20"
     >
-      {/* Solid background to completely cover gallery */}
-      <div className="absolute inset-0 bg-custom-black"></div>
-
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center">
           <motion.h2 

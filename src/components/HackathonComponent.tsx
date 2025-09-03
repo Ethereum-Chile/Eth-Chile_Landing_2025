@@ -8,11 +8,7 @@ const HackathonComponent = () => {
   return (
     <section
       className="min-h-screen px-8 pt-2 pb-8 flex flex-col justify-center relative"
-      style={{ backgroundColor: "#0a0a0a" }}
     >
-      {/* Solid background to completely cover gallery */}
-      <div className="absolute inset-0 bg-custom-black"></div>
-      
       <motion.div 
         className="text-center mb-8 relative z-10"
         initial={{ opacity: 0, y: 30 }}

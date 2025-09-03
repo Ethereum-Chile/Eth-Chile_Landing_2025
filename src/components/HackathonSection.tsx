@@ -44,12 +44,8 @@ const HackathonSection = () => {
   return (
     <div 
       ref={sectionRef}
-      className="min-h-screen bg-custom-black flex flex-col justify-center items-center relative py-20" 
-      style={{ backgroundColor: '#0a0a0a' }}
+      className="min-h-screen flex flex-col justify-center items-center relative py-20" 
     >
-      {/* Solid background to completely cover gallery */}
-      <div className="absolute inset-0 bg-custom-black"></div>
-      
       {/* Animated Background Component - Only render when visible */}
       {isVisible && (
         <div className="absolute inset-0 z-0 overflow-hidden">

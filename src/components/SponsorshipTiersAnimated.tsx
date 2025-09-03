@@ -180,16 +180,12 @@ const ActiveImageRenderer: React.FC = () => {
 export const SponsorshipTiersAnimated: React.FC = () => {
   return (
     <motion.section 
-      className="min-h-screen bg-custom-black p-8 flex flex-col justify-center relative" 
-      style={{ backgroundColor: '#0a0a0a' }}
+      className="min-h-screen p-8 flex flex-col justify-center relative" 
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      {/* Solid background to completely cover gallery */}
-      <div className="absolute inset-0 bg-custom-black"></div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div 
           className="mb-8 text-center"
