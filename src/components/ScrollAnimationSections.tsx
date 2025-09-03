@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import { FeatureSteps } from "./FeatureSteps";
 import CircularText from "./CircularText";
 import { HyperText } from "./HyperText.tsx";
+import Prism from "./Prism.tsx";
 
 const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -59,11 +60,32 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
         className='bg-custom-black py-20 mt-0 relative' 
         style={{ backgroundColor: '#0a0a0a' }}
       >
-        {/* Solid background to completely cover gallery */}
-        <div className='absolute inset-0 bg-custom-black'></div>
+        {/* Prism Background Animation */}
+        <div className='absolute inset-0 z-0'>
+          <Prism 
+            height={3.5}
+            baseWidth={5.5}
+            animationType="3drotate"
+            glow={2.0}
+            offset={{ x: 0, y: 0 }}
+            noise={0.2}
+            transparent={true}
+            scale={3.2}
+            hueShift={0.15}
+            colorFrequency={1.5}
+            hoverStrength={1.5}
+            inertia={0.08}
+            bloom={1.5}
+            suspendWhenOffscreen={true}
+            timeScale={0.8}
+          />
+        </div>
+
+        {/* Semi-transparent background overlay to allow Prism to show through */}
+        <div className='absolute inset-0 bg-custom-black/60'></div>
         
-        {/* Gradient from solid to transparent from top to bottom */}
-        <div className='absolute inset-0 bg-gradient-to-b from-custom-black via-custom-black/80 to-transparent'></div>
+        {/* Gradient from semi-transparent to transparent from top to bottom */}
+        <div className='absolute inset-0 bg-gradient-to-b from-custom-black/70 via-custom-black/50 to-transparent'></div>
         
         <div className='absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]'></div>
         <div className="max-w-6xl mx-auto relative z-10">
@@ -91,14 +113,13 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
             </div>
 
             <FeatureSteps
-              title="Chile's Fintech Revolution"
               features={[
                 {
                   step: "Fintech Powerhouse",
                   title: "Latin America's Financial Innovation Hub",
                   content:
                     "Chile leads Latin America with over 200 fintech companies and $1.2B in fintech investments. The 2023 Fintech Law created a sandbox environment where web3 startups can test innovative solutions while regulators learn and adapt.",
-                  image: "/catedral.png",
+                  image: "https://res.cloudinary.com/dezm9avsj/video/upload/v1756873896/chain_compressed_h18qbk.mp4",
                 },
                 {
                   step: "Open Banking Pioneer",

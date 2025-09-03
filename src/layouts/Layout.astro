@@ -249,7 +249,6 @@ const { title } = Astro.props;
       body {
         margin: 0;
         padding: 0;
-        background-color: #0a0a0a;
         overflow-x: hidden;
         /* Performance optimization */
         text-rendering: optimizeSpeed;
@@ -272,8 +271,8 @@ const { title } = Astro.props;
     </style>
   </head>
   <body
-    class="flex flex-col min-h-screen text-white relative bg-custom-black"
-    style="margin: 0; padding: 0; background-color: #0a0a0a;"
+    class="flex flex-col min-h-screen text-white relative"
+    style="margin: 0; padding: 0;"
   >
     <PrivyAppProvider client:load>
       <slot />

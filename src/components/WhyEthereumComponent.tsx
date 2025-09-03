@@ -9,25 +9,24 @@ const WhyEthereumComponent = () => {
   return (
     <section
       data-section="why-ethereum"
-      className="relative min-h-screen flex items-center justify-center py-32 px-4 z-40 overflow-hidden"
-      style={{ marginTop: "-100vh" }}
+      className="relative min-h-screen flex items-center justify-center py-16 px-4 z-40 overflow-hidden"
     >
       {/* Minimal background overlay to allow gallery to show through */}
-      <div className="absolute inset-0 bg-custom-black/20"></div>
+      <div className="absolute inset-0 bg-custom-black/10"></div>
       
       {/* Background gradient effects */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%)",
+            "radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 50%)",
           filter: "blur(60px)",
         }}
       >
       </div>
 
       {/* Animated grid pattern with transparency */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
       <div
         className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-10"
       >

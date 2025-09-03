@@ -21,23 +21,7 @@ import HackathonSection from "../components/HackathonSection.tsx";
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
   <AppWrapper client:load>
-    <div
-      style="margin: 0; padding: 0; background-color: #0a0a0a; position: relative;"
-    >
-      {/* Global solid background to prevent any gallery leakage */}
-      <div
-        style="position: fixed; inset: 0; background-color: #0a0a0a; z-index: -1;"
-      >
-      </div>
-
-      {/* Scroll Position Debug Log */}
-      <div
-        id="scroll-debug"
-        class="fixed top-4 left-4 bg-black text-white p-2 rounded text-xs font-mono z-[10000] border border-gray-600"
-      >
-        Scroll Y: <span id="scroll-y">0</span>px
-      </div>
-
+    <div style="margin: 0; padding: 0; position: relative;">
       <RulerCarousel client:load />
       <Header />
       <section id="hero" style="position: relative; z-index: 1;">
@@ -71,23 +55,5 @@ import HackathonSection from "../components/HackathonSection.tsx";
         <Footer client:load />
       </section>
     </div>
-
-    <!-- Scroll Position Debug Script -->
-    <script>
-      // Update scroll position debug log
-      function updateScrollDebug() {
-        const scrollY = window.scrollY;
-        const scrollYElement = document.getElementById("scroll-y");
-        if (scrollYElement) {
-          scrollYElement.textContent = scrollY;
-        }
-      }
-
-      // Add scroll event listener
-      window.addEventListener("scroll", updateScrollDebug, { passive: true });
-
-      // Initial update
-      updateScrollDebug();
-    </script>
   </AppWrapper>
 </Layout>
