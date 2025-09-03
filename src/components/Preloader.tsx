@@ -8,7 +8,6 @@ interface PreloaderProps {
 
 export const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
   const [counter, setCounter] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const counterRef = useRef<NodeJS.Timeout | null>(null);
@@ -38,17 +37,12 @@ export const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     };
   }, []);
 
-  // Handle completion and fade out
+  // Handle completion
   useEffect(() => {
     if (counter >= 100) {
-      // Start fade out
+      // Wait a bit then call onLoadingComplete
       setTimeout(() => {
-        setIsVisible(false);
-        
-        // Wait for fade out animation, then call onLoadingComplete
-        setTimeout(() => {
-          onLoadingComplete();
-        }, 500); // 500ms fade out duration
+        onLoadingComplete();
       }, 200);
     }
   }, [counter, onLoadingComplete]);
@@ -75,9 +69,11 @@ export const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
 
   return (
     <div 
-      className={`fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className="w-full h-full bg-black flex flex-col items-center justify-center"
+      style={{
+        backgroundColor: '#000000',
+        background: 'linear-gradient(135deg, #000000 0%, #0a0a0a 100%)'
+      }}
     >
       {/* ASCII Animation Container */}
       <div className="flex-1 flex items-center justify-center">

@@ -258,15 +258,53 @@ const { title } = Astro.props;
         box-sizing: border-box;
       }
 
+      html {
+        background-color: #000000 !important;
+      }
+
       html,
       body {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        background-color: #000000 !important;
         /* Performance optimization */
         text-rendering: optimizeSpeed;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Ensure all sections have black background by default */
+      section {
+        background-color: #000000 !important;
+      }
+
+      /* Ensure the app wrapper covers everything */
+      .app-content {
+        background-color: #000000 !important;
+        min-height: 100vh;
+      }
+
+      /* Force dark mode and prevent light mode backgrounds */
+      .dark {
+        background-color: #000000 !important;
+      }
+
+      .dark body {
+        background-color: #000000 !important;
+      }
+
+      /* Override any potential white backgrounds */
+      .bg-white,
+      .bg-gray-50,
+      .bg-gray-100,
+      .bg-gray-200 {
+        background-color: #000000 !important;
+      }
+
+      /* Ensure smooth transitions */
+      * {
+        transition: background-color 0.3s ease !important;
       }
 
       /* Parallax hover effect with performance optimization */
@@ -284,8 +322,8 @@ const { title } = Astro.props;
     </style>
   </head>
   <body
-    class="flex flex-col min-h-screen text-white relative"
-    style="margin: 0; padding: 0;"
+    class="flex flex-col min-h-screen text-white relative dark"
+    style="margin: 0; padding: 0; background-color: #000000 !important;"
   >
     <PrivyAppProvider client:load>
       <slot />
