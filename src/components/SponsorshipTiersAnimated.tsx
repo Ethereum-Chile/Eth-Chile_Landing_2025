@@ -1,16 +1,15 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   HoverSlider,
-  TextStaggerHover,
-  HoverSliderImageWrap,
   HoverSliderImage,
+  HoverSliderImageWrap,
+  TextStaggerHover,
   clipPathVariants,
   useHoverSliderContext,
 } from "./HoverSlider";
-import { HyperText } from "./HyperText";
 import { ProgressiveBlur } from "./ProgressiveBlur";
 
 interface SponsorshipTier {
@@ -199,12 +198,9 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <HyperText
-            text="Sponsorship Tiers"
-            duration={1000}
-            className="text-4xl font-raleway font-semibold text-white"
-            animateOnLoad={true}
-          />
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
+            Sponsorship Tiers
+          </h2>
         </motion.div>
 
         <motion.div

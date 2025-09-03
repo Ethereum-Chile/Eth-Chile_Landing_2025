@@ -1,6 +1,5 @@
 ---
 import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
-import { HyperText } from "./HyperText.tsx";
 ---
 
 <section class="min-h-screen relative" style="background-color: #0a0a0a">
@@ -17,13 +16,11 @@ import { HyperText } from "./HyperText.tsx";
     >
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-6">
-          <HyperText
-            client:load
-            text="What Makes Chile the Perfect Hub for Ethereum Innovation"
-            duration={1000}
-            className="text-3xl font-bold text-white"
-            animateOnLoad={true}
-          />
+          <h2
+            class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
+          >
+            Chile is the perfect hub for ethereum innovation
+          </h2>
         </div>
         <p class="text-lg text-gray-300 text-center max-w-4xl mx-auto">
           Discover why Chile's unique combination of regulatory clarity, fintech

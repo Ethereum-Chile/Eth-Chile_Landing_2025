@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HyperText } from "./HyperText.tsx";
 import ParallaxCards from "./ParallaxCards.tsx";
 import MagneticCard from "./MagneticCard.tsx";
 
@@ -109,12 +108,9 @@ const WhyEthereumComponent = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                <HyperText
-                  text="Why Ethereum, Why Now"
-                  duration={1000}
-                  className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-                  animateOnLoad={true}
-                />
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
+                  Why Ethereum, Why Now
+                </h2>
               </motion.div>
               
               <motion.p 

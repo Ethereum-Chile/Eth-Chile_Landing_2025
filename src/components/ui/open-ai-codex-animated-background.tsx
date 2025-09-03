@@ -35,9 +35,9 @@ export const Component = () => {
 
   // Memoize the fallback background to prevent unnecessary re-renders
   const FallbackBackground = useMemo(() => () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden rounded-2xl">
       {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20 animate-pulse"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20 animate-pulse rounded-2xl"></div>
       
       {/* Floating particles - Reduced from 20 to 10 for better performance */}
       <div className="absolute inset-0">
@@ -58,7 +58,7 @@ export const Component = () => {
       
       {/* Animated grid pattern */}
       <div 
-        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:50px_50px]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:50px_50px] rounded-2xl"
         style={{
           animation: 'grid-move 20s linear infinite'
         }}
@@ -127,21 +127,26 @@ export const Component = () => {
         `
       }} />
       
-      <div className={cn("absolute inset-0 w-full h-full")}>
-        {!useFallback ? (
-          <div className="w-full h-full">
-            <UnicornScene 
-              production={true} 
-              projectId="1grEuiVDSVmyvEMAYhA6" 
-              width={width} 
-              height={height}
-              onError={handleUnicornError}
-              onLoad={handleUnicornLoad}
-            />
+      {/* Rounded border card container with balanced margins */}
+      <div className="relative w-full h-full p-6">
+        <div className="w-full h-full rounded-2xl border border-white/20 bg-black/10 backdrop-blur-sm overflow-hidden shadow-2xl">
+          <div className={cn("absolute inset-0 w-full h-full rounded-2xl")}>
+            {!useFallback ? (
+              <div className="w-full h-full rounded-2xl">
+                <UnicornScene 
+                  production={true} 
+                  projectId="1grEuiVDSVmyvEMAYhA6" 
+                  width={width} 
+                  height={height}
+                  onError={handleUnicornError}
+                  onLoad={handleUnicornLoad}
+                />
+              </div>
+            ) : (
+              <FallbackBackground />
+            )}
           </div>
-        ) : (
-          <FallbackBackground />
-        )}
+        </div>
       </div>
     </>
   );

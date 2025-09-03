@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import FlipLink from "./FlipLink";
-import { HyperText } from "./HyperText.tsx";
 
 const Footer = () => {
   return (
@@ -40,12 +40,9 @@ const Footer = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <HyperText
-                text="Let's build&nbsp;together"
-                duration={1000}
-                className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent leading-tight"
-                animateOnLoad={true}
-              />
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
+                Let's build together
+              </h2>
             </motion.div>
 
             <motion.div 
@@ -127,12 +124,9 @@ const Footer = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <HyperText
-                text="Connect With Us"
-                duration={1000}
-                className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-                animateOnLoad={true}
-              />
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
+                Connect With Us
+              </h3>
             </motion.div>
 
             <motion.div 
