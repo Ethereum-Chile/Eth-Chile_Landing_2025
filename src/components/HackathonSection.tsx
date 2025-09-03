@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Component as AnimatedBackground } from "./ui/open-ai-codex-animated-background";
 
 const HackathonSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,6 +36,10 @@ const HackathonSection = () => {
       }
     };
   }, []);
+
+  const handleButtonClick = () => {
+    setIsButtonClicked(true);
+  };
 
   return (
     <div 
@@ -88,12 +93,32 @@ const HackathonSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <a
-            href="/hack"
+          <button
+            onClick={handleButtonClick}
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
           >
-            Apply Now
-          </a>
+            <AnimatePresence mode="wait">
+              {!isButtonClicked ? (
+                <motion.span
+                  key="apply-now"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Apply Now
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="coming-soon"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Coming Soon
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
         </motion.div>
       </motion.div>
     </div>
