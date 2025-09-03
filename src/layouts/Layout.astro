@@ -20,6 +20,30 @@ const { title } = Astro.props;
     <meta name="theme-color" content="#000000" />
     <title>{title}</title>
 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="ETHChile" />
+    <link rel="apple-touch-icon" href="/logo-claro.png" />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="/fonts/departureMono-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/imgs/eth_chile2025.png" as="image" />
+
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
     <!-- OpenGraph Meta Tags -->
     <meta
       property="og:title"
@@ -70,12 +94,46 @@ const { title } = Astro.props;
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ethchile.com" />
+
+    <!-- Performance optimization script -->
     <script>
       // Polyfill for global
       if (typeof global === "undefined") {
         window.global = window;
       }
+
+      // Performance optimization: Preload critical images
+      const criticalImages = [
+        "/imgs/gallery/gallery_image_01.webp",
+        "/imgs/gallery/gallery_image_02.webp",
+        "/imgs/gallery/gallery_image_03.webp",
+      ];
+
+      // Preload critical images in background
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => {
+          criticalImages.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+          });
+        });
+      }
+
+      // Register Service Worker for caching and offline functionality
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log("SW registered: ", registration);
+            })
+            .catch((registrationError) => {
+              console.log("SW registration failed: ", registrationError);
+            });
+        });
+      }
     </script>
+
     <style>
       :root {
         /* Light theme variables */
@@ -123,12 +181,21 @@ const { title } = Astro.props;
         --accent: var(--accent-dark);
       }
 
-      /* Smooth transitions */
+      /* Smooth transitions with performance optimization */
       * {
         transition:
           background-color 0.3s ease,
           color 0.3s ease,
           border-color 0.3s ease;
+      }
+
+      /* Optimize animations for performance */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
 
       /* Dark gradient background */
@@ -151,7 +218,7 @@ const { title } = Astro.props;
         min-height: 100vh;
       }
 
-      /* Logo carousel animation */
+      /* Logo carousel animation with performance optimization */
       @keyframes scroll {
         0% {
           transform: translateX(0);
@@ -163,6 +230,7 @@ const { title } = Astro.props;
 
       .animate-scroll {
         animation: scroll 30s linear infinite;
+        will-change: transform;
       }
 
       /* Custom black background */
@@ -183,9 +251,13 @@ const { title } = Astro.props;
         padding: 0;
         background-color: #0a0a0a;
         overflow-x: hidden;
+        /* Performance optimization */
+        text-rendering: optimizeSpeed;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Parallax hover effect */
+      /* Parallax hover effect with performance optimization */
       .parallax-img {
         transition: transform 0.1s ease-out;
         transform-style: preserve-3d;
@@ -206,37 +278,63 @@ const { title } = Astro.props;
     <PrivyAppProvider client:load>
       <slot />
     </PrivyAppProvider>
-    <script src="../utils/carousel.js"></script>
+
+    <!-- Defer non-critical scripts -->
+    <script src="../utils/carousel.js" defer></script>
     <script>
-      // Initialize theme manager on client side
-      import("../utils/theme.js").then(({ themeManager }) => {
-        // Force initialization on client side
-        themeManager.forceInit();
+      // Initialize theme manager on client side with performance optimization
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => {
+          import("../utils/theme.js").then(({ themeManager }) => {
+            // Force initialization on client side
+            themeManager.forceInit();
 
-        console.log(
-          "Theme manager initialized:",
-          themeManager.getCurrentTheme()
-        );
+            console.log(
+              "Theme manager initialized:",
+              themeManager.getCurrentTheme()
+            );
 
-        // Update body classes based on theme
-        const updateBodyClasses = () => {
-          const theme = themeManager.getCurrentTheme();
-          document.body.className = `flex flex-col min-h-screen relative ${
-            theme === "light"
-              ? "text-black bg-light-gradient"
-              : "text-white bg-dark-gradient"
-          }`;
-        };
+            // Update body classes based on theme
+            const updateBodyClasses = () => {
+              const theme = themeManager.getCurrentTheme();
+              document.body.className = `flex flex-col min-h-screen relative ${
+                theme === "light"
+                  ? "text-black bg-light-gradient"
+                  : "text-white bg-dark-gradient"
+              }`;
+            };
 
-        // Initial update
-        updateBodyClasses();
+            // Initial update
+            updateBodyClasses();
 
-        // Listen for theme changes
-        window.addEventListener("themeChanged", (event) => {
-          console.log("Theme changed to:", (event as CustomEvent).detail.theme);
-          updateBodyClasses();
+            // Listen for theme changes
+            window.addEventListener("themeChanged", (event) => {
+              console.log(
+                "Theme changed to:",
+                (event as CustomEvent).detail.theme
+              );
+              updateBodyClasses();
+            });
+          });
         });
-      });
+      } else {
+        // Fallback for older browsers
+        import("../utils/theme.js").then(({ themeManager }) => {
+          themeManager.forceInit();
+          const updateBodyClasses = () => {
+            const theme = themeManager.getCurrentTheme();
+            document.body.className = `flex flex-col min-h-screen relative ${
+              theme === "light"
+                ? "text-black bg-light-gradient"
+                : "text-white bg-dark-gradient"
+            }`;
+          };
+          updateBodyClasses();
+          window.addEventListener("themeChanged", (event) => {
+            updateBodyClasses();
+          });
+        });
+      }
     </script>
   </body>
 </html>

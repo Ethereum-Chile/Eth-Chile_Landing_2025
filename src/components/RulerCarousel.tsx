@@ -15,7 +15,7 @@ const sections = [
   { id: 'footer', name: 'Contacto' }
 ];
 
-// Ruler Lines Component
+// Ruler Lines Component - Only show on desktop
 const RulerLines = ({ left = true }) => {
   const lines = [];
   const totalLines = 50;
@@ -61,6 +61,7 @@ const RulerLines = ({ left = true }) => {
 export default function RulerCarousel() {
   const [scrollY, setScrollY] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Custom gaps array - each number is the gap AFTER that button
   // Moved Sponsors very close to Web3 in navigation wheel
@@ -70,6 +71,13 @@ export default function RulerCarousel() {
   const totalHeight = gaps.reduce((sum, gap) => sum + gap, 0);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -92,7 +100,10 @@ export default function RulerCarousel() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, [totalHeight]);
 
   const handleItemClick = (index: number) => {
@@ -104,6 +115,9 @@ export default function RulerCarousel() {
   };
 
   const handleRulerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Only handle ruler click on desktop
+    if (isMobile) return;
+    
     // Check if the click was on a button (navigation item)
     const target = event.target as HTMLElement;
     const isButtonClick = target.closest('[data-section-button]');
@@ -133,9 +147,60 @@ export default function RulerCarousel() {
     });
   };
 
+  // Mobile bottom navbar
+  if (isMobile) {
+    return (
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+        {/* Background container */}
+        <div className="bg-black/90 backdrop-blur-md border-t border-white/10">
+          {/* Navigation items */}
+          <div className="flex items-center justify-center px-4 py-3 overflow-x-auto">
+            <motion.div 
+              className="flex items-center relative"
+              style={{ 
+                transform: `translateX(-${scrollY * 0.1}px)`, // Horizontal scroll motion
+              }}
+            >
+              {sections.map((section, index) => {
+                const isActive = index === activeIndex;
+                
+                // Calculate position based on scroll progress for mobile
+                const scrollProgress = scrollY / totalHeight;
+                const sectionProgress = scrollProgress * (sections.length - 1);
+                const isInView = Math.abs(index - sectionProgress) < 0.5;
+                
+                return (
+                  <motion.button
+                    key={section.id}
+                    onClick={() => handleItemClick(index)}
+                    className="font-raleway font-bold text-xs px-3 py-2 whitespace-nowrap flex-shrink-0 mx-1"
+                    style={{
+                      color: "#ffffff",
+                      textShadow: isActive ? "0 0 8px rgba(255,255,255,1)" : "0 0 3px rgba(255, 255, 255, 0.5)",
+                      filter: "brightness(1.1)",
+                    }}
+                    animate={{
+                      scale: isActive ? 1.1 : isInView ? 1.05 : 1,
+                      opacity: isActive ? 1 : isInView ? 0.9 : 0.6,
+                      y: isActive ? -2 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    {section.name}
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop vertical sidebar
   return (
     <div 
-      className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 h-96 w-16 overflow-hidden cursor-pointer"
+      className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 h-96 w-16 overflow-hidden cursor-pointer hidden md:block"
       onClick={handleRulerClick}
     >
       {/* Background container with transparency fade-out using mask */}
@@ -151,7 +216,7 @@ export default function RulerCarousel() {
       <div className="absolute inset-0 pointer-events-none z-30" 
            style={{
              maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)',
-             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)'
+             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)'
            }}>
         {/* Ruler lines on left */}
         <div className="absolute left-0 top-0 h-full">

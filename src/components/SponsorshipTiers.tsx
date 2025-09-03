@@ -74,20 +74,20 @@ const SponsorshipTierCard: React.FC<{ tier: SponsorshipTier }> = ({ tier }) => {
         decoding="async"
       />
       
-      {/* Progressive Blur Effect - Only on hover */}
+      {/* Progressive Blur Effect - Always visible */}
       <ProgressiveBlur
         direction="bottom"
         blurLayers={15}
         blurIntensity={0.8}
         className="absolute inset-0 rounded-lg"
-        isVisible={isHovered}
+        isVisible={true}
       />
       
-      {/* Hover Text - No background, no borders */}
+      {/* Text - Always visible */}
       <motion.div
         className="absolute inset-0 z-50 flex flex-col justify-end p-6"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <div className="text-white">

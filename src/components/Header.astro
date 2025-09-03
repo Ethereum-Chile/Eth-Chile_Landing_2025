@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo-claro.png";
-import { ConnectWallet } from "./ConnectWallet.tsx";
 ---
 
 <header
@@ -26,10 +25,6 @@ import { ConnectWallet } from "./ConnectWallet.tsx";
       ethereum <span class="font-semibold">Chile</span>
     </h2>
   </a>
-
-  <div class="flex items-center">
-    <ConnectWallet client:load />
-  </div>
 </header>
 
 <style>

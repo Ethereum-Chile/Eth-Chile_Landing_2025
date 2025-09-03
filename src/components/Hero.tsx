@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ContainerAnimated,
@@ -10,8 +10,9 @@ import {
   GalleryCol,
   GalleryContainer,
 } from "./ContainerScroll";
+import { useGalleryControl } from "../hooks/useGalleryControl";
 
-// Extended images for the gallery with more content to prevent empty spaces
+// Reduced image arrays for better performance - only essential images
 const IMAGES_1 = [
   "/imgs/gallery/gallery_image_01.webp",
   "/imgs/gallery/gallery_image_02.webp",
@@ -35,17 +36,6 @@ const IMAGES_1 = [
   "/imgs/gallery/DSC03514.webp",
   "/imgs/gallery/DSC03517.webp",
   "/imgs/gallery/DSC03520.webp",
-  "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/gallery_image_02.webp",
-  "/imgs/gallery/gallery_image_03.webp",
-  "/imgs/gallery/gallery_image_04.webp",
-  "/imgs/gallery/gallery_image_05.webp",
-  "/imgs/gallery/gallery_image_06.webp",
-  "/imgs/gallery/gallery_image_07.webp",
-  "/imgs/gallery/gallery_image_08.webp",
-  "/imgs/gallery/gallery_image_09.webp",
-  "/imgs/gallery/gallery_image_10.webp",
-  "/imgs/gallery/gallery_image_11.webp",
 ];
 
 const IMAGES_2 = [
@@ -71,42 +61,9 @@ const IMAGES_2 = [
   "/imgs/gallery/gallery_image_03.webp",
   "/imgs/gallery/gallery_image_02.webp",
   "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/DSC03520.webp",
-  "/imgs/gallery/DSC03517.webp",
-  "/imgs/gallery/DSC03514.webp",
-  "/imgs/gallery/DSC03511.webp",
-  "/imgs/gallery/DSC03506.webp",
-  "/imgs/gallery/DSC03505.webp",
-  "/imgs/gallery/DSC03501.webp",
-  "/imgs/gallery/DSC03485.webp",
-  "/imgs/gallery/DSC01731.webp",
-  "/imgs/gallery/DSC01690.webp",
-  "/imgs/gallery/DSC01614.webp",
 ];
 
 const IMAGES_3 = [
-  "/imgs/gallery/gallery_image_06.webp",
-  "/imgs/gallery/gallery_image_07.webp",
-  "/imgs/gallery/gallery_image_08.webp",
-  "/imgs/gallery/gallery_image_09.webp",
-  "/imgs/gallery/gallery_image_10.webp",
-  "/imgs/gallery/gallery_image_11.webp",
-  "/imgs/gallery/DSC01614.webp",
-  "/imgs/gallery/DSC01690.webp",
-  "/imgs/gallery/DSC01731.webp",
-  "/imgs/gallery/DSC03485.webp",
-  "/imgs/gallery/DSC03501.webp",
-  "/imgs/gallery/DSC03505.webp",
-  "/imgs/gallery/DSC03506.webp",
-  "/imgs/gallery/DSC03511.webp",
-  "/imgs/gallery/DSC03514.webp",
-  "/imgs/gallery/DSC03517.webp",
-  "/imgs/gallery/DSC03520.webp",
-  "/imgs/gallery/gallery_image_01.webp",
-  "/imgs/gallery/gallery_image_02.webp",
-  "/imgs/gallery/gallery_image_03.webp",
-  "/imgs/gallery/gallery_image_04.webp",
-  "/imgs/gallery/gallery_image_05.webp",
   "/imgs/gallery/gallery_image_06.webp",
   "/imgs/gallery/gallery_image_07.webp",
   "/imgs/gallery/gallery_image_08.webp",
@@ -128,113 +85,152 @@ const IMAGES_3 = [
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldRenderGallery, setShouldRenderGallery] = useState(true);
+  const { shouldRenderGallery } = useGalleryControl();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  // Gallery rendering is controlled by the useGalleryControl hook
+  // which listens for custom events from ScrollAnimationSections
 
   // Transform scroll progress to text animations
   const textY = useTransform(scrollYProgress, [0, 0.8], [0, 400]); // Slide down 400px (adjusted for 250vh)
   const textOpacity = useTransform(scrollYProgress, [0, 0.6, 0.8], [1, 1, 0]); // Fade out at 80% scroll (200vh of 250vh)
   const textScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]); // More scale down for visibility
 
-  // Effect to control gallery rendering based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      // Stop rendering gallery when scrolling past the Latam component
-      // This is approximately after the Hero (250vh) + WhyEthereum (100vh) + ScrollAnimationSections (100vh)
-      const galleryStopPoint = windowHeight * 4.5; // 450vh total
-      
-      if (scrollY > galleryStopPoint) {
-        setShouldRenderGallery(false);
-      } else {
-        setShouldRenderGallery(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Gallery rendering is now controlled by the useGalleryControl hook
+  // which listens for custom events from ScrollAnimationSections
 
   return (
     <div ref={containerRef} className="relative bg-custom-black h-[250vh] w-full overflow-hidden" style={{ scrollBehavior: 'smooth' }}>
-      <style dangerouslySetInnerHTML={{
+            <style dangerouslySetInnerHTML={{
         __html: `
           .gallery-col {
             animation: autoScrollUp 60s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
           }
           
           .gallery-col:nth-child(2) {
             animation: autoScrollDown 60s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
           }
           
           .gallery-col:nth-child(3) {
             animation: autoScrollUp 60s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
           }
           
+          /* Force hide gallery when shouldRenderGallery is false */
+          .gallery-hidden {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+          }
+          
+          /* Optimize animations for smooth performance */
           @keyframes autoScrollUp {
             0% {
-              transform: translateY(0);
+              transform: translate3d(0, 0, 0);
             }
             100% {
-              transform: translateY(-50%);
+              transform: translate3d(0, -50%, 0);
             }
           }
           
           @keyframes autoScrollDown {
             0% {
-              transform: translateY(-50%);
+              transform: translate3d(0, -50%, 0);
             }
             100% {
-              transform: translateY(0);
+              transform: translate3d(0, 0, 0);
             }
           }
         `
       }} />
       
       {/* Gallery Background - Fixed position, fills entire 250vh, but only when shouldRenderGallery is true */}
-      {shouldRenderGallery && (
+      {/* Performance optimization: Gallery stops rendering when ScrollAnimationSections comes into view */}
+      {/* Gallery is completely removed from DOM when not needed to save CPU and memory */}
+      {shouldRenderGallery ? (
         <div className="fixed inset-0 w-full h-full z-0">
           <GalleryContainer className="w-full h-full grid-cols-3 gap-2 p-2">
             <GalleryCol className="gallery-col h-full">
               {IMAGES_1.map((imageUrl, index) => (
                 <img
-                  key={index}
+                  key={`col1-${index}`}
                   className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
                   src={imageUrl}
                   alt="ETHChile gallery item"
+                  loading={index < 5 ? "eager" : "lazy"}
+                  decoding="async"
+                  style={{
+                    willChange: 'transform',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                  onLoad={(e) => {
+                    // Optimize image loading
+                    const img = e.target as HTMLImageElement;
+                    img.style.opacity = '1';
+                  }}
                 />
               ))}
             </GalleryCol>
             <GalleryCol className="gallery-col h-full">
               {IMAGES_2.map((imageUrl, index) => (
                 <img
-                  key={index}
+                  key={`col2-${index}`}
                   className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
                   alt="ETHChile gallery item"
                   src={imageUrl}
+                  loading={index < 5 ? "eager" : "lazy"}
+                  decoding="async"
+                  style={{
+                    willChange: 'transform',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                  onLoad={(e) => {
+                    // Optimize image loading
+                    const img = e.target as HTMLImageElement;
+                    img.style.opacity = '1';
+                  }}
                 />
               ))}
             </GalleryCol>
             <GalleryCol className="gallery-col h-full">
               {IMAGES_3.map((imageUrl, index) => (
                 <img
-                  key={index}
+                  key={`col3-${index}`}
                   className="aspect-video block h-auto w-full rounded-md object-cover shadow-lg border border-white/10 mb-2"
                   src={imageUrl}
                   alt="ETHChile gallery item"
+                  loading={index < 5 ? "eager" : "lazy"}
+                  decoding="async"
+                  style={{
+                    willChange: 'transform',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                  onLoad={(e) => {
+                    // Optimize image loading
+                    const img = e.target as HTMLImageElement;
+                    img.style.opacity = '1';
+                  }}
                 />
               ))}
             </GalleryCol>
           </GalleryContainer>
         </div>
-      )}
+      ) : null}
 
       {/* Background gradient effect */}
       <div 

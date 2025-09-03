@@ -5,7 +5,6 @@ import WhyEthereum from "../components/WhyEthereum.astro";
 import ScrollAnimationSections from "../components/ScrollAnimationSections.tsx";
 import WhatMakesUnique from "../components/WhatMakesUnique.astro";
 import Team from "../components/Team.astro";
-import Hackathon from "../components/Hackathon.astro";
 import Conference from "../components/Conference.astro";
 import Socials from "../components/Socials.astro";
 
@@ -14,18 +13,31 @@ import Footer from "../components/Footer.tsx";
 import { SponsorshipTiersAnimated } from "../components/SponsorshipTiersAnimated.tsx";
 
 import SocialProof from "../components/SocialProof.astro";
-import TrustedBy from "../components/TrustedBy.tsx";
 import Hero from "../components/Hero";
 import RulerCarousel from "../components/RulerCarousel.tsx";
 import AppWrapper from "../components/AppWrapper.tsx";
+import HackathonSection from "../components/HackathonSection.tsx";
 ---
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
   <AppWrapper client:load>
-    <div style="margin: 0; padding: 0; background-color: #0a0a0a; position: relative;">
+    <div
+      style="margin: 0; padding: 0; background-color: #0a0a0a; position: relative;"
+    >
       {/* Global solid background to prevent any gallery leakage */}
-      <div style="position: fixed; inset: 0; background-color: #0a0a0a; z-index: -1;"></div>
-      
+      <div
+        style="position: fixed; inset: 0; background-color: #0a0a0a; z-index: -1;"
+      >
+      </div>
+
+      {/* Scroll Position Debug Log */}
+      <div
+        id="scroll-debug"
+        class="fixed top-4 left-4 bg-black text-white p-2 rounded text-xs font-mono z-[10000] border border-gray-600"
+      >
+        Scroll Y: <span id="scroll-y">0</span>px
+      </div>
+
       <RulerCarousel client:load />
       <Header />
       <section id="hero" style="position: relative; z-index: 1;">
@@ -40,24 +52,42 @@ import AppWrapper from "../components/AppWrapper.tsx";
       <section id="chile" style="position: relative; z-index: 2;">
         <WhatMakesUnique />
       </section>
+      <section id="hackathons" style="position: relative; z-index: 2;">
+        <HackathonSection client:load />
+      </section>
       <section id="team" style="position: relative; z-index: 2;">
         <Team />
       </section>
       <section id="web3" style="position: relative; z-index: 2;">
         <SocialProof />
       </section>
-      <section id="hackathons" style="position: relative; z-index: 2;">
-        <Hackathon />
-      </section>
       <section id="sponsors" style="position: relative; z-index: 2;">
         <SponsorshipTiersAnimated client:load />
       </section>
-      <section id="trusted-by" style="position: relative; z-index: 2;">
-        <TrustedBy client:load />
-      </section>
-      <section id="footer" style="margin: 0; padding: 0; position: relative; z-index: 2;">
+      <section
+        id="footer"
+        style="margin: 0; padding: 0; position: relative; z-index: 2;"
+      >
         <Footer client:load />
       </section>
     </div>
+
+    <!-- Scroll Position Debug Script -->
+    <script>
+      // Update scroll position debug log
+      function updateScrollDebug() {
+        const scrollY = window.scrollY;
+        const scrollYElement = document.getElementById("scroll-y");
+        if (scrollYElement) {
+          scrollYElement.textContent = scrollY;
+        }
+      }
+
+      // Add scroll event listener
+      window.addEventListener("scroll", updateScrollDebug, { passive: true });
+
+      // Initial update
+      updateScrollDebug();
+    </script>
   </AppWrapper>
 </Layout>

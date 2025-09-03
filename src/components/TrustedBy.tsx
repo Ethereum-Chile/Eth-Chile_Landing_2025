@@ -19,9 +19,9 @@ const TrustedBy = () => {
             style={{ minHeight: "3rem" }}
           >
             <HyperText
-              text="Trusted by Industry Leaders"
+              text="Trusted by&nbsp;Industry&nbsp;Leaders"
               duration={1000}
-              className="text-2xl md:text-3xl font-raleway font-semibold mb-6 text-white"
+              className="text-2xl md:text-3xl font-raleway font-semibold mb-6 text-white leading-tight"
               animateOnLoad={true}
             />
           </motion.div>

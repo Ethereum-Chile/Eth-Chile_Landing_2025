@@ -4,16 +4,16 @@ import { HyperText } from "./HyperText.tsx";
 
 const cards = [
   {
-    title: "17M+",
+    title: "19M+",
     subtitle: "Active Wallets",
     f: 0.1,
-    link: "#", // Placeholder link for now
+    link: "https://cryptorank.io/news/feed/09613-ethereum-user-activity-2021-peak-nfts-charge",
   },
   {
-    title: "$50B+",
+    title: "$80B+",
     subtitle: "Total Value Locked",
     f: 0.12,
-    link: "#", // Placeholder link for now
+    link: "https://defillama.com/chain/Ethereum",
   },
   {
     title: "Pectra",

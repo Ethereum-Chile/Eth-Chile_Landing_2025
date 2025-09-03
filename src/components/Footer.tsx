@@ -20,9 +20,9 @@ const Footer = () => {
       }}
     >
       {/* Solid background overlay to prevent gallery leakage */}
-      <div className="absolute inset-0 bg-custom-black/80"></div>
+      <div className="absolute inset-0 bg-custom-black/40"></div>
       
-      <div className="absolute inset-0 bg-black/20"></div>
+      <div className="absolute inset-0 bg-black/10"></div>
       <div className="w-full max-w-6xl mx-auto relative z-10 flex flex-col justify-center h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <motion.div 
@@ -41,9 +41,9 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <HyperText
-                text="Let's Build Together"
+                text="Let's build&nbsp;together"
                 duration={1000}
-                className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                className="text-4xl font-raleway font-semibold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent leading-tight"
                 animateOnLoad={true}
               />
             </motion.div>

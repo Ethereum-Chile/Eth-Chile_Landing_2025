@@ -20,7 +20,7 @@ const hackathonCards: HackathonCard[] = [
     imageUrl: "/imgs/RARE_sponsor.png",
   },
   {
-    title: "DeFi & Tokenization",
+    title: "DeFi",
     subtitle: "Build the future of finance",
     description: "Projects focused on decentralized finance and tokenization.",
     imageUrl: "/imgs/WAGMI_sponsor.png",
@@ -163,31 +163,18 @@ export const HackathonCards: React.FC = () => {
                       decoding="async"
                     />
 
-                    {/* Progressive Blur Effect - Only on hover */}
-                    <ProgressiveBlur
-                      direction="bottom"
-                      blurLayers={15}
-                      blurIntensity={0.8}
-                      className="absolute inset-0"
-                      isVisible={isHovered && selectedIndex === index}
-                    />
-
-                    {/* Text Overlay - Positioned at bottom */}
+                    {/* Text Overlay - Always visible */}
                     <motion.div
                       className="absolute inset-0 z-50 flex flex-col justify-end p-6"
                       initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: isHovered && selectedIndex === index ? 1 : 0,
-                      }}
+                      animate={{ opacity: 1 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
                     >
                       <div className="text-white">
                         <motion.p
                           className="text-xl font-bold mb-2 text-shadow-lg"
                           initial={{ y: 20 }}
-                          animate={{
-                            y: isHovered && selectedIndex === index ? 0 : 20,
-                          }}
+                          animate={{ y: 0 }}
                           transition={{ duration: 0.4 }}
                         >
                           {card.subtitle}
@@ -195,9 +182,7 @@ export const HackathonCards: React.FC = () => {
                         <motion.p
                           className="text-sm text-gray-200 leading-relaxed text-shadow-lg"
                           initial={{ y: 20 }}
-                          animate={{
-                            y: isHovered && selectedIndex === index ? 0 : 20,
-                          }}
+                          animate={{ y: 0 }}
                           transition={{ duration: 0.4, delay: 0.1 }}
                         >
                           {card.description}

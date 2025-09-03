@@ -101,18 +101,11 @@ const ImageWithPricing: React.FC<{ tier: SponsorshipTier; index: number }> = ({
   index,
 }) => {
   const { activeSlide } = useHoverSliderContext();
-  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <div
       className="w-full h-full relative group cursor-pointer overflow-visible"
       style={{ aspectRatio: "1/1" }}
-      onMouseEnter={() => {
-        setIsHovered(true);
-      }}
-      onMouseLeave={() => {
-        setIsHovered(false);
-      }}
     >
       <motion.img
         src={tier.imageUrl}
@@ -126,20 +119,20 @@ const ImageWithPricing: React.FC<{ tier: SponsorshipTier; index: number }> = ({
         animate={activeSlide === index ? "visible" : "hidden"}
       />
 
-      {/* Progressive Blur Effect - Only on hover */}
+      {/* Progressive Blur Effect - Always visible when image is active */}
       <ProgressiveBlur
         direction="bottom"
         blurLayers={12}
         blurIntensity={0.6}
         className="absolute inset-0 rounded-lg"
-        isVisible={isHovered}
+        isVisible={activeSlide === index}
       />
 
-      {/* Hover Text - No background, no borders */}
+      {/* Text - Always visible when image is active */}
       <motion.div
         className="absolute inset-0 z-50 flex flex-col justify-end p-6"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
+        animate={{ opacity: activeSlide === index ? 1 : 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <div className="text-white">
@@ -254,21 +247,21 @@ export const SponsorshipTiersAnimated: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://drive.google.com/file/d/1-EXAMPLE-FILE-ID/view?usp=sharing"
+                  href="https://forms.gle/U5nWGcsZMLogwmEn7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
                   onClick={() => {
                     // Google Analytics event tracking
                     if (typeof window !== 'undefined' && (window as any).gtag) {
-                      (window as any).gtag('event', 'download_sponsor_deck', {
+                      (window as any).gtag('event', 'apply_sponsor', {
                         event_category: 'engagement',
                         event_label: 'sponsorship_tiers'
                       });
                     }
                   }}
                 >
-                  Download Sponsorship Deck
+                  Aplica para ser sponsor
                 </a>
                 <a
                   href="https://t.me/cristpereirag"

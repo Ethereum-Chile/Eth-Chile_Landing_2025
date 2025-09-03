@@ -1,0 +1,75 @@
+{
+  "name": "ETHChile 2025",
+  "short_name": "ETHChile",
+  "description": "Ethereum Meets the Real World - Latin America's premier Ethereum event",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "categories": ["business", "technology", "finance"],
+  "icons": [
+    {
+      "src": "/logo-claro.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/imgs/eth_chile2025.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Hackathon",
+      "short_name": "Hack",
+      "description": "Apply for ETH Chile Hackathon",
+      "url": "/hack",
+      "icons": [
+        {
+          "src": "/logo-claro.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Speakers",
+      "short_name": "Speakers",
+      "description": "View event speakers",
+      "url": "/speakers",
+      "icons": [
+        {
+          "src": "/logo-claro.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/imgs/eth_chile2025.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+ethereum",
+      "url": "/?protocol=%s"
+    }
+  ]
+}

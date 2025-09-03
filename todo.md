@@ -1,249 +1,182 @@
-# ETH Chile 2025 - Project TODO List
+# ETH Chile 2025 - Development Todo
 
-## ✅ Completed Tasks
+## 🚀 High Priority Features
 
-### 🧭 Navigation & Interaction
+### 1. Language Localization System
 
-- [x] **Fix carousel navigation**: Sections scroll based on scroll position
-- [x] **Implement smooth scroll behavior**
-- [x] **Sync navigation with scroll position**
-- [x] **Test on all viewport sizes**
-- [x] **Remove console.log statements** - Clean console output
-- [x] **Restore original hover gallery layout** for SponsorshipTiersAnimated
+- [ ] **Full Spanish/English Support**
+  - [ ] Create language toggle in top navbar (ES/EN)
+  - [ ] Replace current "Spanglish" with proper localization
+  - [ ] Implement i18n system (react-i18next or similar)
+  - [ ] Create translation files for all content
+  - [ ] Add language persistence (localStorage/cookies)
+  - [ ] counter days till event.
 
-### 📂 Sponsored Deck
+### 2. Event Countdown & Ticker
 
-- [x] **Make "Download Sponsor Deck" button functional** - Button exists but needs file hosting
+- [ ] **Countdown Timer**
+  - [ ] Create animated countdown to event date
+  - [ ] Days, hours, minutes, seconds display
+  - [ ] Responsive design for all devices
+  - [ ] Add urgency indicators as date approaches
+- [ ] **Live Ticker**
+  - [ ] Scrolling announcements/news
+  - [ ] Real-time updates integration
+  - [ ] Smooth scrolling animation
+  - [ ] Pause on hover functionality
 
-### 🎯 Hero Sections
+### 3. Ticket System
 
-- [x] **Add unhover animation to all section titles**
-- [x] **Implement smooth transition effects**
-- [x] **Test hover/unhover states**
+- [ ] **Ticket Management**
+  - [ ] Ticket purchase/registration flow
+  - [ ] Different ticket tiers (VIP, General, Student)
+  - [ ] QR code generation for tickets
+  - [ ] Email confirmation system
+  - [ ] Ticket validation system
 
-### 🔐 Authentication
+### 4. Social Media Animation
 
-- [x] **Privy authentication implementation** - Already implemented and working
+- [ ] **Shareable Content**
+  - [ ] Create "dope" animated graphics for social media
+  - [ ] Animated logo reveals
+  - [ ] Particle effects and dynamic backgrounds
+  - [ ] Exportable formats (GIF, MP4, WebM)
+  - [ ] Social sharing buttons with pre-filled content
 
----
+### 5. Conversion Funnel
 
-## Top Priority Tasks
+- [ ] **Lead Generation**
+  - [ ] Email signup forms
+  - [ ] Newsletter subscription
+  - [ ] Early bird registration
+  - [ ] A/B testing for conversion optimization
+  - [ ] Analytics tracking
 
-### 📂 Sponsored Deck Google Drive Link
+## 🎨 Design & UX Improvements
 
-- [ ] **Add Google Drive link to sponsor deck button**
-  - [ ] Upload sponsor deck PDF to Google Drive
-  - [ ] Set sharing permissions to "Anyone with the link can view"
-  - [ ] Update download button in SponsorshipTiersAnimated.tsx to link to Google Drive URL
-  - [ ] Test download functionality across browsers
-  - [ ] Add download tracking/analytics (Google Analytics event)
+### 6. Landing Page Structure
 
-### CTA Button Update - "Quiero ser Speaker"
-
-- [ ] **Update Hero CTA button text to "Quiero ser Speaker"**
-  - [ ] Link with smooth scrool to the speaker application form in SocialProof section
-  - [ ] Test button functionality and navigation
-  - [ ] Ensure responsive design across devices
-
-### 🏢 Trusted by Industry Leaders - Logo Updates
-
-- [ ] **Update logos to white versions of:**
-  - [ ] Polkadot logo (white version)
-  - [ ] Worldcoin logo (white version)
-  - [ ] Ethereum logo (white version)
-  - [ ] Optimism logo (white version)
-  - [ ] Crecimiento logo (white version)
-  - [ ] Mantle Network logo (white version)
-  - [ ] Base logo (white version)
-  - [ ] Ethereum Foundation logo (white version)
-- [ ] **Ensure consistent sizing and spacing**
-- [ ] **Test responsive behavior across devices**
-- [ ] **Add proper alt text for accessibility**
-
-### Hero Section Updates
-
-- [ ] Optimize for web performance (WebP format, responsive sizes)
-- [ ] update images with more images from eth chile 2024
-- [ ] Ensure responsive behavior across devices
-
-### Profile Creation UI Accessibility
-
-- [ ] **Fix profile creation flow visibility issues**
-  - [ ] Improve text color contrast for better readability
-  - [ ] Fix button visibility and styling
-  - [ ] Ensure form fields are clearly visible
-  - [ ] Add proper focus states for accessibility
-  - [ ] Test with screen readers
-  - [ ] Add loading states and error messages
-  - [ ] Improve mobile responsiveness
-
-### 🗄️ Supabase Database Integration
-
-- [ ] **Set up Supabase project**
-  - [ ] Create new Supabase project at supabase.com
-  - [ ] Configure environment variables:
-    - `SUPABASE_URL`
-    - `SUPABASE_ANON_KEY`
-    - `SUPABASE_SERVICE_ROLE_KEY`
-  - [ ] Set up Row Level Security (RLS) policies
-- [ ] **Database schema design**
-  - [ ] Create `users` table:
-    - id (uuid, primary key)
-    - email (text, unique)
-    - wallet_address (text, nullable)
-    - created_at (timestamp)
-    - updated_at (timestamp)
-  - [ ] Create `tickets` table:
-    - id (uuid, primary key)
-    - user_id (uuid, foreign key)
-    - ticket_type (text)
-    - price (decimal)
-    - status (text: 'pending', 'paid', 'cancelled')
-    - qr_code (text)
-    - payment_method (text: 'stripe', 'crypto')
-    - transaction_hash (text, nullable)
-    - created_at (timestamp)
-  - [ ] Create `payments` table:
-    - id (uuid, primary key)
-    - user_id (uuid, foreign key)
-    - ticket_id (uuid, foreign key)
-    - amount (decimal)
-    - currency (text)
-    - payment_method (text)
-    - status (text: 'pending', 'completed', 'failed')
-    - transaction_hash (text, nullable)
-    - created_at (timestamp)
-- [ ] **User authentication flow**
-  - [x] **Privy authentication** - Already implemented
-  - [ ] Create user profile management
-  - [ ] Add session management and persistence
-  - [ ] Link Privy user to Supabase profile
-
-### 📧 Email System
-
-- [ ] **Set up email service**
-  - [ ] Integrate Resend
-  - [ ] Configure email templates:
-    - Welcome email with wallet connection instructions
-    - Payment confirmation with ticket details
-    - Event reminders
-    - Ticket validation instructions
-
-### 👥 Teams & Profiles
-
-- [ ] **Update team images**
-  - [ ] Source high-quality profile photos
-  - [ ] Ensure consistent sizing and style
-- [ ] **Get profile creation flow working**
-  - [x] **Connect wallet functionality** - Privy already implemented
-  - [ ] Create profile form with improved UI
-  - [ ] Save to Supabase database
-
----
-
-## Footer Fixes
-
-### Footer Visual Updates
-
-### 🔗 Footer Functionality
-
-- [ ] **Fix contact form/forum in the footer**
-  - [ ] Implement working contact form
-  - [ ] Add form validation
-  - [ ] Connect to email service
-- [ ] **Update all footer links**
+- [ ] **Hero Section**
+  - [ ] Compelling headline with clear value proposition
+  - [ ] Call-to-action buttons
+  - [ ] Background video/animation
+- [ ] **Content Sections**
+  - [ ] About the event
+  - [ ] Speakers showcase
+  - [ ] Schedule overview
+  - [ ] Venue information
+  - [ ] Sponsors section
+  - [ ] Testimonials
+- [ ] **Footer**
+  - [ ] Contact information
   - [ ] Social media links
-  - [ ] Navigation links
-  - [ ] External resources
+  - [ ] Legal information
 
----
+### 7. Background & Visual Enhancements
 
-## Hackathon Section
+- [ ] **Dynamic Backgrounds**
+  - [ ] Parallax scrolling effects
+  - [ ] Gradient overlays
+  - [ ] Animated geometric patterns
+  - [ ] Dark/light theme toggle
+- [ ] **Visual Elements**
+  - [ ] Custom illustrations
+  - [ ] Icon sets
+  - [ ] Loading animations
+  - [ ] Micro-interactions
 
-### Visual Updates
+## ⚡ Performance & Optimization
 
-- [ ] **Update Hackathons section**
-  - [ ] Ensure clean, accurate information display
-  - [ ] Test responsive behavior
-  - [ ] Ensure links work and are correct
+### 8. Technical Improvements
 
----
+- [ ] **Performance**
+  - [ ] Image optimization and lazy loading
+  - [ ] Code splitting and bundling
+  - [ ] CDN implementation
+  - [ ] Caching strategies
+- [ ] **SEO**
+  - [ ] Meta tags optimization
+  - [ ] Structured data markup
+  - [ ] Sitemap generation
+  - [ ] Open Graph tags for social sharing
 
-## 🚧 Coming Soon / Later Tasks
+### 9. Mobile & Accessibility
 
-### 🎫 Ticket Management Features
+- [ ] **Responsive Design**
+  - [ ] Mobile-first approach
+  - [ ] Touch-friendly interactions
+  - [ ] Cross-browser compatibility
+- [ ] **Accessibility**
+  - [ ] WCAG 2.1 compliance
+  - [ ] Screen reader support
+  - [ ] Keyboard navigation
+  - [ ] High contrast mode
 
-- [ ] **Ticket validation system**
-  - [ ] Create QR code scanner for event entry
-  - [ ] Implement ticket status checking
-  - [ ] Add ticket transfer functionality
-  - [ ] Create admin dashboard for ticket management
-- [ ] **User dashboard**
-  - [ ] Display purchased tickets
-  - [ ] Show payment history
-  - [ ] Allow ticket transfers
-  - [ ] Provide event information and updates
+## 🔧 Development Tasks
 
-### 💳 Payment Integration - Ticket Purchase Flow
+### 10. Code Organization
 
-- [ ] **Design and implement ticket purchase interface**
-  - [ ] Create ticket types:
-    - Early Bird ($50) - Limited availability
-    - General Admission ($75) - Standard ticket
-    - VIP ($150) - Premium access, exclusive events
-    - Student ($25) - Valid student ID required
-  - [ ] Design ticket selection component with pricing display
-  - [ ] Add quantity selector and total calculation
-  - [ ] Implement discount codes system
-  - [ ] Add Stripe integration for fiat payments
-  - [ ] Create payment confirmation flow
-  - [ ] Add payment error handling and retry logic
-  - [ ] Implement email delivery system for tickets
+- [ ] **Component Structure**
+  - [ ] Reusable component library
+  - [ ] TypeScript interfaces
+  - [ ] Storybook documentation
+  - [ ] Unit testing setup
+- [ ] **State Management**
+  - [ ] Global state for language/localization
+  - [ ] Form state management
+  - [ ] API integration patterns
 
-### 💳 Payment Integration - Crypto Payment Listener
+### 11. Deployment & CI/CD
 
-- [ ] **Implement crypto payment listening system**
-  - [ ] Set up ETH Chile wallet address for payments
-  - [ ] Add QR code generator for wallet address
-  - [ ] Add copy address button with clipboard functionality
-  - [ ] Implement blockchain transaction listener:
-    - Monitor transactions to ETH Chile wallet address
-    - Match transaction amount with ticket prices
-    - Verify sender wallet address
-    - Check transaction confirmation status
-  - [ ] Create payment verification system:
-    - Auto-detect successful payments
-    - Match payment amount to ticket type
-    - Create ticket automatically on payment confirmation
-    - Send confirmation email with ticket details
-  - [ ] Add payment status tracking:
-    - Pending payment status
-    - Payment confirmation
-    - Ticket generation
-    - Error handling for failed payments
+- [ ] **Build Process**
+  - [ ] Automated testing
+  - [ ] Build optimization
+  - [ ] Environment configuration
+- [ ] **Deployment**
+  - [ ] Staging environment
+  - [ ] Production deployment
+  - [ ] Monitoring and analytics
 
----
+## 📋 Content & Assets
 
-## 📋 Project Management
+### 12. Content Creation
 
-### Current Sprint Goals
+- [ ] **Copywriting**
+  - [ ] Spanish and English versions
+  - [ ] SEO-optimized content
+  - [ ] Call-to-action optimization
+- [ ] **Media Assets**
+  - [ ] High-quality images
+  - [ ] Video content
+  - [ ] Social media graphics
+  - [ ] Brand guidelines
 
-- [ ] Complete all Top Priority Tasks
-- [ ] Test navigation functionality
-- [ ] Ensure responsive design across devices
-- [ ] Optimize performance
+## 🎯 Success Metrics
 
-## 📝 Notes
+### 13. Analytics & Tracking
 
-### Design Guidelines
+- [ ] **Conversion Tracking**
+  - [ ] Ticket sales funnel
+  - [ ] Email signups
+  - [ ] Social media engagement
+  - [ ] Page performance metrics
+- [ ] **User Behavior**
+  - [ ] Heat mapping
+  - [ ] User journey analysis
+  - [ ] A/B test results
 
-- Maintain consistent visual aesthetic
-- Ensure accessibility standards
-- Optimize for mobile experience
-- Follow web3/blockchain design trends
+## 📅 Timeline
 
----
+- **Week 1-2**: Language system, countdown timer, basic structure
+- **Week 3-4**: Ticket system, social media animations
+- **Week 5-6**: Funnel implementation, design improvements
+- **Week 7-8**: Optimization, testing, deployment
+- **Week 9**: Content finalization and launch preparation
 
-_Last Updated: December 2024_
-_Project: ETH Chile 2025_
-_Status: In Development - Ready for Payment Integration Implementation_
+## 🚨 Notes
+
+- Prioritize mobile experience
+- Ensure all animations are performant
+- Test language switching thoroughly
+- Validate ticket system end-to-end
+- Create backup plans for critical features

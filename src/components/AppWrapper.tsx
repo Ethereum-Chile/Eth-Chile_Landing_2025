@@ -16,7 +16,9 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
 
   return (
     <>
-      <Preloader onLoadingComplete={handleLoadingComplete} />
+      {!isLoaded && (
+        <Preloader onLoadingComplete={handleLoadingComplete} />
+      )}
       {isLoaded && (
         <div className="app-content">
           {children}
