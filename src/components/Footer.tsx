@@ -203,7 +203,7 @@ const Footer = () => {
           viewport={{ once: true }}
         >
           <p>&copy; 2025 ETH Chile. All rights reserved.</p>
-          <p> Built by <a href="https://x.com/blessed_ux" className="text-blue-400">blessedux</a> w ♡ for Eth Chile</p>
+          <p> Built w ♡ by <a href="https://x.com/blessed_ux" className="text-blue-400">blessedux</a></p>
         </motion.div>
       </div>
     </motion.footer>
