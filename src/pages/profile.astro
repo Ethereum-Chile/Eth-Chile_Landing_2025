@@ -6,7 +6,6 @@ import { usePrivy } from "@privy-io/react-auth";
 
 <Layout title="Profile - ETHChile 2025">
   <Header />
-
   <main class="min-h-screen flex flex-col items-center justify-center p-8">
     <div class="max-w-2xl w-full">
       <h1 class="text-4xl font-raleway font-semibold mb-8 text-center">
@@ -31,7 +30,11 @@ import { usePrivy } from "@privy-io/react-auth";
         <form class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="firstName" class="block text-sm font-semibold mb-2 text-white">First Name *</label>
+              <label
+                for="firstName"
+                class="block text-sm font-semibold mb-2 text-white"
+                >First Name *</label
+              >
               <input
                 id="firstName"
                 name="firstName"
@@ -42,7 +45,11 @@ import { usePrivy } from "@privy-io/react-auth";
               />
             </div>
             <div>
-              <label for="lastName" class="block text-sm font-semibold mb-2 text-white">Last Name *</label>
+              <label
+                for="lastName"
+                class="block text-sm font-semibold mb-2 text-white"
+                >Last Name *</label
+              >
               <input
                 id="lastName"
                 name="lastName"
@@ -55,7 +62,9 @@ import { usePrivy } from "@privy-io/react-auth";
           </div>
 
           <div>
-            <label for="bio" class="block text-sm font-semibold mb-2 text-white">Bio</label>
+            <label for="bio" class="block text-sm font-semibold mb-2 text-white"
+              >Bio</label
+            >
             <textarea
               id="bio"
               name="bio"
@@ -65,7 +74,11 @@ import { usePrivy } from "@privy-io/react-auth";
           </div>
 
           <div>
-            <label for="organization" class="block text-sm font-semibold mb-2 text-white">Organization</label>
+            <label
+              for="organization"
+              class="block text-sm font-semibold mb-2 text-white"
+              >Organization</label
+            >
             <input
               id="organization"
               name="organization"
@@ -76,7 +89,10 @@ import { usePrivy } from "@privy-io/react-auth";
           </div>
 
           <div>
-            <label for="role" class="block text-sm font-semibold mb-2 text-white">Role *</label>
+            <label
+              for="role"
+              class="block text-sm font-semibold mb-2 text-white">Role *</label
+            >
             <select
               id="role"
               name="role"
@@ -95,7 +111,11 @@ import { usePrivy } from "@privy-io/react-auth";
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="twitter" class="block text-sm font-semibold mb-2 text-white">Twitter</label>
+              <label
+                for="twitter"
+                class="block text-sm font-semibold mb-2 text-white"
+                >Twitter</label
+              >
               <input
                 id="twitter"
                 name="twitter"
@@ -105,7 +125,11 @@ import { usePrivy } from "@privy-io/react-auth";
               />
             </div>
             <div>
-              <label for="linkedin" class="block text-sm font-semibold mb-2 text-white">LinkedIn</label>
+              <label
+                for="linkedin"
+                class="block text-sm font-semibold mb-2 text-white"
+                >LinkedIn</label
+              >
               <input
                 id="linkedin"
                 name="linkedin"

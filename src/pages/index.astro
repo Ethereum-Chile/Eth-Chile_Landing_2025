@@ -14,7 +14,6 @@ import { SponsorshipTiersAnimated } from "../components/SponsorshipTiersAnimated
 
 import SocialProof from "../components/SocialProof.astro";
 import Hero from "../components/Hero";
-import RulerCarousel from "../components/RulerCarousel.tsx";
 import AppWrapper from "../components/AppWrapper.tsx";
 import HackathonSection from "../components/HackathonSection.tsx";
 ---
@@ -22,7 +21,6 @@ import HackathonSection from "../components/HackathonSection.tsx";
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
   <AppWrapper client:load>
     <div style="margin: 0; padding: 0; position: relative;">
-      <RulerCarousel client:load />
       <Header />
       <section id="hero" style="position: relative; z-index: 1;">
         <Hero client:load />
