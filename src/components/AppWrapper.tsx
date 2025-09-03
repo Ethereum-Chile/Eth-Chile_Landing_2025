@@ -20,7 +20,14 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
         <Preloader onLoadingComplete={handleLoadingComplete} />
       )}
       {isLoaded && (
-        <div className="app-content">
+        <div 
+          className="app-content"
+          style={{
+            backgroundColor: '#000000', // Ensure black background during transition
+            minHeight: '100vh',
+            transition: 'opacity 0.5s ease-in-out'
+          }}
+        >
           {children}
         </div>
       )}

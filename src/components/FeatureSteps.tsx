@@ -22,7 +22,6 @@ interface FeatureStepsProps {
 export function FeatureSteps({
   features,
   className,
-  title = "How to get Started",
   autoPlayInterval = 3000,
   imageHeight = "h-[400px]",
 }: FeatureStepsProps) {
@@ -53,15 +52,6 @@ export function FeatureSteps({
   return (
     <div className={`p-8 md:p-12 ${className || ""}`}>
       <div className="max-w-7xl mx-auto w-full">
-        <div className="mb-10 text-center">
-          <HyperText
-            text={title}
-            duration={1000}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
-            animateOnLoad={true}
-          />
-        </div>
-
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
           
           <div 
@@ -121,11 +111,21 @@ export function FeatureSteps({
                       exit={{ y: -100, opacity: 0, rotateX: 20 }}
                       transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
-                      <img
-                        src={feature.image}
-                        alt={feature.step}
-                        className="w-full h-full object-cover transition-transform transform"
-                      />
+                      {feature.image.endsWith(".mp4") || feature.image.endsWith(".webm") ? (
+                        <video
+                          src={feature.image}
+                          autoPlay
+                          muted
+                          loop
+                          className="w-full h-full object-cover transition-transform transform"
+                        />
+                      ) : (
+                        <img
+                          src={feature.image}
+                          alt={feature.step}
+                          className="w-full h-full object-cover transition-transform transform"
+                        />
+                      )}
                       <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-custom-black via-custom-black/50 to-transparent" />
                     </motion.div>
                   ),

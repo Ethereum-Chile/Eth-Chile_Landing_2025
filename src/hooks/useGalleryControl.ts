@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 export const useGalleryControl = () => {
-  const [shouldRenderGallery, setShouldRenderGallery] = useState(true);
+  // TEMPORARILY DISABLED: Gallery is disabled for now
+  const [shouldRenderGallery, setShouldRenderGallery] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrollY = useRef(0);
 
@@ -10,7 +11,7 @@ export const useGalleryControl = () => {
   }, []);
 
   const resumeGallery = useCallback(() => {
-    setShouldRenderGallery(true);
+    setShouldRenderGallery(false); // Keep disabled for now
   }, []);
 
   useEffect(() => {
