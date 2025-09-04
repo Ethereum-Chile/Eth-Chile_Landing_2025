@@ -35,14 +35,14 @@ import { Image } from "astro:assets";
     <!-- Language Selector -->
     <div class="flex items-center space-x-1">
       <button
-        class="px-3 py-2 text-white font-raleway font-medium text-sm"
+        class="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
         onclick="setLanguage('en')"
         id="lang-en"
       >
         EN
       </button>
       <button
-        class="px-3 py-2 text-white font-raleway font-medium text-sm"
+        class="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
         onclick="setLanguage('es')"
         id="lang-es"
       >
@@ -94,8 +94,7 @@ import { Image } from "astro:assets";
 
   /* Active language button styling */
   .lang-active {
-    background-color: white;
-    color: black;
+    color: white !important;
   }
 </style>
 
