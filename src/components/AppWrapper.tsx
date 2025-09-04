@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Preloader from './Preloader';
 import { motion } from 'framer-motion';
 
@@ -14,6 +14,25 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   const handleLoadingComplete = () => {
     setIsLoaded(true);
   };
+
+  // Prevent scrolling while preloader is active
+  useEffect(() => {
+    if (!isLoaded) {
+      // Disable scrolling
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+    };
+  }, [isLoaded]);
 
   return (
     <div 

@@ -150,8 +150,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     <div 
       className="w-full h-full bg-black flex flex-col items-center justify-center"
       style={{
-        backgroundColor: '#000000',
-        background: 'linear-gradient(135deg, #000000 0%, #0a0a0a 100%)'
+        backgroundColor: '#000000'
       }}
     >
       {/* ASCII Animation Container */}
@@ -199,10 +198,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
       </div>
       
       {/* Counter at the bottom */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
         {/* Counter number - 2 digits */}
         <div 
-          className="text-white text-2xl font-mono tracking-wider"
+          className="text-white text-lg font-mono tracking-wider"
           style={{
             fontFamily: 'monospace',
             textShadow: '0 0 5px rgba(255, 255, 255, 0.5)'
