@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/logo-claro.png";
+// Logo is now served from public directory
 ---
 
 <header
@@ -9,21 +9,25 @@ import logo from "../assets/logo-claro.png";
 >
   <a
     href="javascript:void(0);"
-    class="flex justify-center items-center"
+    class="flex items-center -ml-10 lg:ml-0"
     onclick="window.scrollTo(0, 0);"
   >
+    <!-- Mobile Logo (ethchile_logotipo_B.png) -->
     <Image
-      src={logo}
+      src="/ethchile_logotipo_B.png"
       alt="Logo Ethereum Chile"
-      width={54}
+      width={108}
       height={54}
-      class="w-10 lg:w-[54px] h-10 lg:h-[54px]"
+      class="w-24 h-12 lg:hidden object-contain"
     />
-    <h2
-      class="font-raleway font-light text-3xl ml-4 hidden md:block text-white"
-    >
-      ethereum <span class="font-semibold">Chile</span>
-    </h2>
+    <!-- Desktop Logo (ethchile_logotipo_A.png) -->
+    <Image
+      src="/ethchile_logotipo_A.png"
+      alt="Logo Ethereum Chile"
+      width={240}
+      height={120}
+      class="hidden lg:block w-[240px] h-[120px] object-contain"
+    />
   </a>
 
   <!-- Buy Ticket Button -->
@@ -50,10 +54,28 @@ import logo from "../assets/logo-claro.png";
       href="https://welcu.com/ethereum-chile/ethchile-2025/"
       target="_blank"
       rel="noopener noreferrer"
-      class="px-6 py-3 border border-white text-white font-raleway font-medium rounded-lg hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:scale-105"
+      class="relative px-6 py-3 text-white font-raleway font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden group backdrop-blur-md border border-white/40 hover:border-white/60 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
       id="buy-tickets-btn"
+      style="backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);"
     >
-      Buy Tickets
+      <!-- Frosted glass background -->
+      <div class="absolute inset-0 bg-white/5 backdrop-blur-md rounded-lg">
+      </div>
+
+      <!-- Shiny hover effect -->
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out rounded-lg"
+      >
+      </div>
+
+      <!-- Glowing border effect -->
+      <div
+        class="absolute inset-0 rounded-lg bg-gradient-to-r from-white/20 via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
+      >
+      </div>
+
+      <!-- Button text -->
+      <span class="relative z-10">Buy Tickets</span>
     </a>
   </div>
 </header>
@@ -93,8 +115,11 @@ import logo from "../assets/logo-claro.png";
     // Update button text based on language
     const buyTicketsBtn = document.getElementById("buy-tickets-btn");
     if (buyTicketsBtn) {
-      buyTicketsBtn.textContent =
-        lang === "es" ? "Comprar Entradas" : "Buy Tickets";
+      const buttonText = buyTicketsBtn.querySelector("span");
+      if (buttonText) {
+        buttonText.textContent =
+          lang === "es" ? "Comprar Entradas" : "Buy Tickets";
+      }
     }
 
     // Dispatch custom event for other components to listen to

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HyperText } from "./HyperText.tsx";
 
@@ -25,6 +25,19 @@ const cards = [
 
 export default function ParallaxCards() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Use scroll progress for the container
   const { scrollYProgress } = useScroll({
@@ -36,8 +49,9 @@ export default function ParallaxCards() {
     <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {cards.map((card, idx) => {
         // Create different scroll-based transforms for each card
-        const rotateX = useTransform(scrollYProgress, [0, 1], [0, card.f * 15]);
-        const rotateY = useTransform(scrollYProgress, [0, 1], [0, card.f * 10]);
+        // Disable 3D transforms on mobile to prevent touch issues
+        const rotateX = isMobile ? 0 : useTransform(scrollYProgress, [0, 1], [0, card.f * 15]);
+        const rotateY = isMobile ? 0 : useTransform(scrollYProgress, [0, 1], [0, card.f * 10]);
         const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 1]);
         // Remove the y transform to keep all cards aligned
         const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
@@ -46,21 +60,34 @@ export default function ParallaxCards() {
           <motion.a
             key={idx}
             href={card.link}
-            target={card.link.startsWith("http") ? "_blank" : "_self"}
-            rel={card.link.startsWith("http") ? "noopener noreferrer" : ""}
-            className="p-6 rounded-lg border border-white/20 bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center text-center aspect-[4/3] cursor-pointer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-6 rounded-lg border border-white/20 bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center text-center aspect-[4/3] cursor-pointer touch-manipulation"
             style={{
               rotateX,
               rotateY,
               scale,
               y,
-              transformStyle: "preserve-3d",
-              perspective: "1000px",
+              transformStyle: isMobile ? "flat" : "preserve-3d",
+              perspective: isMobile ? "none" : "1000px",
+              WebkitTapHighlightColor: "transparent",
+              WebkitTouchCallout: "none",
+              WebkitUserSelect: "none",
+              userSelect: "none",
             }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: idx * 0.2 }}
             viewport={{ once: true }}
+            onTouchStart={(e) => {
+              // Ensure touch events are properly handled
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              // Ensure click events work on mobile
+              e.preventDefault();
+              window.open(card.link, '_blank', 'noopener,noreferrer');
+            }}
           >
             <motion.div
               className="w-full h-full flex flex-col items-center justify-center space-y-4"

@@ -1,17 +1,31 @@
 ---
 import { Image } from "astro:assets";
-import catedral from '../assets/catedral.png'
+// Catedral image is now served from public directory
 ---
 
-<section class="flex flex-col min-h-[100vh] bg-custom-black items-center justify-center text-white md:pt-[10vh] md:flex-row" id="conference">
-    <Image src={catedral} alt="Catedral 3D" width={540} height={540} class="mb-5 md:mr-5 w-[270px] lg:w-[540px] h-[270px] lg:h-[540px]"/>
-    <div class="flex flex-col md:max-w-[30%] space-y-5 mx-10 md:mx-20">
-        <h2 class="text-[2.2rem] font-raleway font-light md:text-5xl md:mb-3">ETHChile <span class="font-semibold">2025</span></h2>
-        <p class="text-lg">
-            Evento construído por pioneros locales de la tecnología, quienes han buscado educar e impactar en Chile desde sus inicios.
-        </p>
-        <p class="text-lg">
-            ETHChile busca conectar a todos los individuos y comunidades nacionales en un evento que les entregue las herramientas y conocimiento para adentrarse en esta fascinante tecnología.
-        </p>
-    </div>
+<section
+  class="flex flex-col min-h-[100vh] bg-custom-black items-center justify-center text-white md:pt-[10vh] md:flex-row"
+  id="conference"
+>
+  <Image
+    src="/catedral.png"
+    alt="Catedral 3D"
+    width={540}
+    height={540}
+    class="mb-5 md:mr-5 w-[270px] lg:w-[540px] h-[270px] lg:h-[540px]"
+  />
+  <div class="flex flex-col md:max-w-[30%] space-y-5 mx-10 md:mx-20">
+    <h2 class="text-[2.2rem] font-raleway font-light md:text-5xl md:mb-3">
+      ETHChile <span class="font-semibold">2025</span>
+    </h2>
+    <p class="text-lg">
+      Evento construído por pioneros locales de la tecnología, quienes han
+      buscado educar e impactar en Chile desde sus inicios.
+    </p>
+    <p class="text-lg">
+      ETHChile busca conectar a todos los individuos y comunidades nacionales en
+      un evento que les entregue las herramientas y conocimiento para adentrarse
+      en esta fascinante tecnología.
+    </p>
+  </div>
 </section>

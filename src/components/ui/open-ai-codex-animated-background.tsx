@@ -39,8 +39,8 @@ export const Component = () => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20 animate-pulse rounded-2xl"></div>
       
-      {/* Floating particles - Reduced from 20 to 10 for better performance */}
-      <div className="absolute inset-0">
+      {/* Floating particles - Hidden on mobile to prevent unwanted animations */}
+      <div className="absolute inset-0 hidden md:block">
         {[...Array(10)].map((_, i) => (
           <div
             key={i}

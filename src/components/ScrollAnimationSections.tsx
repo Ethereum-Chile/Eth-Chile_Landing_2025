@@ -40,7 +40,7 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="relative">
             {/* Circular Text in top left */}
-            <div className="absolute top-0 left-0 z-10">
+            <div className="absolute top-0 left-0 z-5">
               <CircularText
                 text="Destino Devconnect "
                 spinDuration={30}
@@ -49,9 +49,9 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
               />
             </div>
 
-            <div className="text-right mb-16">
+            <div className="text-right mb-16 relative z-20">
               <h2 className="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white">
-                Latin America is the Future, Chile is the Catalyst
+                Latin America is the Future,<br className="md:hidden" /> Chile is the Catalyst
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl ml-auto">
                 Latin America has emerged as the epicenter of blockchain innovation, 
@@ -68,7 +68,7 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
                   title: "Latin America's Financial Innovation Hub",
                   content:
                     "Chile leads Latin America with over 200 fintech companies and $1.2B in fintech investments. The 2023 Fintech Law created a sandbox environment where web3 startups can test innovative solutions while regulators learn and adapt.",
-                  image: "https://res.cloudinary.com/dezm9avsj/video/upload/v1756873896/chain_compressed_h18qbk.mp4",
+                  image: "/imgs/tvl.png",
                 },
                 {
                   step: "Open Banking Pioneer",

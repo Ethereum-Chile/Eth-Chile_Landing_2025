@@ -47,6 +47,8 @@ export const AnimatedTestimonials = ({
 }: AnimatedTestimonialsProps) => {
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Pre-calculate random rotations to avoid hydration mismatch
   const rotations = useMemo(() => {
@@ -63,6 +65,32 @@ export const AnimatedTestimonials = ({
 
   const handlePrev = () => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Swipe gesture handlers
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
   };
 
   const isActive = (index: number) => {
@@ -117,6 +145,10 @@ export const AnimatedTestimonials = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      style={{ touchAction: 'pan-y' }}
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
         <motion.div
@@ -282,52 +314,59 @@ export const AnimatedTestimonials = ({
             </motion.div>
           </motion.div>
           <motion.div 
-            className="flex gap-4 pt-12 md:pt-0"
+            className="flex flex-col items-center gap-4 pt-12 md:pt-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             viewport={{ once: true }}
           >
-            <button
-              onClick={handlePrev}
-              className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
-              aria-label="Previous testimonial"
-              title="Previous testimonial"
-            >
-              <svg
-                className="h-5 w-5 text-white group-hover/button:rotate-12 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {/* Mobile swipe hint */}
+            <div className="md:hidden text-xs text-gray-400 text-center mb-2">
+              Swipe left or right to navigate
+            </div>
+            
+            <div className="flex gap-4">
+              <button
+                onClick={handlePrev}
+                className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+                aria-label="Previous testimonial"
+                title="Previous testimonial"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={handleNext}
-              className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
-              aria-label="Next testimonial"
-              title="Next testimonial"
-            >
-              <svg
-                className="h-5 w-5 text-white group-hover/button:-rotate-12 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                <svg
+                  className="h-5 w-5 text-white group-hover/button:rotate-12 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={handleNext}
+                className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+                aria-label="Next testimonial"
+                title="Next testimonial"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="h-5 w-5 text-white group-hover/button:-rotate-12 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       </div>

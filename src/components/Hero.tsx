@@ -25,15 +25,21 @@ export const Hero = () => {
             className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white"
           >
             ETH Chile{" "}
-            <span className="font-raleway font-extralight text-blue-400">
+            <span className="font-raleway font-extralight" style={{ 
+              color: '#00BFFF', 
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
+            }}>
               2025
             </span>
           </div>
           
           <div
-            className="font-raleway text-xl font-light md:text-2xl lg:text-3xl text-blue-400 mb-4"
+            className="font-raleway text-xl font-light md:text-2xl lg:text-3xl text-white mb-4"
           >
-            Fintech meets Ethereum 
+            <span style={{ 
+              color: '#00BFFF', 
+              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)' 
+            }}>Fintech</span> meets Ethereum 
           </div>
 
           <div
@@ -45,8 +51,15 @@ export const Hero = () => {
           <div
             className="leading-relaxed tracking-wide text-gray-300 text-lg md:text-xl max-w-4xl mx-auto"
           >
-            Experience the future of blockchain technology
-            <br /> in the heart of Latin America's fintech revolution.
+            Experience the future of <span style={{ 
+              color: '#00BFFF', 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+            }}>blockchain</span>&nbsp;technology
+            <br /> in the heart of <span style={{ 
+              color: '#00BFFF', 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+            }}>Latin</span> America's
+            <br /> fintech revolution.
           </div>
 
           <div 
