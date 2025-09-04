@@ -58,7 +58,7 @@ export const Hero = () => {
             <br /> in the heart of <span style={{ 
               color: '#00BFFF', 
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
-            }}>Latin</span> America's
+            }}>LatinAmerica</span>'s
             <br /> fintech revolution.
           </div>
 

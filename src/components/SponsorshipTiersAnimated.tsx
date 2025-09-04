@@ -195,7 +195,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
-            Sponsorship Tiers
+            Sponsor the <br/> ETH Chile Conference
           </h2>
         </motion.div>
 

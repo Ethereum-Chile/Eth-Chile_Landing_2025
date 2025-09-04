@@ -64,6 +64,28 @@ const ScrollExpandMedia = ({
     setMediaFullyExpanded(false);
   }, [mediaType]);
 
+  // Dispatch event when content starts showing
+  useEffect(() => {
+    if (showContent) {
+      window.dispatchEvent(new CustomEvent('scrollExpandState', {
+        detail: { type: 'contentShowing', showContent }
+      }));
+    }
+  }, [showContent]);
+
+  // Dispatch event when bottom title becomes visible (for background fade-out trigger)
+  useEffect(() => {
+    if (showContent) {
+      window.dispatchEvent(new CustomEvent('bottomTitleVisible', {
+        detail: { type: 'titleVisible', isVisible: true }
+      }));
+    } else {
+      window.dispatchEvent(new CustomEvent('bottomTitleVisible', {
+        detail: { type: 'titleVisible', isVisible: false }
+      }));
+    }
+  }, [showContent]);
+
   useEffect(() => {
     if (!bgImageSrc) {
       setBgImage(getTimeOfDayImage());
@@ -103,6 +125,10 @@ const ScrollExpandMedia = ({
         if (newProgress >= 1) {
           setMediaFullyExpanded(true);
           setShowContent(true);
+          // Dispatch custom event when video is fully expanded
+          window.dispatchEvent(new CustomEvent('scrollExpandState', {
+            detail: { type: 'videoExpanded', progress: newProgress }
+          }));
         } else if (newProgress < 0.75) {
           setShowContent(false);
         }

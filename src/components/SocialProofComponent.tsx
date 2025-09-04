@@ -17,7 +17,7 @@ const SocialProofComponent = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Join the Web3 Community in Chile
+            Join the Eth Community in Chile
           </motion.h2>
           <motion.p 
             className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"

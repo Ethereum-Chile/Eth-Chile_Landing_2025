@@ -99,36 +99,69 @@ const CircularText = ({
   };
 
   return (
-    <motion.div
-      initial={{ rotate: 0 }}
-      className="mx-auto rounded-full w-[200px] h-[200px] font-black text-center cursor-pointer origin-center"
-      animate={controls}
-      onUpdate={(latest) => {
-        if (typeof latest.rotate === 'number') {
-          setCurrentRotation(parseFloat(latest.rotate.toFixed(2)));
-        }
-      }}
-      onMouseEnter={handleHoverStart}
-      onMouseLeave={handleHoverEnd}
-    >
-      {letters.map((letter, i) => {
-        const rotation = (360 / letters.length) * i;
-        const factor = Number((Math.PI / letters.length).toFixed(0));
-        const x = factor * i;
-        const y = factor * i;
-        const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
+    <div className="mx-auto rounded-full w-[200px] h-[200px] font-black text-center cursor-pointer origin-center relative">
+      {/* Rotating text container */}
+      <motion.div
+        initial={{ rotate: 0 }}
+        className="absolute inset-0"
+        animate={controls}
+        onUpdate={(latest) => {
+          if (typeof latest.rotate === 'number') {
+            setCurrentRotation(parseFloat(latest.rotate.toFixed(2)));
+          }
+        }}
+        onMouseEnter={handleHoverStart}
+        onMouseLeave={handleHoverEnd}
+      >
+        {letters.map((letter, i) => {
+          const rotation = (360 / letters.length) * i;
+          const factor = Number((Math.PI / letters.length).toFixed(0));
+          const x = factor * i;
+          const y = factor * i;
+          const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
 
-        return (
-          <span
-            key={i}
-            className={`absolute inline-block inset-0 text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)] ${className}`}
-            style={{ transform, WebkitTransform: transform }}
-          >
-            {letter}
-          </span>
-        );
-      })}
-    </motion.div>
+          return (
+            <span
+              key={i}
+              className={`absolute inline-block inset-0 text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)] ${className}`}
+              style={{ transform, WebkitTransform: transform }}
+            >
+              {letter}
+            </span>
+          );
+        })}
+      </motion.div>
+
+      {/* Static EF DevCon Logo in the center with clickable link */}
+      <div 
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ zIndex: 50 }}
+      >
+        <div
+          className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Logo clicked!'); // Debug log
+            window.open('https://devconnect.org/', '_blank', 'noopener,noreferrer');
+          }}
+          style={{ 
+            zIndex: 100,
+            pointerEvents: 'auto'
+          }}
+        >
+          <img
+            src="/EF_devcon_logo.webp"
+            alt="EF DevCon Logo - Click to visit DevConnect.org"
+            className="w-24 h-24 object-contain"
+            style={{
+              filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))',
+              pointerEvents: 'none', // Let the parent div handle clicks
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

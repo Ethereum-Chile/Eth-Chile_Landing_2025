@@ -19,7 +19,7 @@ const cards = [
     title: "Pectra",
     subtitle: "Upgrade",
     f: 0.08,
-    link: "https://consensys.io/blog/ethereum-pectra-upgrade/",
+    link: "https://consensys.io/ethereum-pectra-upgrade",
   },
 ];
 

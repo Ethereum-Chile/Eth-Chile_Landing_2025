@@ -147,20 +147,6 @@ const WhyEthereumComponent = () => {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Floating particles effect */}
-          <div
-            className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-60"
-          >
-          </div>
-          <div
-            className="absolute bottom-8 left-8 w-1 h-1 bg-purple-400 rounded-full animate-ping opacity-40"
-          >
-          </div>
-          <div
-            className="absolute top-1/2 right-8 w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce opacity-50"
-          >
-          </div>
         </motion.div>
       </MagneticCard>
     </section>

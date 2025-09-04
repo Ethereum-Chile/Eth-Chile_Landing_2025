@@ -40,7 +40,7 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="relative">
             {/* Circular Text in top left */}
-            <div className="absolute top-0 left-0 z-5">
+            <div className="absolute top-0 left-0 z-10">
               <CircularText
                 text="Destino Devconnect "
                 spinDuration={30}
@@ -51,13 +51,24 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
 
             <div className="text-right mb-16 relative z-20">
               <h2 className="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white">
-                Latin America is the Future,<br className="md:hidden" /> Chile is the Catalyst
+                Latin America is the Future,<br/> <span className="font-raleway font-light" style={{ 
+              color: '#00BFFF', 
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
+            }}>
+           Chile 
+            </span> is the Catalyst
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl ml-auto">
                 Latin America has emerged as the epicenter of blockchain innovation, 
-                with Chile leading the charge in regulatory innovation. From progressive 
+                with Chile leading the charge in <span style={{ 
+              color: '#00BFFF', 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+            }}>regulatory innovation</span>. From progressive 
                 fintech laws to open finance initiatives, this region is reshaping the 
-                future of decentralized technology.
+                future of <span style={{ 
+              color: '#00BFFF', 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+            }}>decentralized</span> technology.
               </p>
             </div>
 
