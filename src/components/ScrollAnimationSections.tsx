@@ -40,7 +40,7 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="relative">
             {/* Circular Text in top left */}
-            <div className="absolute top-0 left-0 z-10">
+            <div className="absolute top-0 left-0 z-50">
               <CircularText
                 text="Destino Devconnect "
                 spinDuration={30}

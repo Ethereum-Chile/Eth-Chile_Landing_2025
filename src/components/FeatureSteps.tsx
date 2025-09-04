@@ -55,49 +55,38 @@ export function FeatureSteps({
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
           
           <div 
-            className="order-2 md:order-1 space-y-8"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="order-2 md:order-1 flex items-center justify-center"
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center gap-6 md:gap-8 cursor-pointer hover:opacity-100 transition-opacity"
-                initial={{ opacity: 0.3 }}
-                animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
-                transition={{ duration: 0.5 }}
-                onClick={() => handleFeatureClick(index)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <motion.div
-                  className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2 ${
-                    index === currentFeature
-                      ? "bg-blue-600 border-blue-600 text-white scale-110"
-                      : "bg-gray-700 border-gray-600 text-gray-300"
-                  }`}
-                >
-                  {index <= currentFeature ? (
-                    <span className="text-lg font-bold">✓</span>
-                  ) : (
-                    <span className="text-lg font-semibold">{index + 1}</span>
-                  )}
-                </motion.div>
-
-                <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    {feature.title || feature.step}
-                  </h3>
-                  <p className="text-sm md:text-lg text-gray-300">
-                    {feature.content}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            <AnimatePresence mode="wait">
+              {features.map(
+                (feature, index) =>
+                  index === currentFeature && (
+                    <motion.div
+                      key={index}
+                      className="w-full max-w-lg"
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-semibold text-white">
+                          {feature.title || feature.step}
+                        </h3>
+                        <p className="text-base md:text-xl text-gray-300">
+                          {feature.content}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ),
+              )}
+            </AnimatePresence>
           </div>
 
           <div
             className={`order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <AnimatePresence mode="wait">
               {features.map(
@@ -106,9 +95,9 @@ export function FeatureSteps({
                     <motion.div
                       key={index}
                       className="absolute inset-0 rounded-lg overflow-hidden"
-                      initial={{ y: 100, opacity: 0, rotateX: -20 }}
+                      initial={{ y: -100, opacity: 0, rotateX: 20 }}
                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                      exit={{ y: -100, opacity: 0, rotateX: 20 }}
+                      exit={{ y: 100, opacity: 0, rotateX: -20 }}
                       transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                       {feature.image.endsWith(".mp4") || feature.image.endsWith(".webm") ? (
@@ -132,6 +121,28 @@ export function FeatureSteps({
               )}
             </AnimatePresence>
           </div>
+        </div>
+        
+        {/* Navigation Dots */}
+        <div className="flex justify-center items-center gap-3 mt-8">
+          {features.map((_, index) => (
+            <motion.button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                index === currentFeature
+                  ? "bg-blue-500 scale-125"
+                  : "bg-gray-500 hover:bg-gray-400"
+              }`}
+              initial={{ opacity: 0.5 }}
+              animate={{ 
+                opacity: index === currentFeature ? 1 : 0.5,
+                scale: index === currentFeature ? 1.25 : 1
+              }}
+              transition={{ duration: 0.3 }}
+              onClick={() => handleFeatureClick(index)}
+              aria-label={`Go to step ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
