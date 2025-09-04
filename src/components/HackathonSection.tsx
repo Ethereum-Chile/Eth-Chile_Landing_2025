@@ -73,13 +73,14 @@ const HackathonSection = () => {
         viewport={{ once: true }}
       >
         <motion.h2 
-          className="text-5xl md:text-6xl font-raleway font-bold text-white mb-8 text-center"
+          className="text-6xl md:text-7xl font-raleway font-black text-white mb-8 text-center"
+          style={{ opacity: 0.9 }}
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          ETH Chile Hackathon
+          ETH Chile <span style={{ color: '#00BFFF' }}>Hack</span>athon
         </motion.h2>
         
         <motion.div 

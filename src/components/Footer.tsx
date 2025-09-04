@@ -130,7 +130,7 @@ const Footer = () => {
             </motion.div>
 
             <motion.div 
-              className="lg:hidden grid grid-cols-2 gap-4 justify-items-center"
+              className="lg:hidden grid grid-cols-2 gap-4 justify-items-start"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}

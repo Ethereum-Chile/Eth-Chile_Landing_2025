@@ -228,12 +228,70 @@ export const AnimatedTestimonials = ({
             }}
             className="flex-1 flex flex-col"
           >
-            <h3 className="text-2xl font-bold text-white">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm text-gray-300">
-              {testimonials[active].designation}
-            </p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 
+                  className="text-2xl font-bold text-white"
+                  style={{ 
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' 
+                  }}
+                >
+                  {testimonials[active].name}
+                </h3>
+                <p 
+                  className="text-sm text-gray-300"
+                  style={{ 
+                    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.4)' 
+                  }}
+                >
+                  {testimonials[active].designation}
+                </p>
+              </div>
+              
+              {/* Navigation arrows - positioned to the right of the name */}
+              <div className="flex gap-2">
+                <button
+                  onClick={handlePrev}
+                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+                  aria-label="Previous testimonial"
+                  title="Previous testimonial"
+                >
+                  <svg
+                    className="h-4 w-4 text-white group-hover/button:rotate-12 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
+                  aria-label="Next testimonial"
+                  title="Next testimonial"
+                >
+                  <svg
+                    className="h-4 w-4 text-white group-hover/button:-rotate-12 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
             <motion.div className="text-lg text-gray-300 mt-8 h-32 overflow-hidden">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
@@ -312,61 +370,6 @@ export const AnimatedTestimonials = ({
                 <LinkedInIcon />
               </motion.a>
             </motion.div>
-          </motion.div>
-          <motion.div 
-            className="flex flex-col items-center gap-4 pt-12 md:pt-0"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Mobile swipe hint */}
-            <div className="md:hidden text-xs text-gray-400 text-center mb-2">
-              Swipe left or right to navigate
-            </div>
-            
-            <div className="flex gap-4">
-              <button
-                onClick={handlePrev}
-                className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
-                aria-label="Previous testimonial"
-                title="Previous testimonial"
-              >
-                <svg
-                  className="h-5 w-5 text-white group-hover/button:rotate-12 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={handleNext}
-                className="h-7 w-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center group/button transition-colors"
-                aria-label="Next testimonial"
-                title="Next testimonial"
-              >
-                <svg
-                  className="h-5 w-5 text-white group-hover/button:-rotate-12 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
           </motion.div>
         </motion.div>
       </div>

@@ -23,6 +23,9 @@ export const Hero = () => {
         <div className="flex flex-col items-center justify-center space-y-6 max-w-4xl">
           <div
             className="font-raleway text-5xl font-extralight md:text-7xl lg:text-8xl text-white"
+            style={{ 
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' 
+            }}
           >
             ETH Chile{" "}
             <span className="font-raleway font-extralight" style={{ 
@@ -35,6 +38,9 @@ export const Hero = () => {
           
           <div
             className="font-raleway text-xl font-light md:text-2xl lg:text-3xl text-white mb-4"
+            style={{ 
+              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' 
+            }}
           >
             <span style={{ 
               color: '#00BFFF', 
@@ -44,12 +50,18 @@ export const Hero = () => {
 
           <div
             className="font-raleway font-extralight text-white text-2xl md:text-3xl lg:text-4xl mb-6"
+            style={{ 
+              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' 
+            }}
           >
             October 24th & 25th
           </div>
 
           <div
             className="leading-relaxed tracking-wide text-gray-300 text-lg md:text-xl max-w-4xl mx-auto"
+            style={{ 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' 
+            }}
           >
             Experience the future of <span style={{ 
               color: '#00BFFF', 

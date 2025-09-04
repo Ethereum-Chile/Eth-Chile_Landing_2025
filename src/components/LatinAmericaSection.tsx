@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import { FeatureSteps } from "./FeatureSteps";
 import CircularText from "./CircularText";
 
-const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
+const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -39,8 +39,8 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
         
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="relative">
-            {/* Circular Text in top left */}
-            <div className="absolute top-0 left-0 z-50">
+            {/* Circular Text positioned between text lines */}
+            <div className="absolute top-[8%] left-0 transform  z-10">
               <CircularText
                 text="Destino Devconnect "
                 spinDuration={30}
@@ -49,16 +49,30 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
               />
             </div>
 
-            <div className="text-right mb-16 relative z-20">
-              <h2 className="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white">
-                Latin America is the Future,<br/> <span className="font-raleway font-light" style={{ 
-              color: '#00BFFF', 
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
-            }}>
-           Chile 
-            </span> is the Catalyst
+            <div className="text-right mb-16 relative z-30 mr-8 md:mr-16">
+              <h2 
+                className="text-5xl md:text-6xl font-raleway font-bold mb-8 text-white leading-relaxed"
+                style={{ 
+                  lineHeight: '1.8',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)'
+                }}
+              >
+                <div className="mb-4">Latin America is the Future,</div>
+                <div className="mb-4">
+                  <span className="font-raleway font-light" style={{ 
+                    color: '#00BFFF', 
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
+                  }}>
+                    Chile 
+                  </span> is the Catalyst
+                </div>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl ml-auto">
+              <p 
+                className="text-xl text-gray-300 max-w-3xl ml-auto"
+                style={{ 
+                  textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' 
+                }}
+              >
                 Latin America has emerged as the epicenter of blockchain innovation, 
                 with Chile leading the charge in <span style={{ 
               color: '#00BFFF', 
@@ -106,6 +120,6 @@ const ScrollAnimationSections = forwardRef<HTMLElement>((props, ref) => {
   );
 });
 
-ScrollAnimationSections.displayName = 'ScrollAnimationSections';
+LatinAmericaSection.displayName = 'LatinAmericaSection';
 
-export default ScrollAnimationSections; 
+export default LatinAmericaSection;
