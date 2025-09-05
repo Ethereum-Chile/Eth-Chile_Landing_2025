@@ -1,10 +1,61 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FlipLink from "./FlipLink";
 
 const Footer = () => {
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('es');
+
+  useEffect(() => {
+    setMounted(true);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, [mounted]);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const content = {
+    en: {
+      title: "Let's",
+      build: "build",
+      together: "together",
+      submit: "Submit",
+      name: "Name",
+      email: "Email",
+      message: "Message"
+    },
+    es: {
+      title: "Construyamos",
+      build: "",
+      together: "juntos",
+      submit: "Enviar",
+      name: "Nombre",
+      email: "Correo",
+      message: "Mensaje"
+    }
+  };
+
+  const t = content[language];
   return (
     <motion.footer
       className="bg-custom-black min-h-screen flex flex-col justify-center items-center p-8 relative transform transition-all duration-1000 ease-in-out hover:translate-y-[-20px] mt-auto"
@@ -44,10 +95,16 @@ const Footer = () => {
                 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
                 style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
               >
-                Let's <span 
-                  className="text-custom-blue font-extralight"
-                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
-                >build</span> together
+                {t.title} {t.build ? (
+                  <>
+                    <span 
+                      className="text-custom-blue font-extralight"
+                      style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+                    >{t.build}</span> {t.together}
+                  </>
+                ) : (
+                  t.together
+                )}
               </h2>
             </motion.div>
 
@@ -80,7 +137,7 @@ const Footer = () => {
                     type="text"
                     name="name"
                     id="name"
-                    placeholder="Name"
+                    placeholder={t.name}
                     required
                     className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-custom-blue"
                   />
@@ -88,7 +145,7 @@ const Footer = () => {
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Email"
+                    placeholder={t.email}
                     required
                     className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-custom-blue"
                   />
@@ -97,7 +154,7 @@ const Footer = () => {
                 <textarea
                   name="message"
                   id="message"
-                  placeholder="Message"
+                  placeholder={t.message}
                   rows={4}
                   required
                   className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400 w-full resize-none"
@@ -107,7 +164,7 @@ const Footer = () => {
                   type="submit"
                   className="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-custom-blue hover:text-white transition-colors"
                 >
-                  Submit
+                  {t.submit}
                 </button>
 
                 <p className="form-status text-sm mt-2 h-5"></p>

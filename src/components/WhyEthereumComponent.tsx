@@ -1,8 +1,54 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import ParallaxCards from "./ParallaxCards.tsx";
 
 const WhyEthereumComponent = () => {
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('es');
+
+  useEffect(() => {
+    setMounted(true);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, [mounted]);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const content = {
+    en: {
+      title: "Why Ethereum, Why",
+      now: "Now",
+      subtitle: "Ethereum is now critical infrastructure",
+      description: "The world's programmable blockchain has evolved into the foundation for the next generation of financial applications, decentralized systems, and digital innovation."
+    },
+    es: {
+      title: "Por qué Ethereum, Por qué",
+      now: "Ahora",
+      subtitle: "Ethereum es ahora infraestructura crítica",
+      description: "La blockchain programable del mundo ha evolucionado hasta convertirse en la base para la próxima generación de aplicaciones financieras, sistemas descentralizados e innovación digital."
+    }
+  };
+
+  const t = content[language];
   return (
     <section
         data-section="why-ethereum"
@@ -82,10 +128,10 @@ const WhyEthereumComponent = () => {
                   className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway font-bold text-white leading-tight"
                   style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
                 >
-                  Why Ethereum, Why <span 
+                  {t.title} <span 
                     className="text-custom-blue font-extralight" 
                     style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
-                  >Now</span>
+                  >{t.now}</span>
                 </h2>
               </div>
 
@@ -93,7 +139,7 @@ const WhyEthereumComponent = () => {
                 className="text-xl md:text-2xl mb-6 md:mb-8 text-gray-200 font-light"
                 style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' }}
               >
-                Ethereum is now critical infrastructure
+                {t.subtitle}
               </p>
 
               {/* Enhanced subtitle with gradient */}
@@ -101,9 +147,7 @@ const WhyEthereumComponent = () => {
                 className="text-base md:text-lg mb-8 md:mb-12 text-gray-300 leading-relaxed"
                 style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' }}
               >
-                The world's programmable blockchain has evolved into the foundation
-                for the next generation of financial applications, decentralized
-                systems, and digital innovation.
+                {t.description}
               </p>
 
               <div className="relative">

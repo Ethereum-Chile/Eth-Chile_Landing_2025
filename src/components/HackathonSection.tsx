@@ -8,6 +8,30 @@ const HackathonSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('es');
+
+  useEffect(() => {
+    setMounted(true);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, [mounted]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +64,19 @@ const HackathonSection = () => {
   const handleButtonClick = () => {
     setIsButtonClicked(true);
   };
+
+  const buttonText = {
+    en: {
+      apply: "Apply Now",
+      coming: "Coming Soon"
+    },
+    es: {
+      apply: "Aplicar Ahora",
+      coming: "Próximamente"
+    }
+  };
+
+  const t = buttonText[language];
 
   return (
     <div 
@@ -108,7 +145,7 @@ const HackathonSection = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  Apply Now
+                  {t.apply}
                 </motion.span>
               ) : (
                 <motion.span
@@ -117,7 +154,7 @@ const HackathonSection = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  Coming Soon
+                  {t.coming}
                 </motion.span>
               )}
             </AnimatePresence>

@@ -14,7 +14,7 @@ export const languageContent: Record<Language, Record<string, LanguageContent>> 
       year: "2025",
       subtitle: "Fintech meets Ethereum",
       date: "October 24th & 25th",
-      description: "Experience the future of blockchain technology in the heart of LatinAmerica's fintech revolution.",
+      description: "Experience the future of blockchain technology<br />in the heart of Latin America's fintech revolution.",
       cta: "I Want to be a Speaker"
     },
     whyEthereum: {

@@ -21,74 +21,104 @@ interface SponsorshipTier {
   imageUrl: string;
 }
 
-const sponsorshipTiers: SponsorshipTier[] = [
+const getSponsorshipTiers = (language: 'en' | 'es'): SponsorshipTier[] => [
   {
     name: "Rare",
     price: "$10.000",
-    benefits: [
+    benefits: language === 'es' ? [
+      "Ubicación premium de stand",
+      "Oportunidad de keynote",
+      "Eventos de networking exclusivos",
+      "Visibilidad de marca en todos los materiales",
+      "Acceso VIP a todas las sesiones",
+    ] : [
       "Premium booth placement",
       "Keynote speaking opportunity",
       "Exclusive networking events",
       "Brand visibility across all materials",
       "VIP access to all sessions",
     ],
-    description: "Protocolos, exchanges and exclusive businesses",
+    description: language === 'es' ? "Protocolos, exchanges y negocios exclusivos" : "Protocolos, exchanges and exclusive businesses",
     color: "from-red-600 to-pink-600",
     imageUrl: "/imgs/RARE_sponsor.png",
   },
   {
     name: "WAGMI",
     price: "$8.000",
-    benefits: [
+    benefits: language === 'es' ? [
+      "Stand de exhibición grande",
+      "Participación en panel de discusión",
+      "Organización de eventos de networking",
+      "Logo en el escenario principal",
+      "Acceso prioritario a asistentes",
+    ] : [
       "Large exhibition booth",
       "Panel discussion participation",
       "Networking event hosting",
       "Logo on main stage",
       "Priority attendee access",
     ],
-    description: "DeFi solutions and infraestructura",
+    description: language === 'es' ? "Soluciones DeFi e infraestructura" : "DeFi solutions and infraestructura",
     color: "from-green-600 to-emerald-600",
     imageUrl: "/imgs/WAGMI_sponsor.png",
   },
   {
     name: "Hash",
     price: "$6.000",
-    benefits: [
+    benefits: language === 'es' ? [
+      "Stand de exhibición estándar",
+      "Oportunidad de organizar workshop",
+      "Logo en materiales promocionales",
+      "Acceso a eventos de networking",
+      "Acceso a lista de asistentes",
+    ] : [
       "Standard exhibition booth",
       "Workshop hosting opportunity",
       "Logo on promotional materials",
       "Networking event access",
       "Attendee list access",
     ],
-    description: "6 Herramientas dev, apps, wallets",
+    description: language === 'es' ? "6 Herramientas dev, apps, wallets" : "6 Herramientas dev, apps, wallets",
     color: "from-custom-blue to-cyan-600",
     imageUrl: "/imgs/HASH.png",
   },
   {
     name: "Gwei",
     price: "$4.000",
-    benefits: [
+    benefits: language === 'es' ? [
+      "Stand de exhibición pequeño",
+      "Logo en sitio web",
+      "Menciones en redes sociales",
+      "Asistencia al evento",
+      "Acceso básico de networking",
+    ] : [
       "Small exhibition booth",
       "Logo on website",
       "Social media mentions",
       "Event attendance",
       "Basic networking access",
     ],
-    description: "10 Startups en crecimiento, comunidades",
+    description: language === 'es' ? "10 Startups en crecimiento, comunidades" : "10 Startups en crecimiento, comunidades",
     color: "from-yellow-500 to-orange-500",
     imageUrl: "/imgs/gwei.png",
   },
   {
     name: "Startup Garden",
     price: "$500",
-    benefits: [
+    benefits: language === 'es' ? [
+      "Logo en sitio web",
+      "Reconocimiento en redes sociales",
+      "Asistencia al evento",
+      "Networking básico",
+      "Oportunidad de showcase de Demo/MVP",
+    ] : [
       "Logo on website",
       "Social media recognition",
       "Event attendance",
       "Basic networking",
       "Demo/MVP showcase opportunity",
     ],
-    description: "10 (curados) Proyectos early-stage con demo o MVP",
+    description: language === 'es' ? "10 (curados) Proyectos early-stage con demo o MVP" : "10 (curados) Proyectos early-stage con demo o MVP",
     color: "from-green-400 to-teal-500",
     imageUrl: "/imgs/garden.png",
   },
@@ -178,6 +208,58 @@ const ActiveImageRenderer: React.FC = () => {
 };
 
 export const SponsorshipTiersAnimated: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('es');
+
+  useEffect(() => {
+    setMounted(true);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, [mounted]);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const sponsorshipTiers = getSponsorshipTiers(language);
+
+  const content = {
+    en: {
+      title: "Sponsor the",
+      conference: "Conference",
+      packages: "/ sponsorship packages",
+      ready: "Ready to showcase your brand at Chile's premier Ethereum event?",
+      apply: "Apply to be a sponsor",
+      contact: "Contact Sales Team"
+    },
+    es: {
+      title: "Patrocina la",
+      conference: "Conferencia",
+      packages: "/ paquetes de patrocinio",
+      ready: "¿Listo para mostrar tu marca en el evento principal de Ethereum en Chile?",
+      apply: "Aplicar para ser patrocinador",
+      contact: "Contactar Equipo de Ventas"
+    }
+  };
+
+  const t = content[language];
+
   return (
     <motion.section 
       className="min-h-screen p-8 flex flex-col justify-center relative" 
@@ -198,10 +280,10 @@ export const SponsorshipTiersAnimated: React.FC = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
             style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
           >
-            Sponsor the <br/> ETH Chile <span 
+            {t.title} <br/> ETH Chile <span 
               className="text-custom-blue font-extralight"
               style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
-            >Conference</span>
+            >{t.conference}</span>
           </h2>
         </motion.div>
 
@@ -213,7 +295,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
         >
           <HoverSlider className="min-h-svh place-content-center p-6 md:px-12">
             <h3 className="mb-6 text-custom-blue text-xs font-medium capitalize tracking-wide">
-              / sponsorship packages
+              {t.packages}
             </h3>
 
             <div className="flex flex-wrap items-center justify-evenly gap-6 md:gap-12 mb-20">
@@ -241,7 +323,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
             {/* Additional Info */}
             <div className="mt-32 text-center">
               <p className="text-xl mb-8 text-gray-300">
-                Ready to showcase your brand at Chile's premier Ethereum event?
+                {t.ready}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -259,7 +341,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                     }
                   }}
                 >
-                  Aplica para ser sponsor
+                  {t.apply}
                 </a>
                 <a
                   href="https://t.me/cristpereirag"
@@ -267,7 +349,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                   rel="noopener noreferrer"
                   className="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors text-center"
                 >
-                  Contact Sales Team
+                  {t.contact}
                 </a>
               </div>
             </div>

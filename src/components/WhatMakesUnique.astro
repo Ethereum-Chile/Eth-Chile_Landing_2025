@@ -1,5 +1,5 @@
 ---
-import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
+import WhatMakesUniqueContent from "./WhatMakesUniqueContent.tsx";
 ---
 
 <section
@@ -9,37 +9,6 @@ import ScrollExpandMedia from "./ScrollExpandMedia.tsx";
 >
   {/* Content Overlay */}
   <div class="relative z-10">
-    <ScrollExpandMedia
-      client:load
-      mediaType="video"
-      mediaSrc="https://www.youtube.com/embed/JavAmLx8EG0?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=JavAmLx8EG0&start=30"
-      posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
-      title="Santiago <br> is a fintech <br> powerhouse"
-      date="Join Chile's premier Ethereum event"
-      scrollToExpand="Scroll to Discover More"
-    >
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-6">
-          <h2
-            class="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
-            style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)"
-          >
-            What Makes <span
-              class="text-custom-blue font-extralight"
-              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)"
-              >ETH Chile</span
-            > Unique
-          </h2>
-        </div>
-        <p
-          class="text-lg text-gray-300 text-center max-w-4xl mx-auto"
-          style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)"
-        >
-          Discover why Chile's unique combination of regulatory clarity, fintech
-          infrastructure, and technological talent makes it the ideal location
-          for the next generation of blockchain innovation.
-        </p>
-      </div>
-    </ScrollExpandMedia>
+    <WhatMakesUniqueContent client:load />
   </div>
 </section>

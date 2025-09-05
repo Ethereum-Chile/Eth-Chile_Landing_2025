@@ -29,16 +29,16 @@ import { Image } from "astro:assets";
   <!-- Buy Ticket Button -->
   <div class="flex items-center space-x-4 md:space-x-4 space-x-1">
     <!-- Language Selector -->
-    <div class="flex items-center space-x-1">
+    <div class="flex items-center space-x-4">
       <button
-        class="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
+        class="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80"
         onclick="setLanguage('en')"
         id="lang-en"
       >
         EN
       </button>
       <button
-        class="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
+        class="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80"
         onclick="setLanguage('es')"
         id="lang-es"
       >
@@ -91,6 +91,8 @@ import { Image } from "astro:assets";
   /* Active language button styling */
   .lang-active {
     color: white !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
   }
 </style>
 
@@ -105,17 +107,7 @@ import { Image } from "astro:assets";
     document.getElementById(`lang-${lang}`).classList.add("lang-active");
 
     // Store language preference
-    localStorage.setItem("preferred-language", lang);
-
-    // Update button text based on language
-    const buyTicketsBtn = document.getElementById("buy-tickets-btn");
-    if (buyTicketsBtn) {
-      const buttonText = buyTicketsBtn.querySelector("span");
-      if (buttonText) {
-        buttonText.textContent =
-          lang === "es" ? "Comprar Entradas" : "Buy Tickets";
-      }
-    }
+    localStorage.setItem("eth-chile-language", lang);
 
     // Dispatch custom event for other components to listen to
     window.dispatchEvent(
@@ -128,7 +120,7 @@ import { Image } from "astro:assets";
 
   // Set initial language on page load
   document.addEventListener("DOMContentLoaded", function () {
-    const savedLang = localStorage.getItem("preferred-language") || "en";
+    const savedLang = localStorage.getItem("eth-chile-language") || "es";
     setLanguage(savedLang);
   });
 </script>

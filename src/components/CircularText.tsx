@@ -99,7 +99,7 @@ const CircularText = ({
   };
 
   return (
-    <div className="mx-auto rounded-full w-[200px] h-[200px] font-black text-center cursor-pointer origin-center relative">
+    <div className="mx-auto rounded-full w-[200px] h-[200px] font-black text-center cursor-pointer origin-center relative" style={{ zIndex: 1000 }}>
       {/* Rotating text container */}
       <motion.div
         initial={{ rotate: 0 }}
@@ -135,7 +135,7 @@ const CircularText = ({
       {/* Static EF DevCon Logo in the center with clickable link */}
       <div 
         className="absolute inset-0 flex items-center justify-center"
-        style={{ zIndex: 50 }}
+        style={{ zIndex: 9999 }}
       >
         <div
           className="transition-transform duration-300 hover:scale-110 cursor-pointer"
@@ -146,8 +146,9 @@ const CircularText = ({
             window.open('https://devconnect.org/', '_blank', 'noopener,noreferrer');
           }}
           style={{ 
-            zIndex: 100,
-            pointerEvents: 'auto'
+            zIndex: 10000,
+            pointerEvents: 'auto',
+            position: 'relative'
           }}
         >
           <img

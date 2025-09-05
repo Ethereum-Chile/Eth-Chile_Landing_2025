@@ -7,6 +7,25 @@ import TicketModal from './TicketModal';
 const Header: React.FC = () => {
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
+  // Add CSS for glowing language buttons
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .lang-active {
+        color: white !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      if (style.parentNode) {
+        style.parentNode.removeChild(style);
+      }
+    };
+  }, []);
+
   const openTicketModal = () => {
     setIsTicketModalOpen(true);
   };
@@ -43,16 +62,16 @@ const Header: React.FC = () => {
         {/* Buy Ticket Button */}
         <div className="flex items-center space-x-4">
           {/* Language Selector */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-4">
             <button
-              className="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
+              className="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80"
               onClick={() => setLanguage('en')}
               id="lang-en"
             >
               EN
             </button>
             <button
-              className="px-3 py-2 text-white/60 font-raleway font-medium text-sm transition-colors duration-200"
+              className="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80"
               onClick={() => setLanguage('es')}
               id="lang-es"
             >
@@ -101,16 +120,8 @@ function setLanguage(lang: string) {
   if (activeBtn) activeBtn.classList.add("lang-active");
 
   // Store language preference
-  localStorage.setItem("preferred-language", lang);
+  localStorage.setItem("eth-chile-language", lang);
 
-  // Update button text based on language
-  const buyTicketsBtn = document.getElementById("buy-tickets-btn");
-  if (buyTicketsBtn) {
-    const buttonText = buyTicketsBtn.querySelector("span");
-    if (buttonText) {
-      buttonText.textContent = lang === "es" ? "Comprar Entradas" : "Buy Tickets";
-    }
-  }
 
   // Dispatch custom event for other components to listen to
   window.dispatchEvent(
@@ -123,7 +134,7 @@ function setLanguage(lang: string) {
 // Set initial language on page load
 if (typeof window !== 'undefined') {
   document.addEventListener("DOMContentLoaded", function () {
-    const savedLang = localStorage.getItem("preferred-language") || "en";
+    const savedLang = localStorage.getItem("eth-chile-language") || "es";
     setLanguage(savedLang);
   });
 }
