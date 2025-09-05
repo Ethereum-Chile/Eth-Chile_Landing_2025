@@ -61,7 +61,7 @@ const sponsorshipTiers: SponsorshipTier[] = [
       "Attendee list access",
     ],
     description: "6 Herramientas dev, apps, wallets",
-    color: "from-blue-600 to-cyan-600",
+    color: "from-custom-blue to-cyan-600",
     imageUrl: "/imgs/HASH.png",
   },
   {
@@ -206,7 +206,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           viewport={{ once: true }}
         >
           <HoverSlider className="min-h-svh place-content-center p-6 md:px-12">
-            <h3 className="mb-6 text-blue-400 text-xs font-medium capitalize tracking-wide">
+            <h3 className="mb-6 text-custom-blue text-xs font-medium capitalize tracking-wide">
               / sponsorship packages
             </h3>
 
@@ -217,7 +217,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                   <TextStaggerHover
                     key={tier.name}
                     index={index}
-                    className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-blue-400 transition-colors"
+                    className="cursor-pointer text-4xl font-raleway font-bold uppercase tracking-tighter text-white hover:text-custom-blue transition-colors"
                     text={tier.name}
                   />
                 ))}
@@ -242,7 +242,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                   href="https://forms.gle/U5nWGcsZMLogwmEn7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
+                  className="bg-custom-blue hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
                   onClick={() => {
                     // Google Analytics event tracking
                     if (typeof window !== 'undefined' && (window as any).gtag) {

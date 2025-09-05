@@ -57,7 +57,7 @@ const HackathonSection = () => {
           {/* Additional animated elements for depth */}
           <div className="absolute inset-0">
             {/* Floating geometric shapes */}
-            <div className="absolute top-20 left-20 w-16 h-16 border border-blue-400/20 rounded-lg animate-pulse" style={{ animationDelay: '0s' }}></div>
+            <div className="absolute top-20 left-20 w-16 h-16 border border-custom-blue/20 rounded-lg animate-pulse" style={{ animationDelay: '0s' }}></div>
             <div className="absolute top-40 right-32 w-12 h-12 border border-purple-400/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
             <div className="absolute bottom-32 left-32 w-20 h-20 border border-indigo-400/20 rotate-45 animate-pulse" style={{ animationDelay: '2s' }}></div>
           </div>
@@ -80,7 +80,7 @@ const HackathonSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          ETH Chile <span style={{ color: '#00BFFF' }}>Hack</span>athon
+          ETH Chile <span className="text-custom-blue font-extralight">Hack</span>athon
         </motion.h2>
         
         <motion.div 
@@ -92,7 +92,7 @@ const HackathonSection = () => {
         >
           <button
             onClick={handleButtonClick}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            className="inline-block bg-custom-blue hover:bg-blue-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
           >
             <AnimatePresence mode="wait">
               {!isButtonClicked ? (

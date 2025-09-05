@@ -57,11 +57,10 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)'
                 }}
               >
-                <div className="mb-4">Latin America is the Future,</div>
+                <div className="mb-4">Latin America is the <span className="text-custom-blue font-extralight">Future</span>,</div>
                 <div className="mb-4">
-                  <span className="font-raleway font-light" style={{ 
-                    color: '#00BFFF', 
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
+                  <span className="font-raleway font-light text-custom-blue" style={{ 
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(59, 130, 246, 0.5)' 
                   }}>
                     Chile 
                   </span> is the Catalyst
@@ -74,14 +73,12 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
                 }}
               >
                 Latin America has emerged as the epicenter of blockchain innovation, 
-                with Chile leading the charge in <span style={{ 
-              color: '#00BFFF', 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+                with Chile leading the charge in <span className="text-custom-blue" style={{ 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(59, 130, 246, 0.3)' 
             }}>regulatory innovation</span>. From progressive 
                 fintech laws to open finance initiatives, this region is reshaping the 
-                future of <span style={{ 
-              color: '#00BFFF', 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
+                future of <span className="text-custom-blue" style={{ 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(59, 130, 246, 0.3)' 
             }}>decentralized</span> technology.
               </p>
             </div>

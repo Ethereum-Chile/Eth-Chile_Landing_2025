@@ -65,7 +65,7 @@ const Footer = () => {
                   if (statusElement) {
                     statusElement.textContent = "Sending...";
                     statusElement.className =
-                      "form-status text-sm mt-2 h-5 text-blue-400";
+                      "form-status text-sm mt-2 h-5 text-custom-blue";
                   }
                 }}
               >
@@ -76,7 +76,7 @@ const Footer = () => {
                     id="name"
                     placeholder="Name"
                     required
-                    className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+                    className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-custom-blue"
                   />
                   <input
                     type="email"
@@ -84,7 +84,7 @@ const Footer = () => {
                     id="email"
                     placeholder="Email"
                     required
-                    className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-blue-400"
+                    className="border border-white bg-transparent p-3 rounded text-white placeholder-white focus:outline-none focus:border-custom-blue"
                   />
                 </div>
 
@@ -203,7 +203,7 @@ const Footer = () => {
           viewport={{ once: true }}
         >
           <p>&copy; 2025 ETH Chile. All rights reserved.</p>
-          <p> Built w ♡ by <a href="https://x.com/blessed_ux" className="text-blue-400">blessedux</a></p>
+          <p> Built w ♡ by <a href="https://x.com/blessed_ux" className="text-custom-blue">blessedux</a></p>
         </motion.div>
       </div>
     </motion.footer>
