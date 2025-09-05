@@ -78,17 +78,29 @@ const WhyEthereumComponent = () => {
             {/* Right Side: Title and Content */}
             <div className="w-full lg:w-1/2 text-center lg:text-left">
               <div className="mb-6 md:mb-8" style={{ minHeight: "3rem" }}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway font-bold text-white leading-tight">
-                  Why Ethereum, Why <span className="text-custom-blue font-extralight">Now</span>
+                <h2 
+                  className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway font-bold text-white leading-tight"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
+                >
+                  Why Ethereum, Why <span 
+                    className="text-custom-blue font-extralight" 
+                    style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+                  >Now</span>
                 </h2>
               </div>
 
-              <p className="text-xl md:text-2xl mb-6 md:mb-8 text-gray-200 font-light">
+              <p 
+                className="text-xl md:text-2xl mb-6 md:mb-8 text-gray-200 font-light"
+                style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' }}
+              >
                 Ethereum is now critical infrastructure
               </p>
 
               {/* Enhanced subtitle with gradient */}
-              <p className="text-base md:text-lg mb-8 md:mb-12 text-gray-300 leading-relaxed">
+              <p 
+                className="text-base md:text-lg mb-8 md:mb-12 text-gray-300 leading-relaxed"
+                style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' }}
+              >
                 The world's programmable blockchain has evolved into the foundation
                 for the next generation of financial applications, decentralized
                 systems, and digital innovation.

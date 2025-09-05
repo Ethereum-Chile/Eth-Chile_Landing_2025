@@ -317,59 +317,67 @@ export const AnimatedTestimonials = ({
                 </motion.span>
               ))}
             </motion.div>
-            {/* Social Media Icons */}
-            <motion.div 
-              className="flex gap-4 mb-6 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {/* Twitter/X */}
-              <motion.a
-                href={testimonials[active].social?.twitter || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-custom-blue/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-custom-blue"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
+            {/* Social Media Icons - Only show if links are provided */}
+            {testimonials[active].social && (
+              <motion.div 
+                className="flex gap-4 mb-6 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
               >
-                <TwitterIcon />
-              </motion.a>
+                {/* Twitter/X - Only show if Twitter link exists */}
+                {testimonials[active].social?.twitter && (
+                  <motion.a
+                    href={testimonials[active].social?.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-custom-blue/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-custom-blue"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <TwitterIcon />
+                  </motion.a>
+                )}
 
-              {/* Instagram */}
-              <motion.a
-                href={testimonials[active].social?.instagram || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-pink-500/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-pink-400"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <InstagramIcon />
-              </motion.a>
+                {/* Instagram - Only show if Instagram link exists */}
+                {testimonials[active].social?.instagram && (
+                  <motion.a
+                    href={testimonials[active].social?.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-pink-500/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-pink-400"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <InstagramIcon />
+                  </motion.a>
+                )}
 
-              {/* LinkedIn */}
-              <motion.a
-                href={testimonials[active].social?.linkedin || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-custom-blue/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-custom-blue"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <LinkedInIcon />
-              </motion.a>
-            </motion.div>
+                {/* LinkedIn - Only show if LinkedIn link exists */}
+                {testimonials[active].social?.linkedin && (
+                  <motion.a
+                    href={testimonials[active].social?.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-custom-blue/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-300 hover:text-custom-blue"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <LinkedInIcon />
+                  </motion.a>
+                )}
+              </motion.div>
+            )}
           </motion.div>
         </motion.div>
       </div>

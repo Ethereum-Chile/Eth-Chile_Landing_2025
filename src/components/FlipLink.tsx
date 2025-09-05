@@ -36,7 +36,7 @@ const FlipLink = ({ children, href, text }: FlipLinkProps) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group text-white relative block overflow-hidden whitespace-nowrap text-4xl font-black uppercase sm:text-5xl md:text-6xl lg:text-7xl hover:text-blue-300 transition-colors duration-300"
+      className="group text-white relative block overflow-hidden whitespace-nowrap text-4xl font-black uppercase sm:text-5xl md:text-6xl lg:text-7xl hover:text-custom-blue transition-colors duration-300"
       style={{
         lineHeight: 0.75,
       }}

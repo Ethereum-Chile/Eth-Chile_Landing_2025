@@ -74,13 +74,19 @@ const HackathonSection = () => {
       >
         <motion.h2 
           className="text-6xl md:text-7xl font-raleway font-black text-white mb-8 text-center"
-          style={{ opacity: 0.9 }}
+          style={{ 
+            opacity: 0.9,
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)'
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          ETH Chile <span className="text-custom-blue font-extralight">Hack</span>athon
+          ETH Chile <span 
+            className="text-custom-blue font-extralight" 
+            style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+          >Hack</span>athon
         </motion.h2>
         
         <motion.div 
@@ -92,7 +98,7 @@ const HackathonSection = () => {
         >
           <button
             onClick={handleButtonClick}
-            className="inline-block bg-custom-blue hover:bg-blue-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            className="inline-block bg-blue-600 hover:bg-custom-blue text-white px-12 py-4 rounded-lg font-semibold transition-colors text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
           >
             <AnimatePresence mode="wait">
               {!isButtonClicked ? (

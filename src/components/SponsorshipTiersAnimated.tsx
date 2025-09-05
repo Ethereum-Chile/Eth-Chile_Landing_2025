@@ -194,8 +194,14 @@ export const SponsorshipTiersAnimated: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
-            Sponsor the <br/> ETH Chile Conference
+          <h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
+            style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
+          >
+            Sponsor the <br/> ETH Chile <span 
+              className="text-custom-blue font-extralight"
+              style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+            >Conference</span>
           </h2>
         </motion.div>
 
@@ -242,7 +248,7 @@ export const SponsorshipTiersAnimated: React.FC = () => {
                   href="https://forms.gle/U5nWGcsZMLogwmEn7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-custom-blue hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
+                  className="bg-blue-600 hover:bg-custom-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors text-center"
                   onClick={() => {
                     // Google Analytics event tracking
                     if (typeof window !== 'undefined' && (window as any).gtag) {

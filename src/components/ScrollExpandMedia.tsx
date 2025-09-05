@@ -242,8 +242,17 @@ const ScrollExpandMedia = ({
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
 
-  const firstWord = title ? title.split(' ')[0] : '';
-  const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
+  // For "Santiago <br> is a fintech <br> powerhouse" - make "fintech" blue
+  const titleLines = title ? title.split('<br>') : [];
+  const processedLines = titleLines.map((line, lineIndex) => {
+    const words = line.trim().split(' ');
+    return words.map((word, wordIndex) => {
+      if (word.toLowerCase() === 'fintech') {
+        return { text: word, isBlue: true, isUltraThin: true };
+      }
+      return { text: word, isBlue: false, isUltraThin: false };
+    });
+  });
 
   // Select background image based on local time if not provided
   const getTimeBasedBg = () => {
@@ -370,10 +379,24 @@ const ScrollExpandMedia = ({
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
                   {date && (
                     <p
-                      className='text-2xl text-custom-blue'
-                      style={{ transform: `translateX(-${textTranslateX}vw)` }}
+                      className='text-2xl text-white'
+                      style={{ 
+                        transform: `translateX(-${textTranslateX}vw)`,
+                        textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)'
+                      }}
                     >
-                      {date}
+                      {date.split(' ').map((word, index) => (
+                        <span 
+                          key={index} 
+                          className={word.toLowerCase() === 'ethereum' ? 'text-custom-blue' : 'text-white'}
+                          style={word.toLowerCase() === 'ethereum' ? 
+                            { textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)' } : 
+                            { textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' }
+                          }
+                        >
+                          {word}{index < date.split(' ').length - 1 ? ' ' : ''}
+                        </span>
+                      ))}
                     </p>
                   )}
                   {scrollToExpand && (
@@ -388,22 +411,39 @@ const ScrollExpandMedia = ({
               </div>
 
               <div
-                className={`flex items-center justify-center text-center gap-4 w-full relative z-10 transition-none flex-col ${
+                className={`flex items-center justify-center text-center gap-2 w-full relative z-10 transition-none flex-col ${
                   textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
                 }`}
               >
-                <motion.h2
-                  className='text-4xl md:text-5xl lg:text-6xl font-bold text-custom-blue transition-none'
-                  style={{ transform: `translateX(-${textTranslateX}vw)` }}
-                >
-                  {firstWord}
-                </motion.h2>
-                <motion.h2
-                  className='text-4xl md:text-5xl lg:text-6xl font-bold text-center text-custom-blue transition-none'
-                  style={{ transform: `translateX(${textTranslateX}vw)` }}
-                >
-                  {restOfTitle}
-                </motion.h2>
+                {processedLines.map((line, lineIndex) => {
+                  // Line 0 (Santiago): slides left, Line 1 (is a fintech): slides right, Line 2 (powerhouse): slides left
+                  const slideDirection = lineIndex % 2 === 0 ? -1 : 1;
+                  const slideAmount = slideDirection * textTranslateX;
+                  
+                  return (
+                    <motion.h2
+                      key={lineIndex}
+                      className='text-4xl md:text-5xl lg:text-6xl font-bold text-white transition-none'
+                      style={{ 
+                        transform: `translateX(${slideAmount}vw)`,
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)'
+                      }}
+                    >
+                      {line.map((wordObj, wordIndex) => (
+                        <span 
+                          key={wordIndex} 
+                          className={wordObj.isBlue ? `text-custom-blue ${wordObj.isUltraThin ? 'font-extralight' : ''}` : 'text-white'}
+                          style={wordObj.isBlue ? 
+                            { textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' } : 
+                            { textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }
+                          }
+                        >
+                          {wordObj.text}{wordIndex < line.length - 1 ? ' ' : ''}
+                        </span>
+                      ))}
+                    </motion.h2>
+                  );
+                })}
               </div>
             </div>
 

@@ -29,7 +29,7 @@ export const Hero = () => {
           >
             ETH Chile{" "}
             <span className="font-raleway font-extralight text-custom-blue" style={{ 
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(59, 130, 246, 0.5)' 
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
             }}>
               2025
             </span>
@@ -42,7 +42,7 @@ export const Hero = () => {
             }}
           >
             <span className="text-custom-blue" style={{ 
-              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(59, 130, 246, 0.4)' 
+              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)' 
             }}>Fintech</span> meets Ethereum 
           </div>
 
@@ -62,10 +62,10 @@ export const Hero = () => {
             }}
           >
             Experience the future of <span className="text-custom-blue" style={{ 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(59, 130, 246, 0.3)' 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
             }}>blockchain</span>&nbsp;technology
             <br /> in the heart of <span className="text-custom-blue" style={{ 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(59, 130, 246, 0.3)' 
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
             }}>LatinAmerica</span>'s
             <br /> fintech revolution.
           </div>
@@ -75,7 +75,7 @@ export const Hero = () => {
           >
             <a 
               href="/speakers" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+              className="bg-blue-600 hover:bg-custom-blue text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
             >
               Quiero ser Speaker
             </a>

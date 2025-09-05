@@ -57,10 +57,13 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)'
                 }}
               >
-                <div className="mb-4">Latin America is the <span className="text-custom-blue font-extralight">Future</span>,</div>
+                <div className="mb-4">Latin America is the <span 
+                  className="text-custom-blue font-extralight" 
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+                >Future</span>,</div>
                 <div className="mb-4">
                   <span className="font-raleway font-light text-custom-blue" style={{ 
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(59, 130, 246, 0.5)' 
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
                   }}>
                     Chile 
                   </span> is the Catalyst

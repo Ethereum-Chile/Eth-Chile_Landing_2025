@@ -40,8 +40,14 @@ const Footer = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
-                Let's build together
+              <h2 
+                className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
+                style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
+              >
+                Let's <span 
+                  className="text-custom-blue font-extralight"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+                >build</span> together
               </h2>
             </motion.div>
 
@@ -99,7 +105,7 @@ const Footer = () => {
 
                 <button
                   type="submit"
-                  className="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-gray-100 transition-colors"
+                  className="bg-white text-black px-8 py-3 rounded-lg font-semibold flex-1 hover:bg-custom-blue hover:text-white transition-colors"
                 >
                   Submit
                 </button>
@@ -124,8 +130,14 @@ const Footer = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight">
-                Connect With Us
+              <h3 
+                className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
+                style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
+              >
+                <span 
+                  className="text-custom-blue font-extralight"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
+                >Connect</span> with us
               </h3>
             </motion.div>
 
