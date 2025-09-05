@@ -122,24 +122,6 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <motion.div 
-              className="mb-8" 
-              style={{ minHeight: "3rem" }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <h3 
-                className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight"
-                style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' }}
-              >
-                <span 
-                  className="text-custom-blue font-extralight"
-                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' }}
-                >Connect</span> with us
-              </h3>
-            </motion.div>
 
             <motion.div 
               className="lg:hidden grid grid-cols-2 gap-4 justify-items-start"
