@@ -73,13 +73,15 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           overflow-y: auto !important;
           -webkit-overflow-scrolling: touch !important;
           touch-action: pan-y !important;
-          height: 500px !important;
-          max-height: 500px !important;
+          height: 400px !important;
+          max-height: 400px !important;
           width: 100% !important;
           max-width: 100% !important;
           overflow-x: hidden !important;
           pointer-events: auto !important;
           position: relative !important;
+          margin-bottom: 0 !important;
+          padding-bottom: 0 !important;
         }
         .welcu_embed * {
           -webkit-overflow-scrolling: touch !important;
@@ -98,6 +100,11 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           -webkit-overflow-scrolling: touch !important;
           touch-action: pan-y !important;
         }
+        /* Hide Total column */
+        .welcu_embed table th:nth-child(4),
+        .welcu_embed table td:nth-child(4) {
+          display: none !important;
+        }
         /* Mobile table and content fixes */
         .welcu_embed table {
           width: 100% !important;
@@ -111,6 +118,19 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           overflow-wrap: break-word !important;
           max-width: 0 !important;
           padding: 8px 4px !important;
+        }
+        /* Make remaining columns fill full width */
+        .welcu_embed table th:nth-child(1),
+        .welcu_embed table td:nth-child(1) {
+          width: 50% !important;
+        }
+        .welcu_embed table th:nth-child(2),
+        .welcu_embed table td:nth-child(2) {
+          width: 25% !important;
+        }
+        .welcu_embed table th:nth-child(3),
+        .welcu_embed table td:nth-child(3) {
+          width: 25% !important;
         }
         .welcu_embed .ticket-option, .welcu_embed .ticket-row {
           width: 100% !important;
@@ -151,11 +171,35 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
             overflow-x: hidden !important;
             padding: 0 !important;
             margin: 0 !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            /* Mobile height adjustment */
+            height: 400px !important;
+            max-height: 400px !important;
+            min-height: 400px !important;
           }
           .welcu_embed table {
             font-size: 12px !important;
             width: 100% !important;
             table-layout: fixed !important;
+          }
+          /* Hide Total column on mobile */
+          .welcu_embed table th:nth-child(4),
+          .welcu_embed table td:nth-child(4) {
+            display: none !important;
+          }
+          /* Make remaining columns fill full width on mobile */
+          .welcu_embed table th:nth-child(1),
+          .welcu_embed table td:nth-child(1) {
+            width: 50% !important;
+          }
+          .welcu_embed table th:nth-child(2),
+          .welcu_embed table td:nth-child(2) {
+            width: 25% !important;
+          }
+          .welcu_embed table th:nth-child(3),
+          .welcu_embed table td:nth-child(3) {
+            width: 25% !important;
           }
           .welcu_embed td, .welcu_embed th {
             padding: 6px 2px !important;
@@ -226,53 +270,53 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
             const iframes = welcuContainer.querySelectorAll('iframe');
             iframes.forEach(iframe => {
               iframe.style.overflow = 'auto';
-              iframe.style.webkitOverflowScrolling = 'touch';
+              (iframe.style as any).webkitOverflowScrolling = 'touch';
               iframe.style.touchAction = 'pan-y';
             });
             
             // Find and fix any scrollable containers
             const scrollableElements = welcuContainer.querySelectorAll('div, section, main');
             scrollableElements.forEach(el => {
-              el.style.overflow = 'auto';
-              el.style.webkitOverflowScrolling = 'touch';
-              el.style.touchAction = 'pan-y';
+              (el as HTMLElement).style.overflow = 'auto';
+              ((el as HTMLElement).style as any).webkitOverflowScrolling = 'touch';
+              (el as HTMLElement).style.touchAction = 'pan-y';
             });
             
             // Fix tables for mobile
             const tables = welcuContainer.querySelectorAll('table');
             tables.forEach(table => {
-              table.style.width = '100%';
-              table.style.maxWidth = '100%';
-              table.style.tableLayout = 'fixed';
-              table.style.fontSize = '12px';
+              (table as HTMLElement).style.width = '100%';
+              (table as HTMLElement).style.maxWidth = '100%';
+              (table as HTMLElement).style.tableLayout = 'fixed';
+              (table as HTMLElement).style.fontSize = '12px';
             });
             
             // Fix table cells
             const cells = welcuContainer.querySelectorAll('td, th');
             cells.forEach(cell => {
-              cell.style.wordWrap = 'break-word';
-              cell.style.wordBreak = 'break-word';
-              cell.style.overflowWrap = 'break-word';
-              cell.style.padding = '6px 2px';
-              cell.style.fontSize = '11px';
+              (cell as HTMLElement).style.wordWrap = 'break-word';
+              (cell as HTMLElement).style.wordBreak = 'break-word';
+              (cell as HTMLElement).style.overflowWrap = 'break-word';
+              (cell as HTMLElement).style.padding = '6px 2px';
+              (cell as HTMLElement).style.fontSize = '11px';
             });
             
             // Ensure buttons are clickable
             const buttons = welcuContainer.querySelectorAll('button, .btn, [role="button"], input[type="submit"], input[type="button"]');
             buttons.forEach(button => {
-              button.style.pointerEvents = 'auto';
-              button.style.cursor = 'pointer';
-              button.style.zIndex = '10';
-              button.style.position = 'relative';
+              (button as HTMLElement).style.pointerEvents = 'auto';
+              (button as HTMLElement).style.cursor = 'pointer';
+              (button as HTMLElement).style.zIndex = '10';
+              (button as HTMLElement).style.position = 'relative';
               // Remove any event listeners that might be interfering
-              button.onclick = null;
+              (button as HTMLElement).onclick = null;
             });
             
             // Re-enable pointer events on all interactive elements
             const interactiveElements = welcuContainer.querySelectorAll('a, button, input, select, textarea, [onclick], [role="button"]');
             interactiveElements.forEach(el => {
-              el.style.pointerEvents = 'auto';
-              el.style.cursor = 'pointer';
+              (el as HTMLElement).style.pointerEvents = 'auto';
+              (el as HTMLElement).style.cursor = 'pointer';
             });
           }
         }, 3000);
@@ -345,12 +389,10 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
 
   // Video loading handlers
   const handleVideoLoad = () => {
-    console.log('Video loaded successfully in modal');
     setVideoLoaded(true);
   };
 
   const handleVideoError = (e: any) => {
-    console.log('Video failed to load in modal:', e);
     setUseFallback(true);
     setVideoLoaded(true);
   };
@@ -382,9 +424,11 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
   // Custom preloader component
   const CustomPreloader = () => (
     <div 
-      className="w-full h-[500px] bg-black flex flex-col items-center justify-center"
+      className="w-full h-full bg-black flex flex-col items-center justify-center"
       style={{
-        backgroundColor: '#000000'
+        backgroundColor: '#000000',
+        height: isMobile ? '400px' : '500px',
+        minHeight: isMobile ? '400px' : '500px'
       }}
     >
       {/* Video Animation Container */}
@@ -419,7 +463,6 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
               onLoad={() => setVideoLoaded(true)}
               onError={() => {
                 // Final fallback: Text-based ASCII
-                console.log('GIF failed to load, using text fallback');
                 setUseTextFallback(true);
                 setVideoLoaded(true);
               }}
@@ -515,14 +558,16 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
                 <div className="mb-4">
                   <div 
                     id="welcu_embed_sale_7182972057" 
-                    className="welcu_embed min-h-[500px]"
+                    className="welcu_embed"
                     style={{ 
                       overflow: 'auto',
                       WebkitOverflowScrolling: 'touch',
-                      touchAction: 'pan-y'
+                      touchAction: 'pan-y',
+                      height: isMobile ? '400px' : '500px',
+                      minHeight: isMobile ? '400px' : '500px'
                     }}
                   >
-                    {isLoading ? (
+                    {isLoading && !welcuLoaded ? (
                       <CustomPreloader />
                     ) : null}
                   </div>
