@@ -71,7 +71,7 @@ const Header: React.FC = () => {
               EN
             </button>
             <button
-              className="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80"
+              className="text-sm font-medium transition-all duration-300 text-white/60 hover:text-white/80 lang-active"
               onClick={() => setLanguage('es')}
               id="lang-es"
             >

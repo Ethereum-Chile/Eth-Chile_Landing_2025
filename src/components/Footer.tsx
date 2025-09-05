@@ -181,18 +181,18 @@ const Footer = () => {
           >
 
             <motion.div 
-              className="lg:hidden grid grid-cols-2 gap-4 justify-items-start"
+              className="lg:hidden grid grid-cols-2 gap-4 justify-items-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-2xl">
+              <div className="text-2xl -ml-0">
                 <FlipLink href="https://x.com/ethereum_chile" text="Twitter">
                   Twitter
                 </FlipLink>
               </div>
-              <div className="text-2xl">
+              <div className="text-2xl -ml-0">
                 <FlipLink
                   href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
                   text="Luma"
@@ -200,12 +200,12 @@ const Footer = () => {
                   Luma
                 </FlipLink>
               </div>
-              <div className="text-2xl">
+              <div className="text-2xl -ml-0">
                 <FlipLink href="https://github.com/ethereumchile" text="GitHub">
                   GitHub
                 </FlipLink>
               </div>
-              <div className="text-2xl">
+              <div className="text-2xl -ml-0">
                 <FlipLink href="https://t.me/ethereumchile" text="Telegram">
                   Telegram
                 </FlipLink>
