@@ -33,9 +33,14 @@ const WhatMakesUniqueContent = () => {
 
   const content = {
     en: {
-      title: "What Makes ETH Chile Unique",
+      title: "What Makes ETH Chile",
+      unique: "Unique",
       ethChile: "ETH Chile",
-      description: "Discover why Chile's unique combination of regulatory clarity, fintech infrastructure, and technological talent makes it the ideal location for the next generation of blockchain innovation.",
+      description: "Discover why Chile's unique combination of",
+      regulatoryClarity: "regulatory clarity",
+      descriptionMiddle: ", fintech infrastructure, and technological talent makes it the",
+      idealLocation: "ideal location",
+      descriptionEnd: "for the next generation of blockchain innovation.",
       videoTitle: "Santiago <br> is a fintech <br> powerhouse",
       fintech: "fintech",
       videoSubtitle: "Join Chile's premier Ethereum event",
@@ -43,9 +48,14 @@ const WhatMakesUniqueContent = () => {
       scrollToExpand: "Scroll to Discover More"
     },
     es: {
-      title: "Qué Hace ETH Chile Único",
+      title: "Qué Hace ETH Chile",
+      unique: "Único",
       ethChile: "ETH Chile",
-      description: "Descubre por qué la combinación única de Chile de claridad regulatoria, infraestructura fintech y talento tecnológico lo convierte en la ubicación ideal para la próxima generación de innovación blockchain.",
+      description: "Descubre por qué la combinación única de Chile de",
+      regulatoryClarity: "claridad regulatoria",
+      descriptionMiddle: ", infraestructura fintech y talento tecnológico lo convierte en la",
+      idealLocation: "ubicación ideal",
+      descriptionEnd: "para la próxima generación de innovación blockchain.",
       videoTitle: "Santiago <br> es una potencia <br> fintech",
       fintech: "fintech",
       videoSubtitle: "Únete al evento principal de Ethereum en Chile",
@@ -88,14 +98,34 @@ const WhatMakesUniqueContent = () => {
                   {word}{index < t.title.split(' ').length - 1 ? ' ' : ''}
                 </span>
               );
-            })}
+            })}{' '}
+            <span
+              className="text-custom-blue font-extralight"
+              style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)'}}
+            >
+              {t.unique}
+            </span>
           </h2>
         </div>
         <p
           className="text-lg text-gray-300 text-center max-w-4xl mx-auto"
           style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)'}}
         >
-          {t.description}
+          {t.description}{' '}
+          <span
+            className="text-custom-blue font-extralight"
+            style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)'}}
+          >
+            {t.regulatoryClarity}
+          </span>
+          {t.descriptionMiddle}{' '}
+          <span
+            className="text-custom-blue font-extralight"
+            style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)'}}
+          >
+            {t.idealLocation}
+          </span>
+          {t.descriptionEnd}
         </p>
       </div>
     </ScrollExpandMedia>

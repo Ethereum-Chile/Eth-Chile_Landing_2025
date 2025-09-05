@@ -38,13 +38,15 @@ const WhyEthereumComponent = () => {
       title: "Why Ethereum, Why",
       now: "Now",
       subtitle: "Ethereum is now critical infrastructure",
-      description: "The world's programmable blockchain has evolved into the foundation for the next generation of financial applications, decentralized systems, and digital innovation."
+      description: "The world's programmable blockchain has evolved into the foundation for the next generation of financial applications, decentralized systems, and",
+      descriptionBlue: "digital innovation."
     },
     es: {
       title: "Por qué Ethereum, Por qué",
       now: "Ahora",
       subtitle: "Ethereum es ahora infraestructura crítica",
-      description: "La blockchain programable del mundo ha evolucionado hasta convertirse en la base para la próxima generación de aplicaciones financieras, sistemas descentralizados e innovación digital."
+      description: "La blockchain programable del mundo ha evolucionado hasta convertirse en la base para la próxima generación de aplicaciones financieras, sistemas descentralizados e",
+      descriptionBlue: "innovación digital."
     }
   };
 
@@ -147,7 +149,10 @@ const WhyEthereumComponent = () => {
                 className="text-base md:text-lg mb-8 md:mb-12 text-gray-300 leading-relaxed"
                 style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' }}
               >
-                {t.description}
+                {t.description} <span 
+                  className="text-custom-blue font-extralight" 
+                  style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' }}
+                >{t.descriptionBlue}</span>
               </p>
 
               <div className="relative">
