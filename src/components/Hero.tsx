@@ -3,9 +3,12 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { RaycastAnimatedBlueBackground } from "./ui/raycast-animated-blue-background";
+import { useLanguage } from "../utils/language";
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { getContent, mounted } = useLanguage();
+  const content = getContent('hero');
 
   return (
     <div ref={containerRef} className="relative h-[100vh] md:h-[110vh] w-full overflow-hidden" style={{ scrollBehavior: 'smooth' }}>
@@ -19,6 +22,7 @@ export const Hero = () => {
           minHeight: "100vh",
           paddingTop: "0",
           marginTop: "0",
+          zIndex: 30,
         }}
       >
         <div className="flex flex-col items-center justify-center space-y-6 max-w-4xl">
@@ -28,11 +32,11 @@ export const Hero = () => {
               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)' 
             }}
           >
-            ETH Chile{" "}
+            {content.title}{" "}
             <span className="font-raleway font-extralight text-custom-blue" style={{ 
               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 191, 255, 0.5)' 
             }}>
-              2025
+              {content.year}
             </span>
           </div>
           
@@ -44,7 +48,7 @@ export const Hero = () => {
           >
             <span className="text-custom-blue" style={{ 
               textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 191, 255, 0.4)' 
-            }}>Fintech</span> meets Ethereum 
+            }}>{content.subtitle?.split(' ')[0]}</span> {content.subtitle?.split(' ').slice(1).join(' ')}
           </div>
 
           <div
@@ -53,7 +57,7 @@ export const Hero = () => {
               textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.4)' 
             }}
           >
-            October 24th & 25th
+            {content.date}
           </div>
 
           <div
@@ -61,24 +65,23 @@ export const Hero = () => {
             style={{ 
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3)' 
             }}
-          >
-            Experience the future of <span className="text-custom-blue" style={{ 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
-            }}>blockchain</span>&nbsp;technology
-            <br /> in the heart of <span className="text-custom-blue" style={{ 
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)' 
-            }}>LatinAmerica</span>'s
-            <br /> fintech revolution.
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: content.description
+                ?.replace('blockchain', `<span class="text-custom-blue" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)">blockchain</span>`)
+                ?.replace('revolución fintech', `<span class="text-custom-blue" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)">revolución fintech</span>`)
+                ?.replace('fintech revolution', `<span class="text-custom-blue" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 191, 255, 0.3)">fintech revolution</span>`)
+            }}
+          />
 
           <div 
-            className="flex space-x-4"
+            className="flex space-x-4 relative z-40"
           >
             <a 
               href="/speakers" 
-              className="bg-blue-600 hover:bg-custom-blue text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+              className="bg-blue-600 hover:bg-custom-blue text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 relative z-40"
+              style={{ zIndex: 40 }}
             >
-              Quiero ser Speaker
+              {content.cta}
             </a>
           </div>
         </div>

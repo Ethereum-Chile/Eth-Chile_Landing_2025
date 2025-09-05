@@ -16,10 +16,12 @@ import SocialProof from "../components/SocialProof.astro";
 import Hero from "../components/Hero";
 import AppWrapper from "../components/AppWrapper.tsx";
 import HackathonSection from "../components/HackathonSection.tsx";
+import LanguageToggle from "../components/LanguageToggle.tsx";
 ---
 
 <Layout title="ETHChile 2025 - Ethereum Meets the Real World">
   <AppWrapper client:load>
+    <LanguageToggle client:load />
     <div style="margin: 0; padding: 0; position: relative;">
       <Header />
       <section id="hero" style="position: relative; z-index: 1;">

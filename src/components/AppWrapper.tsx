@@ -15,6 +15,13 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
     setIsLoaded(true);
   };
 
+  // Skip preloader in development mode
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      setIsLoaded(true);
+    }
+  }, []);
+
   // Prevent scrolling while preloader is active
   useEffect(() => {
     if (!isLoaded) {
