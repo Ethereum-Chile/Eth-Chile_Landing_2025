@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header.tsx";
 import WhyEthereum from "../components/WhyEthereum.astro";
 import LatinAmericaSection from "../components/LatinAmericaSection.tsx";
 import WhatMakesUnique from "../components/WhatMakesUnique.astro";
@@ -23,7 +23,7 @@ import LanguageToggle from "../components/LanguageToggle.tsx";
   <AppWrapper client:load>
     <LanguageToggle client:load />
     <div style="margin: 0; padding: 0; position: relative;">
-      <Header />
+      <Header client:load />
       <section id="hero" style="position: relative; z-index: 1;">
         <Hero client:load />
       </section>

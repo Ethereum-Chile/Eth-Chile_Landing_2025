@@ -1,0 +1,188 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.tsx";
+import Footer from "../components/Footer.tsx";
+import { RaycastAnimatedBlueBackground } from "../components/ui/raycast-animated-blue-background.tsx";
+import AppWrapper from "../components/AppWrapper.tsx";
+---
+
+<Layout title="ETHChile 2025 - Buy Tickets">
+  <AppWrapper client:load>
+    <RaycastAnimatedBlueBackground client:load />
+    <div style="margin: 0; padding: 0; position: relative;">
+      <Header client:load />
+      <main
+        class="min-h-screen pt-24 pb-16"
+        style="position: relative; z-index: 1;"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Hero Section -->
+          <section class="mb-16 text-center">
+            <h1
+              class="text-5xl md:text-6xl font-raleway font-bold bg-gradient-to-r from-white via-blue-400 to-purple-400 bg-clip-text text-transparent mb-6"
+            >
+              Get Your ETHChile 2025 Tickets
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              Join us for the premier Ethereum event in Latin America. Secure
+              your spot at ETHChile 2025 and be part of the future of blockchain
+              innovation.
+            </p>
+          </section>
+
+          <!-- Ticket Purchase Section -->
+          <section class="mb-20">
+            <div
+              class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-800"
+            >
+              <h2
+                class="text-3xl font-raleway font-semibold text-white mb-8 text-center"
+              >
+                Purchase Your Tickets
+              </h2>
+
+              <!-- Welcu Ticket Widget -->
+              <div class="w-full">
+                <div id="welcu_embed_sale_7182972057" class="welcu_embed">
+                  <center>
+                    <img
+                      src="https://assets.welcu.com/images/loading.gif"
+                      width="50"
+                      height="50"
+                      alt="Loading tickets..."
+                    />
+                  </center>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Event Information Section -->
+          <section class="mb-20">
+            <h2
+              class="text-4xl font-raleway font-bold text-white mb-12 text-center"
+            >
+              Event Information
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <!-- Date & Location -->
+              <div
+                class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800"
+              >
+                <h3 class="text-xl font-semibold text-custom-blue mb-4">
+                  📅 Date & Time
+                </h3>
+                <p class="text-gray-300 mb-2">
+                  <strong>Date:</strong> March 2025
+                </p>
+                <p class="text-gray-300">
+                  <strong>Duration:</strong> 2 days of intensive learning and networking
+                </p>
+              </div>
+
+              <div
+                class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800"
+              >
+                <h3 class="text-xl font-semibold text-custom-blue mb-4">
+                  📍 Location
+                </h3>
+                <p class="text-gray-300 mb-2">
+                  <strong>Venue:</strong> Santiago, Chile
+                </p>
+                <p class="text-gray-300">
+                  <strong>Address:</strong> TBA - Stay tuned for updates
+                </p>
+              </div>
+
+              <!-- What's Included -->
+              <div
+                class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800"
+              >
+                <h3 class="text-xl font-semibold text-custom-blue mb-4">
+                  🎟️ What's Included
+                </h3>
+                <ul class="text-gray-300 space-y-2">
+                  <li>• Access to all conference sessions</li>
+                  <li>• Networking opportunities</li>
+                  <li>• Lunch and refreshments</li>
+                  <li>• Conference materials</li>
+                  <li>• Digital certificate of attendance</li>
+                </ul>
+              </div>
+
+              <!-- Ticket Types -->
+              <div
+                class="bg-gradient-to-br from-gray-900/40 to-gray-800/30 p-6 rounded-xl border border-gray-800"
+              >
+                <h3 class="text-xl font-semibold text-custom-blue mb-4">
+                  🎫 Ticket Types
+                </h3>
+                <ul class="text-gray-300 space-y-2">
+                  <li>
+                    • <strong>General Admission:</strong> Full conference access
+                  </li>
+                  <li>
+                    • <strong>Student:</strong> Discounted rate for students
+                  </li>
+                  <li>
+                    • <strong>VIP:</strong> Premium experience with exclusive benefits
+                  </li>
+                  <li>
+                    • <strong>Workshop:</strong> Hands-on technical sessions
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Contact Information -->
+          <section class="mb-20">
+            <div
+              class="bg-gradient-to-br from-gray-900/30 to-gray-800/20 backdrop-blur-sm rounded-2xl p-8 text-center"
+            >
+              <h3 class="text-2xl font-raleway font-semibold text-white mb-4">
+                Need Help?
+              </h3>
+              <p class="text-lg text-gray-300 mb-6">
+                If you have any questions about tickets or the event, please
+                don't hesitate to contact us.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="mailto:info@ethchile.org"
+                  class="inline-flex items-center px-6 py-3 bg-custom-blue text-white font-medium rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  📧 Contact Us
+                </a>
+                <a
+                  href="https://t.me/EthereumChile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center px-6 py-3 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  💬 Telegram
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <Footer client:load />
+    </div>
+  </AppWrapper>
+</Layout>
+
+<script>
+  // Welcu Ticket Widget Script
+  (function () {
+    var embed = document.createElement("script");
+    embed.type = "text/javascript";
+    embed.async = true;
+    embed.src =
+      "https://welcu.com/ethereum-chile/ethchile-2025/sales/0bc425c4a4.embed?currency_id=clp&locale=es";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(embed, s);
+  })();
+</script>
