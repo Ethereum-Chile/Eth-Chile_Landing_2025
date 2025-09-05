@@ -81,18 +81,19 @@ const Header: React.FC = () => {
 
           <button
             onClick={openTicketModal}
-            className="relative px-6 py-3 text-white font-raleway font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden group backdrop-blur-md border border-white/40 hover:border-white/60 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+            className="relative px-6 py-3 text-white font-raleway font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden group backdrop-blur-sm border border-white/30 hover:border-white/50"
             id="buy-tickets-btn"
-            style={{ backdropFilter: 'blur(10px)', boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)' }}
+            style={{ 
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)'
+            }}
           >
-            {/* Frosted glass background */}
-            <div className="absolute inset-0 bg-white/5 backdrop-blur-md rounded-lg"></div>
+            {/* Simple background overlay */}
+            <div className="absolute inset-0 bg-white/5 rounded-lg"></div>
             
-            {/* Shiny hover effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out rounded-lg"></div>
-            
-            {/* Glowing border effect */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/20 via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            {/* Shiny hover effect - only on desktop */}
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out rounded-lg"></div>
             
             {/* Button text */}
             <span className="relative z-10">Buy Tickets</span>
