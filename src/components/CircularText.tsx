@@ -104,6 +104,7 @@ const CircularText = ({
       <motion.div
         initial={{ rotate: 0 }}
         className="absolute inset-0"
+        style={{ zIndex: 1, pointerEvents: 'none' }}
         animate={controls}
         onUpdate={(latest) => {
           if (typeof latest.rotate === 'number') {
@@ -135,21 +136,30 @@ const CircularText = ({
       {/* Static EF DevCon Logo in the center with clickable link */}
       <div 
         className="absolute inset-0 flex items-center justify-center"
-        style={{ zIndex: 9999 }}
+        style={{ zIndex: 99999, pointerEvents: 'auto' }}
       >
-        <div
-          className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+        <a
+          href="https://devconnect.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-all duration-300 hover:scale-110 cursor-pointer block touch-manipulation hover:brightness-110 hover:drop-shadow-lg"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Logo clicked!'); // Debug log
+            console.log('DevConnect logo clicked!');
             window.open('https://devconnect.org/', '_blank', 'noopener,noreferrer');
           }}
           style={{ 
-            zIndex: 10000,
+            zIndex: 999999,
             pointerEvents: 'auto',
-            position: 'relative'
+            position: 'relative',
+            display: 'block',
+            minWidth: '96px',
+            minHeight: '96px',
+            width: '96px',
+            height: '96px'
           }}
+          aria-label="Visit DevConnect.org"
         >
           <img
             src="/EF_devcon_logo.webp"
@@ -157,10 +167,10 @@ const CircularText = ({
             className="w-24 h-24 object-contain"
             style={{
               filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))',
-              pointerEvents: 'none', // Let the parent div handle clicks
+              pointerEvents: 'none', // Let the parent handle clicks
             }}
           />
-        </div>
+        </a>
       </div>
     </div>
   );

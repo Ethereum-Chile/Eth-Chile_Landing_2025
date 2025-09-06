@@ -15,7 +15,78 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
   const [useFallback, setUseFallback] = useState(false);
   const [useTextFallback, setUseTextFallback] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('es');
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Content translations
+  const content = {
+    en: {
+      title: "Get Your ETHChile 2025 Tickets",
+      subtitle: "Join us this October in Campus Oriente, Santiago.",
+      eventDetails: "📅 Event Details",
+      date: "Date:",
+      duration: "Duration:",
+      location: "Location:",
+      format: "Format:",
+      dateValue: "October 24th and 25th, 2025",
+      durationValue: "2 days",
+      locationValue: "Santiago, Chile",
+      formatValue: "In-person conference",
+      whatsIncluded: "🎟️ What's Included",
+      sessions: "• All conference sessions",
+      networking: "• Networking opportunities",
+      materials: "• Access to Campus Oriente, Workshops and talks",
+      contact: "Need help? Contact us at",
+      email: "info@ethchile.org"
+    },
+    es: {
+      title: "Obtén tus Entradas al ETHChile 2025",
+      subtitle: "Únete a nosotros este octubre en Campus Oriente, Santiago.",
+      eventDetails: "📅 Detalles del Evento",
+      date: "Fecha:",
+      duration: "Duración:",
+      location: "Ubicación:",
+      format: "Formato:",
+      dateValue: "24 y 25 de Octubre 2025",
+      durationValue: "2 días",
+      locationValue: "Santiago, Chile",
+      formatValue: "Conferencia presencial",
+      whatsIncluded: "🎟️ Lo que Incluye",
+      sessions: "• Todas las sesiones de la conferencia",
+      networking: "• Oportunidades de networking",
+      materials: "• Acceso a Campus Oriente, Workshops y charlas",
+      contact: "¿Necesitas ayuda? Contáctanos en",
+      email: "info@ethchile.org"
+    }
+  };
+
+  const t = content[language];
+
+  // Remove the early return - let the component render and handle mounting in useEffect
+
+  // Language initialization
+  useEffect(() => {
+    setMounted(true);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleLanguageChange = (event: CustomEvent) => {
+      setLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, [mounted]);
 
   // Load Welcu script when modal opens
   useEffect(() => {
@@ -87,6 +158,11 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
         .welcu_embed textarea::placeholder {
           color: rgba(255, 255, 255, 0.7) !important;
         }
+        /* Hide the total column (3rd column) */
+        .welcu_embed table th:nth-child(3),
+        .welcu_embed table td:nth-child(3) {
+          display: none !important;
+        }
         .welcu_embed {
           overflow-y: auto !important;
           -webkit-overflow-scrolling: touch !important;
@@ -132,22 +208,18 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           max-width: 0 !important;
           padding: 8px 4px !important;
         }
-        /* Responsive column widths for ticket table */
+        /* Responsive column widths for ticket table - 3 columns visible */
         .welcu_embed table th:nth-child(1),
         .welcu_embed table td:nth-child(1) {
-          width: 40% !important;
+          width: 50% !important;
         }
         .welcu_embed table th:nth-child(2),
         .welcu_embed table td:nth-child(2) {
-          width: 20% !important;
-        }
-        .welcu_embed table th:nth-child(3),
-        .welcu_embed table td:nth-child(3) {
-          width: 20% !important;
+          width: 25% !important;
         }
         .welcu_embed table th:nth-child(4),
         .welcu_embed table td:nth-child(4) {
-          width: 20% !important;
+          width: 25% !important;
         }
         .welcu_embed .ticket-option, .welcu_embed .ticket-row {
           width: 100% !important;
@@ -200,27 +272,35 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
             width: 100% !important;
             table-layout: fixed !important;
           }
-          /* Mobile responsive column widths - all columns visible */
+          /* Mobile responsive column widths - 3 columns visible (total column hidden) */
           .welcu_embed table th:nth-child(1),
           .welcu_embed table td:nth-child(1) {
-            width: 35% !important;
+            width: 45% !important;
           }
           .welcu_embed table th:nth-child(2),
           .welcu_embed table td:nth-child(2) {
-            width: 20% !important;
-          }
-          .welcu_embed table th:nth-child(3),
-          .welcu_embed table td:nth-child(3) {
-            width: 20% !important;
+            width: 25% !important;
           }
           .welcu_embed table th:nth-child(4),
           .welcu_embed table td:nth-child(4) {
-            width: 25% !important;
+            width: 30% !important;
           }
           .welcu_embed td, .welcu_embed th {
-            padding: 8px 4px !important;
-            font-size: 12px !important;
-            line-height: 1.3 !important;
+            padding: 6px 2px !important;
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+          }
+          /* Mobile price cells - smaller font for better fit */
+          .welcu_embed td:nth-child(2),
+          .welcu_embed td:nth-child(4) {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            min-width: 40px !important;
+            max-width: 50px !important;
           }
           .welcu_embed .ticket-name {
             font-size: 12px !important;
@@ -278,64 +358,6 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           }
         }, 5000);
         
-        // Additional mobile scrolling fix after widget loads
-        setTimeout(() => {
-          const welcuContainer = document.getElementById('welcu_embed_sale_7182972057');
-          if (welcuContainer) {
-            // Find and fix any iframes
-            const iframes = welcuContainer.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-              iframe.style.overflow = 'auto';
-              (iframe.style as any).webkitOverflowScrolling = 'touch';
-              iframe.style.touchAction = 'pan-y';
-            });
-            
-            // Find and fix any scrollable containers
-            const scrollableElements = welcuContainer.querySelectorAll('div, section, main');
-            scrollableElements.forEach(el => {
-              (el as HTMLElement).style.overflow = 'auto';
-              ((el as HTMLElement).style as any).webkitOverflowScrolling = 'touch';
-              (el as HTMLElement).style.touchAction = 'pan-y';
-            });
-            
-            // Fix tables for mobile
-            const tables = welcuContainer.querySelectorAll('table');
-            tables.forEach(table => {
-              (table as HTMLElement).style.width = '100%';
-              (table as HTMLElement).style.maxWidth = '100%';
-              (table as HTMLElement).style.tableLayout = 'fixed';
-              (table as HTMLElement).style.fontSize = '12px';
-            });
-            
-            // Fix table cells
-            const cells = welcuContainer.querySelectorAll('td, th');
-            cells.forEach(cell => {
-              (cell as HTMLElement).style.wordWrap = 'break-word';
-              (cell as HTMLElement).style.wordBreak = 'break-word';
-              (cell as HTMLElement).style.overflowWrap = 'break-word';
-              (cell as HTMLElement).style.padding = '6px 2px';
-              (cell as HTMLElement).style.fontSize = '11px';
-            });
-            
-            // Ensure buttons are clickable
-            const buttons = welcuContainer.querySelectorAll('button, .btn, [role="button"], input[type="submit"], input[type="button"]');
-            buttons.forEach(button => {
-              (button as HTMLElement).style.pointerEvents = 'auto';
-              (button as HTMLElement).style.cursor = 'pointer';
-              (button as HTMLElement).style.zIndex = '10';
-              (button as HTMLElement).style.position = 'relative';
-              // Remove any event listeners that might be interfering
-              (button as HTMLElement).onclick = null;
-            });
-            
-            // Re-enable pointer events on all interactive elements
-            const interactiveElements = welcuContainer.querySelectorAll('a, button, input, select, textarea, [onclick], [role="button"]');
-            interactiveElements.forEach(el => {
-              (el as HTMLElement).style.pointerEvents = 'auto';
-              (el as HTMLElement).style.cursor = 'pointer';
-            });
-          }
-        }, 3000);
       };
       
       script.onerror = () => {
@@ -536,10 +558,10 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
             <div className="flex items-center justify-between p-6 border-b border-white/10">
               <div>
                 <h2 className="text-3xl font-raleway font-bold text-white">
-                  Get Your ETHChile 2025 Tickets
+                  {t.title}
                 </h2>
                 <p className="text-gray-300 mt-2">
-                  Join us this October in Campus Oriente, Santiago. 
+                  {t.subtitle}
                 </p>
               </div>
               <button
@@ -596,26 +618,24 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <h3 className="text-lg font-semibold text-custom-blue mb-3">
-                      📅 Event Details
+                      {t.eventDetails}
                     </h3>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li><strong>Date:</strong> March 2025</li>
-                      <li><strong>Duration:</strong> 2 days</li>
-                      <li><strong>Location:</strong> Santiago, Chile</li>
-                      <li><strong>Format:</strong> In-person conference</li>
+                      <li><strong>{t.date}</strong> {t.dateValue}</li>
+                      <li><strong>{t.duration}</strong> {t.durationValue}</li>
+                      <li><strong>{t.location}</strong> {t.locationValue}</li>
+                      <li><strong>{t.format}</strong> {t.formatValue}</li>
                     </ul>
                   </div>
 
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <h3 className="text-lg font-semibold text-custom-blue mb-3">
-                      🎟️ What's Included
+                      {t.whatsIncluded}
                     </h3>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li>• All conference sessions</li>
-                      <li>• Networking opportunities</li>
-                      <li>• Meals and refreshments</li>
-                      <li>• Conference materials</li>
-                      <li>• Digital certificate</li>
+                      <li>{t.sessions}</li>
+                      <li>{t.networking}</li>
+                      <li>{t.materials}</li>
                     </ul>
                   </div>
                 </div>
@@ -623,12 +643,12 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
                 {/* Contact Info */}
                 <div className="text-center">
                   <p className="text-gray-300 mb-3 text-sm">
-                    Need help? Contact us at{' '}
+                    {t.contact}{' '}
                     <a
-                      href="mailto:info@ethchile.org"
+                      href={`mailto:${t.email}`}
                       className="text-custom-blue hover:text-blue-400 transition-colors"
                     >
-                      info@ethchile.org
+                      {t.email}
                     </a>
                   </p>
                 </div>

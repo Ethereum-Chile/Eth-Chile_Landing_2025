@@ -9,10 +9,12 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
 
   useEffect(() => {
     setMounted(true);
-    // Load language from localStorage
-    const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
-      setLanguage(savedLanguage);
+    // Load language from localStorage only on client side
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+        setLanguage(savedLanguage);
+      }
     }
   }, []);
 
@@ -29,9 +31,18 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
     };
   }, [mounted]);
 
-  if (!mounted) {
-    return null;
-  }
+  // Update language when mounted
+  useEffect(() => {
+    if (mounted && typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('eth-chile-language') as 'en' | 'es';
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+        setLanguage(savedLanguage);
+      }
+    }
+  }, [mounted]);
+
+  // Always render, but use default language if not mounted yet
+  const currentLanguage = mounted ? language : 'es';
 
   const content = {
     en: {
@@ -94,7 +105,7 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
     }
   };
 
-  const t = content[language];
+  const t = content[currentLanguage];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -124,14 +135,15 @@ const LatinAmericaSection = forwardRef<HTMLElement>((props, ref) => {
     <>
       <section 
         ref={sectionRef}
-        className='py-20 mt-0 relative' 
+        className='py-20 mt-0 relative min-h-screen' 
+        style={{ zIndex: 10 }}
       >
         {/* Removed Prism Background Animation */}
         
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="relative">
             {/* Circular Text positioned between text lines */}
-            <div className="absolute top-[8%] left-0 transform  z-10">
+            <div className="absolute top-[8%] left-0 transform" style={{ zIndex: 1000 }}>
               <CircularText
                 text={t.circularText}
                 spinDuration={30}
