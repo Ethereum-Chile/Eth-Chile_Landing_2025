@@ -39,7 +39,12 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           color: white !important;
         }
         .welcu_embed .btn,
-        .welcu_embed button {
+        .welcu_embed button,
+        .welcu_embed input[type="button"],
+        .welcu_embed input[type="submit"],
+        .welcu_embed select,
+        .welcu_embed .ticket-quantity,
+        .welcu_embed .quantity-selector {
           background-color: #00bfff !important;
           color: white !important;
           border: 1px solid #00bfff !important;
@@ -47,6 +52,8 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           cursor: pointer !important;
           z-index: 10 !important;
           position: relative !important;
+          min-height: 32px !important;
+          padding: 6px 8px !important;
         }
         .welcu_embed .btn:hover,
         .welcu_embed button:hover {
@@ -64,6 +71,17 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           background-color: rgba(255, 255, 255, 0.1) !important;
           color: white !important;
           border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+        .welcu_embed select {
+          background-color: rgba(0, 191, 255, 0.2) !important;
+          border: 1px solid #00bfff !important;
+          color: white !important;
+          cursor: pointer !important;
+          pointer-events: auto !important;
+        }
+        .welcu_embed select option {
+          background-color: #1a1a1a !important;
+          color: white !important;
         }
         .welcu_embed input::placeholder,
         .welcu_embed textarea::placeholder {
@@ -100,11 +118,6 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           -webkit-overflow-scrolling: touch !important;
           touch-action: pan-y !important;
         }
-        /* Hide Total column */
-        .welcu_embed table th:nth-child(4),
-        .welcu_embed table td:nth-child(4) {
-          display: none !important;
-        }
         /* Mobile table and content fixes */
         .welcu_embed table {
           width: 100% !important;
@@ -119,18 +132,22 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
           max-width: 0 !important;
           padding: 8px 4px !important;
         }
-        /* Make remaining columns fill full width */
+        /* Responsive column widths for ticket table */
         .welcu_embed table th:nth-child(1),
         .welcu_embed table td:nth-child(1) {
-          width: 50% !important;
+          width: 40% !important;
         }
         .welcu_embed table th:nth-child(2),
         .welcu_embed table td:nth-child(2) {
-          width: 25% !important;
+          width: 20% !important;
         }
         .welcu_embed table th:nth-child(3),
         .welcu_embed table td:nth-child(3) {
-          width: 25% !important;
+          width: 20% !important;
+        }
+        .welcu_embed table th:nth-child(4),
+        .welcu_embed table td:nth-child(4) {
+          width: 20% !important;
         }
         .welcu_embed .ticket-option, .welcu_embed .ticket-row {
           width: 100% !important;
@@ -183,28 +200,27 @@ const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose }) => {
             width: 100% !important;
             table-layout: fixed !important;
           }
-          /* Hide Total column on mobile */
-          .welcu_embed table th:nth-child(4),
-          .welcu_embed table td:nth-child(4) {
-            display: none !important;
-          }
-          /* Make remaining columns fill full width on mobile */
+          /* Mobile responsive column widths - all columns visible */
           .welcu_embed table th:nth-child(1),
           .welcu_embed table td:nth-child(1) {
-            width: 50% !important;
+            width: 35% !important;
           }
           .welcu_embed table th:nth-child(2),
           .welcu_embed table td:nth-child(2) {
-            width: 25% !important;
+            width: 20% !important;
           }
           .welcu_embed table th:nth-child(3),
           .welcu_embed table td:nth-child(3) {
+            width: 20% !important;
+          }
+          .welcu_embed table th:nth-child(4),
+          .welcu_embed table td:nth-child(4) {
             width: 25% !important;
           }
           .welcu_embed td, .welcu_embed th {
-            padding: 6px 2px !important;
-            font-size: 11px !important;
-            line-height: 1.2 !important;
+            padding: 8px 4px !important;
+            font-size: 12px !important;
+            line-height: 1.3 !important;
           }
           .welcu_embed .ticket-name {
             font-size: 12px !important;
