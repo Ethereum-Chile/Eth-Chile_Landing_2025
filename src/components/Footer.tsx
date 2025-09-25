@@ -180,7 +180,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
 
-            <motion.div 
+            <motion.div
               className="lg:hidden grid grid-cols-2 gap-4 justify-items-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -194,25 +194,28 @@ const Footer = () => {
               </div>
               <div className="text-2xl -ml-0">
                 <FlipLink
+                  href="https://www.instagram.com/ethereum_chile/"
+                  text="Instagram"
+                >
+                  Instagram
+                </FlipLink>
+              </div>
+              <div className="text-2xl -ml-0">
+                <FlipLink href="https://www.linkedin.com/company/ethereum-chile" text="LinkedIn">
+                  LinkedIn
+                </FlipLink>
+              </div>
+              <div className="text-2xl -ml-0">
+                <FlipLink
                   href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
                   text="Luma"
                 >
                   Luma
                 </FlipLink>
               </div>
-              <div className="text-2xl -ml-0">
-                <FlipLink href="https://github.com/ethereumchile" text="GitHub">
-                  GitHub
-                </FlipLink>
-              </div>
-              <div className="text-2xl -ml-0">
-                <FlipLink href="https://t.me/ethereumchile" text="Telegram">
-                  Telegram
-                </FlipLink>
-              </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="hidden lg:flex flex-col space-y-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -226,20 +229,23 @@ const Footer = () => {
               </div>
               <div className="text-3xl">
                 <FlipLink
+                  href="https://www.instagram.com/ethereum_chile/"
+                  text="Instagram"
+                >
+                  Instagram
+                </FlipLink>
+              </div>
+              <div className="text-3xl">
+                <FlipLink href="https://www.linkedin.com/company/ethereum-chile" text="LinkedIn">
+                  LinkedIn
+                </FlipLink>
+              </div>
+              <div className="text-3xl">
+                <FlipLink
                   href="https://lu.ma/calendar/cal-87JX1lrRWtdnV6U"
                   text="Luma"
                 >
                   Luma
-                </FlipLink>
-              </div>
-              <div className="text-3xl">
-                <FlipLink href="https://github.com/ethereumchile" text="GitHub">
-                  GitHub
-                </FlipLink>
-              </div>
-              <div className="text-3xl">
-                <FlipLink href="https://t.me/ethereumchile" text="Telegram">
-                  Telegram
                 </FlipLink>
               </div>
             </motion.div>
