@@ -15,7 +15,8 @@ export const languageContent: Record<Language, Record<string, LanguageContent>> 
       subtitle: "Fintech meets Ethereum",
       date: "October 24th & 25th",
       description: "Experience the future of blockchain technology<br />in the heart of Latin America's fintech revolution.",
-      cta: "I Want to be a Speaker"
+      cta: "I Want to be a Speaker",
+      ctaSponsor: "I Want to Sponsor"
     },
     whyEthereum: {
       title: "Why Ethereum, Why Now",
@@ -77,7 +78,8 @@ export const languageContent: Record<Language, Record<string, LanguageContent>> 
       subtitle: "Fintech se encuentra con Ethereum",
       date: "24 y 25 de Octubre",
       description: "Experimenta el futuro de la tecnología blockchain<br />en el corazón de la revolución fintech de Latinoamérica.",
-      cta: "Quiero ser Speaker"
+      cta: "Quiero ser Speaker",
+      ctaSponsor: "Quiero Ser Sponsor"
     },
     whyEthereum: {
       title: "Por qué Ethereum, Por qué Ahora",

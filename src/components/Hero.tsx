@@ -7,7 +7,7 @@ import { useLanguage } from "../utils/language";
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { getContent, mounted } = useLanguage();
+  const { getContent } = useLanguage();
   const content = getContent('hero');
 
   return (
@@ -73,15 +73,24 @@ export const Hero = () => {
             }}
           />
 
-          <div 
+          <div
             className="flex space-x-4 relative z-40"
           >
-            <a 
-              href="/speakers" 
+            <a
+              href="/speakers"
               className="bg-blue-600 hover:bg-custom-blue text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 relative z-40"
               style={{ zIndex: 40 }}
             >
               {content.cta}
+            </a>
+            <a
+              href="https://forms.gle/U5nWGcsZMLogwmEn7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 hover:bg-custom-blue text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 relative z-40"
+              style={{ zIndex: 40 }}
+            >
+              {content.ctaSponsor}
             </a>
           </div>
         </div>
